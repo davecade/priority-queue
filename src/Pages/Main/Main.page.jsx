@@ -4,7 +4,16 @@ import './Main.styles.scss'
 const MainPage = () => {
     return (
         <div className="main-page">
-            <h1>Tickets</h1>
+            <h1>Tickets List</h1>
+            <ul className="ticket-list">
+                <li className="ticket-entry">Ticket</li>
+                <li className="ticket-entry">Ticket</li>
+                <li className="ticket-entry">Ticket</li>
+                <li className="ticket-entry">Ticket</li>
+                <li className="ticket-entry">Ticket</li>
+                <li className="ticket-entry">Ticket</li>
+                <li className="ticket-entry">Ticket</li>
+            </ul>
         </div>
     )
 }
