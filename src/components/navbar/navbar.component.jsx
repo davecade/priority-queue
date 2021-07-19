@@ -3,9 +3,11 @@ import './navbar.styles.scss'
 
 const Navbar = () => {
     return (
-        <div className="navbar">
-            Navbar
-        </div>
+        <nav className="navbar">
+            <div className="search-container">
+                <input type="search" className="search-bar" placeholder="Search..."/>
+            </div>
+        </nav>
     )
 }
 
