@@ -1,11 +1,15 @@
 import React from 'react'
 import './navbar.styles.scss'
+import SearchBar from '../SearchBar/SearchBar.component'
 
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <div className="search-container">
-                <input type="search" className="search-bar" placeholder="Search..."/>
+            <SearchBar />
+            <div className="add-container">
+                <button className="btn">
+                    Create +
+                </button>
             </div>
         </nav>
     )

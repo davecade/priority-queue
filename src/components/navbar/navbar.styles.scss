@@ -3,32 +3,21 @@
     height: 70px;
     display: flex;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
 
-    .search-container {
-        position: relative;
-        width: 9rem;
+    .btn {
+        background-color: #d9eb52;
+        border-radius: 1rem;
         height: 2rem;
-        transition: all 1s;
-        margin: 0 0.5rem 0 1rem;
+        width: 6rem;
+        border: none;
+        outline: none;
 
-        .search-bar {
-            height: 100%;
-            width: 100%;
-            border-radius: 1rem;
-            outline: none;
-            padding: 0 1rem;
-            transition: all 1s;
-            
-        }
-
-        .fa-search {
-            position: absolute;
-            left: 0.5rem;
-            top: 0;
-            color: black;
-            transition: all 1s;
-            display: block;
+        &:hover {
+            cursor: pointer;
+            opacity: 0.9;
         }
     }
-
 }

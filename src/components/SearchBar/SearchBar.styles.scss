@@ -1,0 +1,22 @@
+.search-container {
+    position: relative;
+    width: 9rem;
+    height: 2rem;
+
+    .search-bar {
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        outline: none;
+        padding: 0 1rem;
+        
+    }
+
+    .fa-search {
+        position: absolute;
+        left: 0.5rem;
+        top: 0;
+        color: black;
+        display: block;
+    }
+}
