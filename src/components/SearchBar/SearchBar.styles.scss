@@ -1,18 +1,17 @@
 .search-container {
-    position: relative;
-    width: 12rem;
     height: 2rem;
-    
+    margin: 0.5rem;
+    transition: all .5s;
 
     .search-bar {
         height: 100%;
         width: 100%;
         border-radius: 1rem;
-        border: 3px solid black;
+        border: 3px solid #0d1117;
         outline: none;
         padding: 0 0.5rem;
         background-color: #0d1117;
-        transition: border .1s;
+        transition: all .5s;
         color: #f0f6fc;
 
         &::placeholder{
@@ -21,14 +20,9 @@
 
         &:focus {
             border: 3px solid #d9eb52;
+            width: 20rem;
+            transition: all .5s;
         }
     }
 
-    .fa-search {
-        position: absolute;
-        right: 5%;
-        top: 25%;
-        font-size: 1.1em;
-        color: #f0f6fc;
-    }
 }
