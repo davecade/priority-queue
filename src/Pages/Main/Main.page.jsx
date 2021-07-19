@@ -1,4 +1,5 @@
 import React from 'react'
+import './Main.styles.scss'
 
 const MainPage = () => {
     return (
