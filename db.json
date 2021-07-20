@@ -1,0 +1,18 @@
+{
+    "tickets": [
+        {
+            "id": 1,
+            "message": "testing",
+            "status": "new",
+            "date": "16-07-2021",
+            "assignee": "Dave Cadelina"
+        },
+        {
+            "id": 2,
+            "message": "Testing again",
+            "status": "in progress",
+            "date": "16-07-2021",
+            "assignee": "Ayra Garcia"
+        }
+    ]
+}
