@@ -12,8 +12,17 @@
         {
             "id": 2,
             "issue": "PC crashed - Blue screen of death",
-            "description": "Testing again",
+            "description": "Testing again my games",
             "status": "in progress",
+            "priority": "medium",
+            "date": "16-07-2021",
+            "assigned to": "Ayra Garcia"
+        },
+        {
+            "id": 3,
+            "issue": "PC crashed - Blue screen of death",
+            "description": "Testing again",
+            "status": "resolved",
             "priority": "high",
             "date": "16-07-2021",
             "assigned to": "Ayra Garcia"
