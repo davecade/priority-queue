@@ -13,8 +13,15 @@
         align-items: center;
         width: 20rem;
         
-        .fa-bug {
+        .fa-home {
             font-size: 1.5rem;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+
+            &:hover {
+                cursor: pointer;
+                color: #d9eb52;
+            }
         }
 
     }

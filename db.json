@@ -2,17 +2,27 @@
     "tickets": [
         {
             "id": 1,
-            "message": "testing",
+            "issue": "Code not working",
+            "description": "Please fix my code. I dont know what to do",
             "status": "new",
+            "priority": "low",
             "date": "16-07-2021",
-            "assignee": "Dave Cadelina"
+            "assigned to": "Dave Cadelina"
         },
         {
             "id": 2,
-            "message": "Testing again",
+            "issue": "PC crashed - Blue screen of death",
+            "description": "Testing again",
             "status": "in progress",
+            "priority": "high",
             "date": "16-07-2021",
-            "assignee": "Ayra Garcia"
+            "assigned to": "Ayra Garcia"
         }
+    ],
+    "users": [
+
+    ],
+    "engineers": [
+
     ]
 }
