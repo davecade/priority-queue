@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="left">
-                <Icon iconClass={"fas fa-bug"} />
+                <Icon iconClass={"fas fa-bug"} backgroundColor={'#f0f6fc'} color={'black'} />
                 <SearchBar />
             </div>
             <div className="right">

@@ -1,4 +1,7 @@
 .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 2.1rem;
     margin: 0.5rem;
     transition: all .5s;
@@ -20,8 +23,17 @@
 
         &:focus {
             border: 3px solid #d9eb52;
-            width: 20rem;
             transition: all .5s;
+
+        }
+    }
+
+    i {
+        transform: translate(-160%);
+
+        &:hover {
+            cursor: pointer;
+            color: #d9eb52;
         }
     }
 

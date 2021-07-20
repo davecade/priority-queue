@@ -1,10 +1,15 @@
 import React from 'react'
 import './Icon.styles.scss'
 
-const Icon = ({iconClass}) => {
+const Icon = ({iconClass, color, backgroundColor}) => {
     return (
-        <div className="icon-container">
-            <i class={iconClass}></i>
+        <div
+            className="icon-container"
+            style={ {
+                backgroundColor: backgroundColor,
+            }}
+        >
+            <i class={iconClass} style={ { color: color } }></i>
         </div>
     )
 }
