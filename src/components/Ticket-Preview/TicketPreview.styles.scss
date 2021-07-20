@@ -1,0 +1,68 @@
+.ticket-preview {
+    display: flex;
+    align-items: center;
+    border: 2px solid #0d1117;
+    border-radius: 20px;
+    margin: 1rem 0;
+    padding: 1rem;
+    width: 50rem;
+    height: 8rem;
+    background-color: #0d1117;
+    transition: all .3s;
+
+    &:hover {
+        border: 2px solid #d9eb52;
+        cursor: pointer;
+    }
+
+    .fa-chevron-circle-right {
+        font-size: 2rem;
+        margin-right: 1rem;
+    }
+
+    .ticket-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex: auto;
+        height: 100%;
+        width: 100%;
+
+        .left-summary {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-right: 0.5rem;
+            .status p{
+                width: fit-content;
+                color:black;
+                border-radius: 5px;
+                padding: 0.1rem 0.5rem;
+            }
+
+            .issue {
+                font-weight: bold;
+            }
+
+            .ticket-reference {
+                color: orange;
+            }
+        }
+
+        .right-summary {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-left: 0.5rem;
+            
+            .priority {
+                display: flex;
+                p {
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+
+    }
+}
