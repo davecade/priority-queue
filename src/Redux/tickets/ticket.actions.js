@@ -14,9 +14,8 @@ export const addNewTicket = ticket => ({
     payload: ticket
 })
 
-export const setLoading = status => ({
-    type: TicketActionTypes.SET_LOADING,
-    payload: status
+export const startLoading = () => ({
+    type: TicketActionTypes.START_LOADING,
 })
 
 export const fetchTicketDataSuccess = () => ({

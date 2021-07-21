@@ -67,7 +67,9 @@ const TicketPreview = ({ticket}) => {
                             style={{
                                 color: priorityColor
                             }}></i>
-                        <p> <span style={{color: priorityColor}}>{priority.toUpperCase()}</span> {`Priority`}</p>
+                        <p>
+                            <span style={{color: priorityColor}}>{priority.toUpperCase()}</span> {`Priority`}
+                        </p>
                     </div>
                     <div className="engineer">
                         <p>{`Assigned to: ${assigned}`}</p>

@@ -9,9 +9,9 @@ const MainPage = ({ tickets }) => {
             <h1>Tickets</h1>
             <ul className="ticket-list">
                 {
-                    tickets.map( ticket => {
-                        return <TicketPreview key={ticket.id} ticket={ticket} />
-                    })
+                    tickets.map( ticket => (
+                        <TicketPreview key={ticket.id} ticket={ticket} />
+                    ))
                 }
 
             </ul>

@@ -4,12 +4,12 @@ import {
     fetchTicketDataSuccess,
     fetchTicketDataFailure,
     addExistingTicketsToState,
-    setLoading
+    startLoading
 } from './ticket.actions'
 
 export function* fetchTicketsAsync() {
     try {
-        yield put(setLoading(true))
+        yield put(startLoading())
         const res = yield fetch('/tickets')
         const data = yield res.json();
         yield put(addExistingTicketsToState(data))

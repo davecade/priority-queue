@@ -9,6 +9,7 @@ function App({ fetchTicketDataStart }) {
 
   useEffect(() => {
     fetchTicketDataStart()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   return (

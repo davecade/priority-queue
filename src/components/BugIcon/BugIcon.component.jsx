@@ -3,8 +3,8 @@ import './BugIcon.styles.scss'
 
 const BugIcon = () => {
     return (
-        <div class="icon-container">
-            <i class="fas fa-bug"></i>
+        <div className="icon-container">
+            <i className="fas fa-bug"></i>
         </div>
     )
 }

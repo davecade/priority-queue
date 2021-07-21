@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="left">
-                <i class="fas fa-home"></i>
+                <i className="fas fa-home"></i>
                 <SearchBar />
             </div>
             <div className="right">

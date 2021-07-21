@@ -20,7 +20,7 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
                 tickets: [...state.tickets, action.payload]
             }
 
-        case TicketActionTypes.SET_LOADING:
+        case TicketActionTypes.START_LOADING:
             return {
                 ...state,
                 loading: true,
@@ -40,7 +40,7 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
                 loading: false,
                 error: action.payload
             }
-            
+
         default:
             return {
                 ...state
