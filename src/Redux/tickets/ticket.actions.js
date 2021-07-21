@@ -1,6 +1,6 @@
 import { TicketActionTypes } from "./ticket.types";
 
-export const fetchTickets = () => ({
+export const fetchTicketDataStart = () => ({
     type: TicketActionTypes.FETCH_TICKET_DATA_START,
 })
 
@@ -17,10 +17,6 @@ export const addNewTicket = ticket => ({
 export const setLoading = status => ({
     type: TicketActionTypes.SET_LOADING,
     payload: status
-})
-
-export const fetchTicketDataStart = () => ({
-    type: TicketActionTypes.FETCH_TICKET_DATA_START
 })
 
 export const fetchTicketDataSuccess = () => ({

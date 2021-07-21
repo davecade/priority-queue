@@ -3,12 +3,12 @@ import './App.scss';
 import Navbar from './components/Navbar/Navbar.component'
 import Content from './components/Content/Content.component'
 import { connect } from 'react-redux';
-import { fetchTickets } from './Redux/tickets/ticket.actions'
+import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
 
-function App({ fetchTickets }) {
+function App({ fetchTicketDataStart }) {
 
   useEffect(() => {
-    fetchTickets()
+    fetchTicketDataStart()
   },[])
 
   return (
@@ -20,7 +20,7 @@ function App({ fetchTickets }) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchTickets: () => dispatch(fetchTickets())
+  fetchTicketDataStart: () => dispatch(fetchTicketDataStart())
 })
 
 export default connect(null, mapDispatchToProps)(App);

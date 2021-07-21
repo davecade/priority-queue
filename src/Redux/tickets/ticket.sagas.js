@@ -16,12 +16,12 @@ export function* fetchTicketsAsync() {
     }
 }
 
-export function* onfetchTicketDataStart() {
+export function* onFetchTicketDataStart() {
     yield takeLatest(TicketActionTypes.FETCH_TICKET_DATA_START, fetchTicketsAsync)
 }
 
 export function* ticketSagas() {
     yield all([
-        call(onfetchTicketDataStart)
+        call(onFetchTicketDataStart)
     ])
 }
