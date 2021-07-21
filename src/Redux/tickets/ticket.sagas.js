@@ -1,10 +1,14 @@
 import { takeLatest, put, all, call, } from "redux-saga/effects";
 import { TicketActionTypes } from "./ticket.types";
-import { fetchTicketDataSuccess, fetchTicketDataFailure, addExistingTicketsToState, setLoading } from './ticket.actions'
+import {
+    fetchTicketDataSuccess,
+    fetchTicketDataFailure,
+    addExistingTicketsToState,
+    setLoading
+} from './ticket.actions'
 
 export function* fetchTicketsAsync() {
     try {
- 
         yield put(setLoading(true))
         const res = yield fetch('/tickets')
         const data = yield res.json();

@@ -2,30 +2,33 @@
     "tickets": [
         {
             "id": 1,
-            "issue": "Code not working",
-            "description": "Please fix my code. I dont know what to do",
+            "issue": "My car headlights not working",
+            "description": "Please fix my car. I dont know what to do",
+            "user": "Dave",
             "status": "new",
             "priority": "low",
             "date": "16-07-2021",
-            "assigned to": "Dave Cadelina"
+            "assigned": "Bonn"
         },
         {
             "id": 2,
-            "issue": "PC crashed - Blue screen of death",
-            "description": "Testing again my games",
+            "issue": "I have a hole in my pants. Can you buy new one?",
+            "description": "Please buy me pants",
+            "user": "Dave",
             "status": "in progress",
             "priority": "medium",
             "date": "16-07-2021",
-            "assigned to": "Ayra Garcia"
+            "assigned": "Ayra"
         },
         {
             "id": 3,
-            "issue": "PC crashed - Blue screen of death",
-            "description": "Testing again",
+            "issue": "My Popeys chicken hasnt been delivered. Its been 3 hours!!",
+            "description": "Tatay! Where is my order??",
+            "user": "Caity",
             "status": "resolved",
             "priority": "high",
             "date": "16-07-2021",
-            "assigned to": "Ayra Garcia"
+            "assigned": "Dave"
         }
     ],
     "users": [
