@@ -1,9 +1,11 @@
 import React from 'react'
 import './navbar.styles.scss'
 import SearchBar from '../SearchBar/SearchBar.component'
-import Button from '../Button/Button.component'
+//import Button from '../Button/Button.component'
+import { connect } from 'react-redux'
+import { enableModal } from '../../Redux/modal/modal.actions'
 
-const Navbar = () => {
+const Navbar = ({ enableModal }) => {
     return (
         <nav className="navbar">
             <div className="left">
@@ -11,10 +13,14 @@ const Navbar = () => {
                 <SearchBar />
             </div>
             <div className="right">
-                <Button text={"Create +"} />
+                <button class="btn" onClick={() => enableModal()} text={"Create +"}>Create +</button>
             </div>
         </nav>
     )
 }
 
-export default Navbar
+const mapDispatchToProps = dispatch => ({
+    enableModal: () => dispatch(enableModal())
+})
+
+export default connect(null, mapDispatchToProps)(Navbar)

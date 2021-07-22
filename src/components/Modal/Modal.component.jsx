@@ -1,12 +1,23 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import './Modal.styles.scss'
 import Button from '../Button/Button.component'
+import { connect } from 'react-redux'
 
-const Modal = () => {
+const Modal = ({ modalEnabled }) => {
+    const [ visibility, setVisibility ] = useState("hidden")
+
+    useEffect(() => {
+        if(modalEnabled) {
+            setVisibility("visible")
+        } else {
+            setVisibility("hidden")
+        }
+    }, [modalEnabled])
+
     return (
         <Fragment>
-            <div className="modal-background">
-                <div className="modal">
+            <div className="modal-background" style={ { visibility: visibility } }>
+                <div className="modal" style={ { visibility: visibility } }>
                     <div className="modal-content">
                         <h1 className="modal-title">Create New Ticket</h1>
 
@@ -55,9 +66,6 @@ const Modal = () => {
                                 <Button text={"CANCEL"} />
                             </div>
                         </div>
-
-                        
-
                     </div>
                 </div>
             </div>
@@ -65,4 +73,8 @@ const Modal = () => {
     )
 }
 
-export default Modal
+const mapStateToProps = state => ({
+    modalEnabled: state.modal.modalEnabled
+})
+
+export default connect(mapStateToProps)(Modal)
