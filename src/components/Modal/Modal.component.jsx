@@ -12,7 +12,7 @@ const Modal = () => {
 
                         <div className="input-fields">
                             <div className="label1">
-                                <label htmlFor="">Summary</label>
+                                <label htmlFor="">Issue</label>
                             </div>                         
                             
                             <div className="label2">
@@ -46,9 +46,16 @@ const Modal = () => {
                                 </select>
                             </div>
                         </div>
-                        <div className="submit-button">
-                            <Button text={"SUBMIT"} />
+
+                        <div className="buttons">
+                            <div className="submit-button">
+                                <Button text={"SUBMIT"} />
+                            </div>
+                            <div className="cancel-button">
+                                <Button text={"CANCEL"} />
+                            </div>
                         </div>
+
                         
 
                     </div>

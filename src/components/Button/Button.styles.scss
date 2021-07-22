@@ -1,17 +1,16 @@
 .btn {
-    background-color: #d9eb52;
-    border-radius: 5px;
+    background-color: #0d1117;
     height: 2rem;
     width: 6rem;
     border: none;
     outline: none;
     transition: all 0.2s;
     font-weight: bold;
-    
+    border: 1px solid #d9eb52;
+    color: #f0f6fc;   
 
     &:hover {
         cursor: pointer;
-        opacity: 0.9;
     }
 }
 
