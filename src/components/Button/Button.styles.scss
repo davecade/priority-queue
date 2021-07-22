@@ -1,14 +1,17 @@
 .btn {
     background-color: #d9eb52;
-    border-radius: 1rem;
+    border-radius: 5px;
     height: 2rem;
     width: 6rem;
     border: none;
     outline: none;
     transition: all 0.2s;
+    font-weight: bold;
+    
 
     &:hover {
         cursor: pointer;
         opacity: 0.9;
     }
 }
+

@@ -1,0 +1,45 @@
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background: rgba(18, 18, 18, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+
+    .modal-content {
+        width: 75%;
+        height: 70%;
+        top: 10%;
+        transition-duration: 1s;
+        transition-property: width, visibility;
+        visibility: visible;
+        position: fixed;
+        background-color: #161b22;
+        padding: 2rem;
+        
+
+
+        .modal-title {
+            
+        }
+
+        .cardview {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        
+        }
+
+
+    }
+
+}
