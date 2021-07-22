@@ -1,16 +1,18 @@
+@import '../../CSS_Utilities/utilities';
+
 .ticket-preview {
     display: flex;
     align-items: center;
-    border: 2px solid #0d1117;
+    border: 2px solid $bg-dark;
     margin: 1rem 0;
     padding: 1rem;
     width: 50rem;
     height: 8rem;
-    background-color: #0d1117;
+    background-color: $bg-dark;
     transition: all .3s;
 
     &:hover {
-        border: 2px solid #d9eb52;
+        border: 2px solid $app-green;
         cursor: pointer;
     }
 
