@@ -1,7 +1,6 @@
 import React from 'react'
 import './navbar.styles.scss'
 import SearchBar from '../SearchBar/SearchBar.component'
-//import Button from '../Button/Button.component'
 import { connect } from 'react-redux'
 import { enableModal } from '../../Redux/modal/modal.actions'
 
@@ -13,7 +12,7 @@ const Navbar = ({ enableModal }) => {
                 <SearchBar />
             </div>
             <div className="right">
-                <button class="btn" onClick={() => enableModal()} text={"Create +"}>Create +</button>
+                <button className="btn" onClick={() => enableModal()}>Create +</button>
             </div>
         </nav>
     )

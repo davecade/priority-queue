@@ -1,6 +1,8 @@
+@import '../../CSS_Utilities/utilities';
+
 .content-container {
     width: 80%;
-    background-color: #161b22;
+    background-color: $bg-light;
     margin-top: 1rem;
     padding: 1rem;
 }

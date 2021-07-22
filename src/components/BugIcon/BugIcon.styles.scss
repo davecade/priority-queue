@@ -1,7 +1,9 @@
+@import '../../CSS_Utilities/utilities';
+
 .icon-container {
     border-radius: 50%;
     margin-right: 1rem;
-    background-color: #f0f6fc;
+    background-color: $app-white;
 
     .fa-bug {
         padding: .4rem;

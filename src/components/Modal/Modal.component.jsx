@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import './Modal.styles.scss'
-import Button from '../Button/Button.component'
 import { connect } from 'react-redux'
+import { disableModal } from '../../Redux/modal/modal.actions'
 
-const Modal = ({ modalEnabled }) => {
+const Modal = ({ modalEnabled, disableModal }) => {
     const [ visibility, setVisibility ] = useState("hidden")
 
     useEffect(() => {
@@ -60,10 +60,10 @@ const Modal = ({ modalEnabled }) => {
 
                         <div className="buttons">
                             <div className="submit-button">
-                                <Button text={"SUBMIT"} />
+                                <button className="btn">Submit</button>
                             </div>
                             <div className="cancel-button">
-                                <Button text={"CANCEL"} />
+                                <button className="btn" onClick={()=>disableModal()}>Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -77,4 +77,8 @@ const mapStateToProps = state => ({
     modalEnabled: state.modal.modalEnabled
 })
 
-export default connect(mapStateToProps)(Modal)
+const mapDispatchToProps = dispatch => ({
+    disableModal: () => dispatch(disableModal())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal)
