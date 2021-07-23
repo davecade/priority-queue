@@ -16,6 +16,8 @@ $bg-light: #161b22;
     font-weight: bold;
     border: 1px solid $app-green;
     color: $app-white;
+    transition-property: background-color, color;
+    transition-duration: .3s;
   
     &:hover {
         cursor: pointer;
