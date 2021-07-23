@@ -2,8 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react'
 import './Modal.styles.scss'
 import { connect } from 'react-redux'
 import { disableModal } from '../../Redux/modal/modal.actions'
+import { addNewTicket } from '../../Redux/tickets/ticket.actions'
 
-const Modal = ({ modalEnabled, disableModal }) => {
+const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
     //-- Modal State
     const [ visibility, setVisibility ] = useState("hidden")
     const [ opacity, setOpacity ] = useState("0")
@@ -13,7 +14,7 @@ const Modal = ({ modalEnabled, disableModal }) => {
     const [ issue, setIssue ] = useState('')
     const [ reporter, setReporter ] = useState('Unassigned')
     const [ description, setDescription ] = useState('')
-    const [ priority, setPriority ] = useState("Low")
+    const [ priority, setPriority ] = useState("low")
 
     useEffect(() => {
         if(modalEnabled) {
@@ -45,6 +46,26 @@ const Modal = ({ modalEnabled, disableModal }) => {
 
     const handlePriorityChange = event => {
         setPriority(event.target.value)
+    }
+
+    const handleSubmit = () => {
+        const newDate = new Date()
+        const day = newDate.getDate()
+        const month = newDate.getMonth()
+        const year = newDate.getFullYear()
+
+        const newTicket = {
+            issue: issue,
+            description: description,
+            user: reporter,
+            status: "new",
+            priority: priority,
+            date: `${day}-${month}-${year}`,
+            assigned: "Unassigned"
+        }
+
+        addNewTicket(newTicket)
+        disableModal()
     }
 
 
@@ -93,16 +114,16 @@ const Modal = ({ modalEnabled, disableModal }) => {
                             </div>
                             <div className="priority">
                                 <select onChange={handlePriorityChange} value={priority}>
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
                                 </select>
                             </div>
                         </div>
 
                         <div className="buttons">
                             <div className="submit-button">
-                                <button className="btn">Submit</button>
+                                <button className="btn" onClick={handleSubmit}>Submit</button>
                             </div>
                             <div className="cancel-button">
                                 <button className="btn" onClick={()=>disableModal()}>Cancel</button>
@@ -120,7 +141,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    disableModal: () => dispatch(disableModal())
+    disableModal: () => dispatch(disableModal()),
+    addNewTicket: newTicket => dispatch(addNewTicket(newTicket))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal)

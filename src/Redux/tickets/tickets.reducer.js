@@ -14,7 +14,7 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
                 tickets: action.payload
             }
 
-        case TicketActionTypes.ADD_NEW_TICKET:
+        case TicketActionTypes.ADD_NEW_TICKET_TO_STATE:
             return {
                 ...state,
                 tickets: [...state.tickets, action.payload]
