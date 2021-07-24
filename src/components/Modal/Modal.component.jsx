@@ -28,7 +28,7 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
             setIssue('')
             setReporter('Unassigned')
             setDescription('')
-            setPriority("Low")
+            setPriority("low")
         }
     }, [modalEnabled])
 
@@ -49,10 +49,10 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
     }
 
     const handleSubmit = () => {
-        const newDate = new Date()
-        const day = newDate.getDate()
-        const month = newDate.getMonth()
-        const year = newDate.getFullYear()
+        const currentDate = new Date()
+        const day = currentDate.getDate()
+        const month = currentDate.getMonth()
+        const year = currentDate.getFullYear()
 
         const newTicket = {
             issue: issue,
@@ -61,7 +61,7 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
             status: "new",
             priority: priority,
             date: `${day}-${month}-${year}`,
-            assigned: "Unassigned"
+            assigned: "No one yet"
         }
 
         addNewTicket(newTicket)
@@ -106,7 +106,7 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
                                     <option value="Unassigned">Unassigned</option>
                                     <option value="Caity">Caity</option>
                                     <option value="Coco">Coco</option>
-                                    <option value="Cruezian">Cruezian</option>
+                                    <option value="Dave">Dave</option>
                                 </select>
                             </div>
                             <div className="description">

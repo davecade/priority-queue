@@ -40,3 +40,8 @@ export const addNewTicketFailure = error => ({
     type: TicketActionTypes.ADD_NEW_TICKET_FAILURE,
     payload: error
 })
+
+export const setSelectedTicket = ticket => ({
+    type: TicketActionTypes.SET_SELECTED_TICKET,
+    payload: ticket
+})

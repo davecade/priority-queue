@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import './TicketPreview.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
+import { connect } from 'react-redux'
+import { setSelectedTicket } from '../../Redux/tickets/ticket.actions'
 
 
-const TicketPreview = ({ticket}) => {
+const TicketPreview = ({ticket, setSelectedTicket}) => {
     const { id, status, issue, priority, user, assigned, date } = ticket
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
@@ -37,7 +39,7 @@ const TicketPreview = ({ticket}) => {
     
 
     return (
-        <li className="ticket-preview">
+        <li className="ticket-preview" onClick={() => setSelectedTicket(ticket)}>
             <BugIcon />
             <div className="ticket-content">
 
@@ -84,4 +86,10 @@ const TicketPreview = ({ticket}) => {
     )
 }
 
-export default TicketPreview
+const mapDispatchToProps = dispatch => ({
+    setSelectedTicket: ticket => dispatch(setSelectedTicket(ticket))
+})
+
+export default connect(null, mapDispatchToProps)(TicketPreview)
+
+//selectedTicket

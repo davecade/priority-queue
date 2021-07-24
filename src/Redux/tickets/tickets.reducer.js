@@ -2,6 +2,7 @@ import { TicketActionTypes } from './ticket.types'
 
 const INITIAL_STATE = {
     tickets: [],
+    selectedTicket: null,
     loading: false,
     error: null
 }
@@ -39,6 +40,11 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+        case TicketActionTypes.SET_SELECTED_TICKET:
+            return {
+                ...state,
+                selectedTicket: action.payload
             }
 
         default:
