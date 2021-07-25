@@ -1,8 +1,7 @@
 import { TicketActionTypes } from './ticket.types'
 
 const INITIAL_STATE = {
-    tickets: [],
-    selectedTicket: null,
+    ticketList: [],
     loading: false,
     error: null
 }
@@ -12,13 +11,13 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
         case TicketActionTypes.ADD_EXISTING_TICKETS_TO_STATE:
             return {
                 ...state,
-                tickets: action.payload
+                ticketList: action.payload
             }
 
         case TicketActionTypes.ADD_NEW_TICKET_TO_STATE:
             return {
                 ...state,
-                tickets: [...state.tickets, action.payload]
+                ticketList: [...state.ticketList, action.payload]
             }
 
         case TicketActionTypes.START_LOADING:

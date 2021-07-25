@@ -3,13 +3,13 @@ import './Main.styles.scss'
 import TicketPreview from '../../components/Ticket-Preview/TicketPreview.component'
 import { connect } from 'react-redux'
 
-const MainPage = ({ tickets }) => {
+const MainPage = ({ ticketList }) => {
     return (
         <div className="main-page">
             <h1>Tickets</h1>
             <ul className="ticket-list">
                 {
-                    tickets.map( ticket => (
+                    ticketList.map( ticket => (
                         <TicketPreview key={ticket.id} ticket={ticket} />
                     ))
                 }
@@ -20,7 +20,7 @@ const MainPage = ({ tickets }) => {
 }
 
 const mapStateToProps = state => ({
-    tickets: state.tickets.tickets
+    ticketList: state.tickets.ticketList
 })
 
 export default connect(mapStateToProps)(MainPage)

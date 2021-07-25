@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './TicketPreview.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
-import { connect } from 'react-redux'
-import { setSelectedTicket } from '../../Redux/tickets/ticket.actions'
+import { withRouter } from 'react-router'
 
 
-const TicketPreview = ({ticket, setSelectedTicket}) => {
+const TicketPreview = ({ticket, history}) => {
     const { id, status, issue, priority, user, assigned, date } = ticket
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
@@ -39,7 +38,7 @@ const TicketPreview = ({ticket, setSelectedTicket}) => {
     
 
     return (
-        <li className="ticket-preview" onClick={() => setSelectedTicket(ticket)}>
+        <li className="ticket-preview" onClick={() => history.push(`/Ticket/PRQ-${ticket.id}`)}>
             <BugIcon />
             <div className="ticket-content">
 
@@ -86,10 +85,5 @@ const TicketPreview = ({ticket, setSelectedTicket}) => {
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    setSelectedTicket: ticket => dispatch(setSelectedTicket(ticket))
-})
+export default withRouter(TicketPreview)
 
-export default connect(null, mapDispatchToProps)(TicketPreview)
-
-//selectedTicket
