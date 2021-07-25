@@ -5,27 +5,34 @@ const Ticket = ({ticketId, ticketList}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
 
     useEffect(() => {
-        ticketList.forEach(ticket => {
-            if(ticket.id === ticketId) {
-                setSelectedTicket(ticket)
-                return;
-            }
-        })
-    })
+        let objTickets = {...ticketList}
+        if(ticketList.length>0) {
+            setSelectedTicket(objTickets[ticketId-1])
+        }
+    }, [ticketList])
 
-    return (
-        <div>
-            <p>{selectedTicket.issue}</p>
-            <p>{selectedTicket.description}</p>
-            <p>{selectedTicket.user}</p>
-            <p>{selectedTicket.status}</p>
-            <p>{selectedTicket.priority}</p>
-            <p>{selectedTicket.date}</p>
-            <p>{selectedTicket.assigned}</p>
-            <p>{selectedTicket.id}</p>
-        </div>
-        
-    )
+    try {
+        return (
+            <div>
+                <div>{selectedTicket.issue}</div>
+                <div>{selectedTicket.description}</div>
+                <div>{selectedTicket.user}</div>
+                <div>{selectedTicket.status}</div>
+                <div>{selectedTicket.priority}</div>
+                <div>{selectedTicket.date}</div>
+                <div>{selectedTicket.assigned}</div>
+                <div>{selectedTicket.id}</div>
+            </div>
+        )
+    } catch(error) {
+        return(
+            <div>
+                <h1>No ticket found</h1>
+            </div>
+        )
+
+    }
+
 }
 
 const mapStateToProps = state => ({
