@@ -1,0 +1,49 @@
+.ticket-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+
+    .ticket-reference {
+        color: orange;
+    }
+
+    .priority-status {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: .5rem 0;
+        text-align: center;
+
+        .priority-container {
+        
+            .priority {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                p {
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+
+        .status p{
+            width: fit-content;
+            color:black; //-- default color
+            border-radius: 5px;
+            padding: 0.1rem 0.5rem;
+        }
+    }
+
+    .user-date {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: .5rem 0;
+        text-align: center;
+    }
+
+}

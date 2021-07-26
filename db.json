@@ -29,36 +29,6 @@
       "date": "16-7-2021",
       "assigned": "Dave",
       "id": 3
-    },
-    {
-      "issue": "sadas",
-      "description": "sadasd",
-      "user": "Caity",
-      "status": "new",
-      "priority": "medium",
-      "date": "24-6-2021",
-      "assigned": "No one yet",
-      "id": 4
-    },
-    {
-      "issue": "Testing 1 2 4",
-      "description": "Coco says hi",
-      "user": "Coco",
-      "status": "new",
-      "priority": "low",
-      "date": "25-6-2021",
-      "assigned": "No one yet",
-      "id": 5
-    },
-    {
-      "issue": "I need money please",
-      "description": "Dad I need money. Can you pelase send me money for mcdonalds.\n\nThank you",
-      "user": "Dave",
-      "status": "new",
-      "priority": "high",
-      "date": "25-6-2021",
-      "assigned": "No one yet",
-      "id": 6
     }
   ],
   "users": [],
