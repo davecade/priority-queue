@@ -1,20 +1,39 @@
+@import '../../CSS_Utilities/utilities';
+
 .ticket-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0 5rem;
 
-    .ticket-reference {
-        color: orange;
+    .bug-and-ticket {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .ticket-reference {
+            color: orange;
+        }
     }
+
+    .summary {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 
     .priority-status {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: .5rem 0;
+        margin: 1rem 0;
         text-align: center;
 
         .priority-container {
@@ -37,13 +56,66 @@
         }
     }
 
-    .user-date {
+
+    .date {
+        display: flex;
+        width: 100%;
+        text-align: center;
+    }
+
+    .description {
         width: 100%;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: .5rem 0;
-        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 1rem;
+
+        P {
+            background-color: $bg-dark;
+            width: 100%;
+            min-height: 10rem;
+            padding: 1rem 0.5rem;
+            white-space: pre-line
+        }
+    }
+
+    .date {
+        margin-bottom: 2rem;
+
+        p {
+            margin: 0 .5rem;
+        }
+    }
+
+    .comments-container {
+        width: 100%;
+        margin-bottom: 1rem;
+
+    }
+
+    .add-comment-section {
+        width: 100%;
+        margin: 1rem 0;
+
+        button {
+            @extend %btn;
+        }
+
+        .comment-text {
+            width: 50%;
+            height: 100%;
+            display: none;
+            background-color: $bg-dark;
+            color: #f0f6fc;
+            outline-color: $app-green;
+            border: none;
+            font-size: 1rem;
+
+            &:focus {
+                outline: 1px solid $app-green;
+            }
+        }
     }
 
 }
