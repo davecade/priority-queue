@@ -56,7 +56,7 @@ const TicketPreview = ({ticket, history}) => {
                         {`PRQ-${id}`}
                     </div>
                     <div className="issue">
-                        {issue}
+                        {issue.length<60 ? issue : `${issue.slice(0, 59)}...`}
                     </div>
                     <div className="user">{`Created By: ${user}`}</div>
 

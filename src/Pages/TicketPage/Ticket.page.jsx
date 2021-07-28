@@ -66,7 +66,7 @@ const Ticket = ({ticketId, ticketList}) => {
                     <h2 className="ticket-reference">PRQ-{selectedTicket.id}</h2>
                 </div>
                 
-                <div className="summary">
+                <div className="issue">
                     <h3>{selectedTicket.issue}</h3>
                 </div>
                 
@@ -135,7 +135,7 @@ const Ticket = ({ticketId, ticketList}) => {
                     <textarea className="comment-text" value={commentValue}  rows="10" cols="50" style={{
                         display: display
                     }} />
-                    <button onClick={handleCommentClick}>Comment</button>
+                    <button onClick={handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
                 </div>
             </div>
             

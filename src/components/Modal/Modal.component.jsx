@@ -53,6 +53,11 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
         const day = currentDate.getDate()
         const month = currentDate.getMonth()
         const year = currentDate.getFullYear()
+        const hour = currentDate.getHours()
+        const minute = currentDate.getMinutes()
+
+        const z = num => num<10 ? `0${num}` : num
+        const y = num => num.toString().slice(2)
 
         const newTicket = {
             issue: issue,
@@ -60,8 +65,9 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
             user: reporter,
             status: "new",
             priority: priority,
-            date: `${day}-${month}-${year}`,
-            assigned: "No one yet"
+            date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`,
+            assigned: "No one yet",
+            comments: []
         }
 
         addNewTicket(newTicket)
