@@ -20,6 +20,18 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
                 ticketList: [...state.ticketList, action.payload]
             }
 
+        case TicketActionTypes.UPDATE_TICKET_IN_STATE:
+            return {
+                ...state,
+                ticketList: state.ticketList.map(ticket => {
+                    if(ticket.id === action.payload.id) {
+                        return action.payload
+                    }
+                    
+                    return ticket
+                })
+            }
+
         case TicketActionTypes.START_LOADING:
             return {
                 ...state,
@@ -28,6 +40,8 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
             }
 
         case TicketActionTypes.FETCH_TICKET_DATA_SUCCESS:
+        case TicketActionTypes.ADD_NEW_TICKET_SUCCESS:
+        case TicketActionTypes.UPDATE_TICKET_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -35,6 +49,8 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
             }
 
         case TicketActionTypes.FETCH_TICKET_DATA_FAILURE:
+        case TicketActionTypes.ADD_NEW_TICKET_FAILURE:
+        case TicketActionTypes.UPDATE_TICKET_FAILURE:
             return {
                 ...state,
                 loading: false,

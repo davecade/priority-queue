@@ -19,6 +19,16 @@ export const addNewTicketToState = ticket => ({
     payload: ticket
 })
 
+export const updateTicket = ticket => ({
+    type: TicketActionTypes.UPDATE_TICKET,
+    payload: ticket
+})
+
+export const updateTicketInState = ticket => ({
+    type: TicketActionTypes.UPDATE_TICKET_IN_STATE,
+    payload: ticket
+})
+
 export const startLoading = () => ({
     type: TicketActionTypes.START_LOADING,
 })
@@ -37,6 +47,15 @@ export const addNewTicketSuccess = () => ({
 })
 
 export const addNewTicketFailure = error => ({
+    type: TicketActionTypes.ADD_NEW_TICKET_FAILURE,
+    payload: error
+})
+
+export const updateTicketSuccess = () => ({
+    type: TicketActionTypes.ADD_NEW_TICKET_SUCCESS
+})
+
+export const updateTicketFailure = error => ({
     type: TicketActionTypes.ADD_NEW_TICKET_FAILURE,
     payload: error
 })

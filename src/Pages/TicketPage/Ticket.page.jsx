@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './Ticket.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
+import { enableEditModal } from '../../Redux/modal/modal.actions'
 
-const Ticket = ({ticketId, ticketList}) => {
+const Ticket = ({ticketId, ticketList, enableEditModal}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
@@ -61,18 +62,25 @@ const Ticket = ({ticketId, ticketList}) => {
         return (
             <div className="ticket-page">
                 
-                <div className="bug-and-ticket">
-                    <BugIcon />
-                    <h2 className="ticket-reference">PRQ-{selectedTicket.id}</h2>
+                <div className="bug-ticket-edit">
+                    <div>
+                        <BugIcon />
+                        <h2 className="ticket-reference">PRQ-{selectedTicket.id}</h2>
+                    </div>
                 </div>
                 
                 <div className="issue">
-                    <h3>{selectedTicket.issue}</h3>
+                    <h2>{selectedTicket.issue}</h2>
                 </div>
                 
                 
                 <div className="ticket-buttons">
-
+                    <button className="edit-btn" onClick={() => enableEditModal(selectedTicket)}>
+                        Modify
+                    </button>
+                    <button className="assign-btn">
+                        Assign
+                    </button>
                 </div>
                 <div className="priority-status">
                     <div className="priority-container">
@@ -152,7 +160,11 @@ const Ticket = ({ticketId, ticketList}) => {
 }
 
 const mapStateToProps = state => ({
-    ticketList: state.tickets.ticketList
+    ticketList: state.tickets.ticketList,
 })
 
-export default connect(mapStateToProps)(Ticket)
+const mapDispatchToProps = dispatch => ({
+    enableEditModal: selectedTicket => dispatch(enableEditModal(selectedTicket))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Ticket)

@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import './Modal.styles.scss'
+import './Edit-Modal.styles.scss'
 import { connect } from 'react-redux'
-import { disableModal } from '../../Redux/modal/modal.actions'
-import { addNewTicket } from '../../Redux/tickets/ticket.actions'
+import { disableEditModal } from '../../../Redux/modal/modal.actions'
+import { updateTicket } from '../../../Redux/tickets/ticket.actions'
 
-const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
+const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, updateTicket}) => {
     //-- Modal State
     const [ visibility, setVisibility ] = useState("hidden")
     const [ opacity, setOpacity ] = useState("0")
@@ -17,7 +17,7 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
     const [ priority, setPriority ] = useState("low")
 
     useEffect(() => {
-        if(modalEnabled) {
+        if(editModalEnabled) {
             setVisibility("visible")
             setOpacity('1')
             setTop('8.5%')
@@ -30,7 +30,17 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
             setDescription('')
             setPriority("low")
         }
-    }, [modalEnabled])
+    }, [editModalEnabled])
+
+    useEffect(() => {
+        if(editModalTicket) {
+            const { issue, user, description, priority } = editModalTicket
+            setIssue(issue)
+            setReporter(user)
+            setDescription(description)
+            setPriority(priority)
+        } 
+    }, [editModalTicket])
 
     const handleIssueChange = event => {
         setIssue(event.target.value)
@@ -67,11 +77,12 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
             priority: priority,
             date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)}`,
             assigned: "No one yet",
-            comments: []
+            comments: editModalTicket.comments,
+            id: editModalTicket.id
         }
 
-        addNewTicket(newTicket)
-        disableModal()
+        updateTicket(newTicket)
+        disableEditModal()
     }
 
 
@@ -81,13 +92,13 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
                 visibility: visibility,
                 opacity: opacity,
             }}>
-                <div className="modal" style={{
+                <div className="edit-modal" style={{
                     visibility: visibility,
                     opacity: opacity,
                     top: top
                 }}>
                     <div className="modal-content">
-                        <h1 className="modal-title">Create New Ticket</h1>
+                        <h1 className="modal-title">Modify Ticket</h1>
 
                         <div className="input-fields">
                             <div className="label1">
@@ -132,7 +143,7 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
                                 <button className="btn" onClick={handleSubmit}>Submit</button>
                             </div>
                             <div className="cancel-button">
-                                <button className="btn" onClick={()=>disableModal()}>Cancel</button>
+                                <button className="btn" onClick={()=>disableEditModal()}>Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -143,12 +154,13 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
 }
 
 const mapStateToProps = state => ({
-    modalEnabled: state.modal.modalEnabled
+    editModalEnabled: state.modal.editModalEnabled,
+    editModalTicket: state.modal.editModalTicket
 })
 
 const mapDispatchToProps = dispatch => ({
-    disableModal: () => dispatch(disableModal()),
-    addNewTicket: newTicket => dispatch(addNewTicket(newTicket))
+    disableEditModal: () => dispatch(disableEditModal()),
+    updateTicket: ticket => dispatch(updateTicket(ticket))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal)
+export default connect(mapStateToProps, mapDispatchToProps)(EditModal)

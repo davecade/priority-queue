@@ -24,36 +24,14 @@
     },
     {
       "issue": "My Popeys chicken hasnt been delivered. Its been 3 hours!!",
-      "description": "Tatay! Where is my order??",
+      "description": "Tatay! Where is my order??\n\nPlease HALP MEE",
       "user": "Caity",
-      "status": "resolved",
-      "priority": "high",
-      "date": "16-7-2021",
-      "assigned": "Dave",
+      "status": "new",
+      "priority": "medium",
+      "date": "28/06/21 17:20",
+      "assigned": "No one yet",
       "comments": [],
       "id": 3
-    },
-    {
-      "issue": "I need popeys chicken today",
-      "description": "Dear Mommy,\n\nCan you please buy me popeys chicken today. I need it pls.\n\nLove you",
-      "user": "Caity",
-      "status": "new",
-      "priority": "high",
-      "date": "28-06-21 @ 11:22",
-      "assigned": "No one yet",
-      "comments": [],
-      "id": 4
-    },
-    {
-      "issue": "sdflk;sjaasjfpljsl oisdf iosf jiosafj ipo[sfj ip[asfj p[ioasj fpo[sfj po[sajd fpo[sj po[f spo[f spo[fspodfspdfjpo[saf jpo[asf po]asf po]sap]fo saf ",
-      "description": "",
-      "user": "Dave",
-      "status": "new",
-      "priority": "high",
-      "date": "28/06/21 - 11:47",
-      "assigned": "No one yet",
-      "comments": [],
-      "id": 5
     }
   ],
   "users": [],

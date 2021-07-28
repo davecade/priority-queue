@@ -4,10 +4,13 @@ import {
     fetchTicketDataSuccess,
     fetchTicketDataFailure,
     addExistingTicketsToState,
+    updateTicketInState,
     startLoading,
     addNewTicketToState,
+    addNewTicketSuccess,
     addNewTicketFailure,
-    addNewTicketSuccess
+    updateTicketSuccess,
+    updateTicketFailure
 } from './ticket.actions'
 
 export function* fetchTicketsAsync() {
@@ -43,6 +46,29 @@ export function* addNewTicketAsync({payload}) {
     }
 }
 
+export function* updateTicketAsync({payload}) {
+    try {
+        console.log("payload", payload)
+        yield put(startLoading())
+        const res = yield fetch(`/tickets/${payload.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        
+        const data = yield res.json();
+        console.log("DATA", data)
+        
+        yield put(updateTicketInState(data))
+        yield put(updateTicketSuccess())
+
+    } catch(error) {
+        yield put(updateTicketFailure(error))
+    }
+}
+
 export function* onFetchTicketDataStart() {
     yield takeLatest(TicketActionTypes.FETCH_TICKET_DATA_START, fetchTicketsAsync)
 }
@@ -51,9 +77,14 @@ export function* onAddNewTicket() {
     yield takeLatest(TicketActionTypes.ADD_NEW_TICKET, addNewTicketAsync)
 }
 
+export function* onUpdateTicket() {
+    yield takeLatest(TicketActionTypes.UPDATE_TICKET, updateTicketAsync)
+}
+
 export function* ticketSagas() {
     yield all([
         call(onFetchTicketDataStart),
-        call(onAddNewTicket)
+        call(onAddNewTicket),
+        call(onUpdateTicket)
     ])
 }
