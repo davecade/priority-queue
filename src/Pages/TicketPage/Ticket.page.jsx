@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import './Ticket.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
 import { enableEditModal, enableAssignModal } from '../../Redux/modal/modal.actions'
+import { updateTicket } from '../../Redux/tickets/ticket.actions'
 
-const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal}) => {
+const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
@@ -26,7 +27,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal}) => {
         } else if(selectedTicket.status==="resolved") {
             setStatusColor("#7197bd")
             setFontWeight("bold")
-            setTextColor("#f0f6fc")
+            setTextColor("Black")
         }
     
         if(selectedTicket.priority === "low") {
@@ -47,10 +48,10 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal}) => {
         if(ticketList.length>0) {
             setSelectedTicket(objTickets[ticketId-1])
         }
-    }, [ticketList])
+    }, [ticketList, ticketId])
 
     const handleCommentClick = e => {
-        //e.preventDefault();
+
         if(display==="none") {
             setDisplay("block")
             setCommentValue(undefined)
@@ -58,6 +59,16 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal}) => {
             setDisplay("none")
             setCommentValue("")
         }
+    }
+
+    const handleResolvedReOpenClick = e => {
+
+        let newTicket = {
+            ...selectedTicket,
+            status: selectedTicket.status==='resolved' ? 'in progress' : 'resolved'
+        }
+
+        updateTicket(newTicket)
     }
 
     try {
@@ -71,19 +82,29 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal}) => {
                     </div>
                 </div>
                 
-                <div className="issue">
+                <div className="issue" style={{
+                    textDecoration: selectedTicket.status==='resolved' ? "line-through" : ""
+                }}>
                     <h2>{selectedTicket.issue}</h2>
                 </div>
                 
                 
                 <div className="ticket-buttons">
-                    <button className="edit-btn" onClick={() => enableEditModal(selectedTicket)}>
+                    <button
+                        className="edit-btn"
+                        onClick={selectedTicket.status==='resolved' ? null : () => enableEditModal(selectedTicket)}>
                         Modify
                     </button>
-                    <button className="assign-btn" onClick={() => enableAssignModal(selectedTicket)}>
+
+                    <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? null : () => enableAssignModal(selectedTicket)}>
                         Assign
                     </button>
+
+                    <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
+                        {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
+                    </button>
                 </div>
+
                 <div className="priority-status">
                     <div className="priority-container">
                         <h4>Priority:</h4>
@@ -145,7 +166,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal}) => {
                     <textarea className="comment-text" value={commentValue}  rows="10" cols="50" style={{
                         display: display
                     }} />
-                    <button onClick={handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
+                    <button onClick={selectedTicket.status==='resolved' ? null : handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
                 </div>
             </div>
             
@@ -167,7 +188,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     enableEditModal: selectedTicket => dispatch(enableEditModal(selectedTicket)),
-    enableAssignModal: selectedTicket => dispatch(enableAssignModal(selectedTicket))
+    enableAssignModal: selectedTicket => dispatch(enableAssignModal(selectedTicket)),
+    updateTicket: selectedTicket => dispatch(updateTicket(selectedTicket))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ticket)

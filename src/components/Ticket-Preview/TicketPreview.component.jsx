@@ -55,7 +55,9 @@ const TicketPreview = ({ticket, history}) => {
                     <div className="ticket-reference">
                         {`PRQ-${id}`}
                     </div>
-                    <div className="issue">
+                    <div className="issue" style={{
+                        textDecoration: ticket.status==='resolved' ? "line-through" : ""
+                    }}>
                         {issue.length<60 ? issue : `${issue.slice(0, 59)}...`}
                     </div>
                     <div className="user">{`Created By: ${user}`}</div>

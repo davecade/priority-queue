@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import './Modal.styles.scss'
+import './Create-Modal.styles.scss'
 import { connect } from 'react-redux'
-import { disableModal } from '../../Redux/modal/modal.actions'
-import { addNewTicket } from '../../Redux/tickets/ticket.actions'
+import { disableModal } from '../../../Redux/modal/modal.actions'
+import { addNewTicket } from '../../../Redux/tickets/ticket.actions'
 
-const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
+const CreateModal = ({ modalEnabled, disableModal, addNewTicket }) => {
     //-- Modal State
     const [ visibility, setVisibility ] = useState("hidden")
     const [ opacity, setOpacity ] = useState("0")
@@ -151,4 +151,4 @@ const mapDispatchToProps = dispatch => ({
     addNewTicket: newTicket => dispatch(addNewTicket(newTicket))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateModal)

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar.component'
 import Content from './components/Content/Content.component'
-import Modal from './components/Modal/Modal.component'
+import CreateModal from './components/Modal/Create/Create-Modal.component'
 import EditModal from './components/Modal/Edit/Edit-Modal.component'
 import AssignModal from './components/Modal/Assign/Assign-Modal.component'
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ function App({ fetchTicketDataStart }) {
 
   return (
     <div className="App">
-      <Modal />
+      <CreateModal />
       <EditModal />
       <AssignModal />
       <Navbar />

@@ -70,15 +70,12 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
         const y = num => num.toString().slice(2)
 
         const newTicket = {
+            ...editModalTicket,
             issue: issue,
-            description: description,
             user: reporter,
-            status: "new",
+            description: description,
             priority: priority,
             date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)}`,
-            assigned: "No one yet",
-            comments: editModalTicket.comments,
-            id: editModalTicket.id
         }
 
         updateTicket(newTicket)

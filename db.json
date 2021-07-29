@@ -6,10 +6,21 @@
       "user": "Caity",
       "status": "in progress",
       "priority": "high",
-      "date": "29/06/21 20:51",
-      "assigned": "Bonn",
+      "date": "29/06/21 23:52",
+      "assigned": "Dave",
       "comments": [],
       "id": 1
+    },
+    {
+      "issue": "X Files 2",
+      "description": "I am watching X Files right now.\n\nCool bro!",
+      "user": "Coco",
+      "status": "new",
+      "priority": "high",
+      "date": "29/06/21 23:52",
+      "assigned": "Unassigned",
+      "comments": [],
+      "id": 2
     }
   ],
   "users": [],
