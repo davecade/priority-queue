@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './Ticket.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
-import { enableEditModal } from '../../Redux/modal/modal.actions'
+import { enableEditModal, enableAssignModal } from '../../Redux/modal/modal.actions'
 
-const Ticket = ({ticketId, ticketList, enableEditModal}) => {
+const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
@@ -16,6 +16,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal}) => {
     useEffect(() => {
         if(selectedTicket.status==="new") {
             setStatusColor("greenyellow")
+            setTextColor("black")
             setFontWeight("bold")
 
         } else if(selectedTicket.status==="in progress") {
@@ -25,6 +26,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal}) => {
         } else if(selectedTicket.status==="resolved") {
             setStatusColor("#7197bd")
             setFontWeight("bold")
+            setTextColor("#f0f6fc")
         }
     
         if(selectedTicket.priority === "low") {
@@ -78,7 +80,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal}) => {
                     <button className="edit-btn" onClick={() => enableEditModal(selectedTicket)}>
                         Modify
                     </button>
-                    <button className="assign-btn">
+                    <button className="assign-btn" onClick={() => enableAssignModal(selectedTicket)}>
                         Assign
                     </button>
                 </div>
@@ -164,7 +166,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    enableEditModal: selectedTicket => dispatch(enableEditModal(selectedTicket))
+    enableEditModal: selectedTicket => dispatch(enableEditModal(selectedTicket)),
+    enableAssignModal: selectedTicket => dispatch(enableAssignModal(selectedTicket))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ticket)

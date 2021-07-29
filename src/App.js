@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar.component'
 import Content from './components/Content/Content.component'
 import Modal from './components/Modal/Modal.component'
 import EditModal from './components/Modal/Edit/Edit-Modal.component'
+import AssignModal from './components/Modal/Assign/Assign-Modal.component'
 import { connect } from 'react-redux';
 import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
 
@@ -19,6 +20,7 @@ function App({ fetchTicketDataStart }) {
     <div className="App">
       <Modal />
       <EditModal />
+      <AssignModal />
       <Navbar />
       <Content />
     </div>

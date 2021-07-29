@@ -66,7 +66,7 @@ const Modal = ({ modalEnabled, disableModal, addNewTicket }) => {
             status: "new",
             priority: priority,
             date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)}`,
-            assigned: "No one yet",
+            assigned: "Unassigned",
             comments: []
         }
 

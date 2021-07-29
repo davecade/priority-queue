@@ -3,7 +3,9 @@ import { ModalActionTypes } from './modal.types'
 const INITIAL_STATE = {
     modalEnabled: false,
     editModalEnabled:  false,
-    editModalTicket: undefined
+    editModalTicket: undefined,
+    assignModalEnabled:  false,
+    assignModalTicket: undefined
 }
 
 const modalReducer = (state = INITIAL_STATE, action) => {
@@ -32,6 +34,19 @@ const modalReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 editModalEnabled: false,
                 editModalTicket: undefined
+            }
+        case ModalActionTypes.ENABLE_ASSIGN_MODAL:
+            return {
+                ...state,
+                assignModalEnabled: true,
+                assignModalTicket: action.payload
+            }
+
+        case ModalActionTypes.DISABLE_ASSIGN_MODAL:
+            return {
+                ...state,
+                assignModalEnabled: false,
+                assignModalTicket: undefined
             }
 
         default:

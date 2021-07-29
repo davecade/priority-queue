@@ -16,3 +16,12 @@ export const enableEditModal = ticket => ({
 export const disableEditModal = () => ({
     type: ModalActionTypes.DISABLE_EDIT_MODAL,
 })
+
+export const enableAssignModal = ticket => ({
+    type: ModalActionTypes.ENABLE_ASSIGN_MODAL,
+    payload: ticket
+})
+
+export const disableAssignModal = () => ({
+    type: ModalActionTypes.DISABLE_ASSIGN_MODAL,
+})
