@@ -4,23 +4,76 @@
       "issue": "One bucket of Popeys chicken please",
       "description": "Tatay please i want a popeyes chicken tonight.\n\nMommy said you will buy. She told me!",
       "user": "Dave",
-      "status": "in progress",
+      "status": "resolved",
       "priority": "high",
-      "date": "30/06/21 16:55",
-      "assigned": "Coco",
-      "comments": [],
+      "date": "31/06/21 17:50",
+      "assigned": "TomTom",
+      "comments": [
+        {
+          "value": "Hello",
+          "date": "31/06/21 21:02 20s"
+        },
+        {
+          "value": "I fixed this already\n",
+          "date": "31/06/21 21:06 43s"
+        }
+      ],
       "id": 1
     },
     {
       "issue": "X Files",
       "description": "I am watching X Files right now.\n\nBonn sucks!",
       "user": "Dave",
-      "status": "in progress",
+      "status": "resolved",
       "priority": "medium",
       "date": "30/06/21 16:26",
       "assigned": "TomTom",
       "comments": [],
       "id": 2
+    },
+    {
+      "issue": "asda",
+      "description": "asdasdasds",
+      "user": "Caity",
+      "status": "in progress",
+      "priority": "high",
+      "date": "31/06/21 21:08",
+      "assigned": "Dave",
+      "comments": [
+        {
+          "value": "hello",
+          "date": "31/06/21 21:10 13s"
+        },
+        {
+          "value": "Test\n g",
+          "date": "31/06/21 21:16 55s"
+        },
+        {
+          "value": "How many\n\nDo\n\nYou Want\n\nbaytch",
+          "date": "31/06/21 21:17 36s"
+        },
+        {
+          "value": "We alredy fixed this yesterday",
+          "date": "31/06/21 21:19 24s"
+        },
+        {
+          "value": "What else do you want me to do",
+          "date": "31/06/21 21:19 38s"
+        },
+        {
+          "value": "reopened this",
+          "date": "31/06/21 21:33 15s"
+        },
+        {
+          "value": "HI this is dave",
+          "date": "31/06/21 21:36 44s"
+        },
+        {
+          "value": "wtf ?",
+          "date": "31/06/21 21:36 51s"
+        }
+      ],
+      "id": 3
     }
   ],
   "users": [],

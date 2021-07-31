@@ -48,7 +48,7 @@ export function* addNewTicketAsync({payload}) {
 
 export function* updateTicketAsync({payload}) {
     try {
-        console.log("payload", payload)
+
         yield put(startLoading())
         const res = yield fetch(`/tickets/${payload.id}`, {
             method: 'PUT',

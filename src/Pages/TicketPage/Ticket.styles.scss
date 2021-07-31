@@ -77,12 +77,8 @@
             grid-area: item2;
         }
 
-        .assigned-to {
-            grid-area: item3;
-        }
-
         .status{ 
-            grid-area: item4;
+            grid-area: item3;
             width: 7.3rem;
             p{
                 width: fit-content;
@@ -90,6 +86,12 @@
                 padding: 0.1rem 0.5rem;
             }
         }
+
+        .assigned-to {
+            grid-area: item4;
+        }
+
+
     }
 
 
@@ -128,14 +130,36 @@
         width: 100%;
         margin-bottom: 1rem;
 
+        .comments-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 90%;
+
+            .comment-block {
+                background-color: $bg-dark;
+                margin-bottom: 0.5rem;
+                padding: 1rem;
+
+                .comment-text {
+                    margin-bottom: 0.5rem;
+                    white-space: pre-line
+                }
+
+                .comment-date {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
     }
 
     .add-comment-section {
         width: 100%;
-        margin: 1rem 0;
 
         button {
             @extend %btn;
+            margin-top: 0.5rem;
         }
 
         .comment-text {
@@ -148,14 +172,13 @@
             border: none;
             font-size: 1rem;
 
-            .comment-buttons {
-                display: flex;
-            }
-
             &:focus {
                 outline: 1px solid $app-green;
             }
         }
     }
 
+    .footer {
+        height: 200px;
+    }
 }

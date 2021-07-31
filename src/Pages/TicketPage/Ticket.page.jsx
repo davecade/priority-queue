@@ -26,7 +26,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                 setTextColor("#f0f6fc")
     
             } else if(selectedTicket.status==="resolved") {
-                setStatusColor("#5f46ec")
+                setStatusColor("gray")
                 setFontWeight("bold")
                 setTextColor("black")
             }
@@ -51,12 +51,38 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         }
     }, [ticketList, ticketId])
 
+    const handleCommentChange = event => {
+        setCommentValue(event.target.value)
+    } 
+
     const handleCommentClick = () => {
 
         if(display==="none") {
             setDisplay("block")
             setCommentValue(undefined)
         } else {
+
+            const currentDate = new Date()
+            const day = currentDate.getDate()
+            const month = currentDate.getMonth()
+            const year = currentDate.getFullYear()
+            const hour = currentDate.getHours()
+            const minute = currentDate.getMinutes()
+            const second = currentDate.getSeconds()
+    
+            const z = num => num<10 ? `0${num}` : num
+            const y = num => num.toString().slice(2)
+
+            let newComment = {
+                value: commentValue,
+                date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)} ${z(second)}s`
+            }
+
+            let updatedTicket = {
+                ...selectedTicket,
+                comments: [...selectedTicket.comments, newComment]
+            }
+            updateTicket(updatedTicket)
             setDisplay("none")
             setCommentValue("")
         }
@@ -130,12 +156,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                         <div>{selectedTicket.user}</div>
                     </div>
 
-                    <div className="assigned-to">
-                        <h4>Assigned to:</h4>
-                        <div>{selectedTicket.assigned}</div>
-                    </div>
-                    
-                    
+
                     <div className="status">
                         <h4>Status:</h4>
                         <p style={{
@@ -146,6 +167,14 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                             {selectedTicket.status.toUpperCase()}
                         </p>
                     </div>
+
+                    <div className="assigned-to">
+                        <h4>Assigned to:</h4>
+                        <div>{selectedTicket.assigned}</div>
+                    </div>
+                    
+                    
+
 
                     
                 </div>
@@ -165,17 +194,33 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
 
                 <div className="comments-container">
                     <h4>Comments:</h4>
-                    <p>No comments to show</p>
+                    <ul className="comments-list">
+                        {
+                            selectedTicket.comments.length > 0 ?
+                            selectedTicket.comments.map( comment => (
+                                <li className="comment-block">
+                                    <p className="comment-text">{comment.value}</p>
+                                    <p className="comment-date">{`Added by Dave on: ${comment.date}`}</p>
+                                </li>
+                            ))
+                            :
+                            <p>No comments to show</p>
+                        }
+                    </ul>
                 </div>
 
                 <div className="add-comment-section">
-                    <textarea className="comment-text" value={commentValue}  rows="5" cols="50" style={{
+                    <textarea className="comment-text" value={commentValue} onChange={handleCommentChange}  rows="5" cols="50" style={{
                         display: display
                     }} />
                     <button onClick={selectedTicket.status==='resolved' ? null : handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
                     <button onClick={handleCancelComment} style={{
                         visibility: display==='none' ? 'hidden' : 'visible'
                     }}>Cancel</button>
+                </div>
+
+                <div className="footer">
+                    
                 </div>
             </div>
             
