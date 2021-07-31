@@ -59,7 +59,6 @@ export function* updateTicketAsync({payload}) {
         })
         
         const data = yield res.json();
-        console.log("DATA", data)
         
         yield put(updateTicketInState(data))
         yield put(updateTicketSuccess())

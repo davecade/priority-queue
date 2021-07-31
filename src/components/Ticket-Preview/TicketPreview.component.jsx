@@ -21,7 +21,7 @@ const TicketPreview = ({ticket, history}) => {
             setTextColor("#f0f6fc")
 
         } else if(status==="resolved") {
-            setStatusColor("#7197bd")
+            setStatusColor("#5f46ec")
             setFontWeight("bold")
         }
     

@@ -15,33 +15,34 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
     const [ commentValue, setCommentValue ] = useState(undefined)
 
     useEffect(() => {
-        if(selectedTicket.status==="new") {
-            setStatusColor("greenyellow")
-            setTextColor("black")
-            setFontWeight("bold")
-
-        } else if(selectedTicket.status==="in progress") {
-            setStatusColor("#1010ce")
-            setTextColor("#f0f6fc")
-
-        } else if(selectedTicket.status==="resolved") {
-            setStatusColor("#7197bd")
-            setFontWeight("bold")
-            setTextColor("Black")
-        }
+        try {
+            if(selectedTicket.status==="new") {
+                setStatusColor("greenyellow")
+                setTextColor("black")
+                setFontWeight("bold")
     
-        if(selectedTicket.priority === "low") {
-            setPriorityColor("greenyellow")
+            } else if(selectedTicket.status==="in progress") {
+                setStatusColor("#1010ce")
+                setTextColor("#f0f6fc")
+    
+            } else if(selectedTicket.status==="resolved") {
+                setStatusColor("#5f46ec")
+                setFontWeight("bold")
+                setTextColor("black")
+            }
+        
+            if(selectedTicket.priority === "low") {
+                setPriorityColor("greenyellow")
+    
+            } else if (selectedTicket.priority === "medium") {
+                setPriorityColor("orange")
+    
+            } else if (selectedTicket.priority === "high") {
+                setPriorityColor("red")
+            }
+        } catch(error) {}
 
-        } else if (selectedTicket.priority === "medium") {
-            setPriorityColor("orange")
-
-        } else if (selectedTicket.priority === "high") {
-            setPriorityColor("red")
-        }
-
-
-    }, [selectedTicket.status, selectedTicket.priority])
+    }, [selectedTicket])
 
     useEffect(() => {
         let objTickets = {...ticketList}
@@ -50,7 +51,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         }
     }, [ticketList, ticketId])
 
-    const handleCommentClick = e => {
+    const handleCommentClick = () => {
 
         if(display==="none") {
             setDisplay("block")
@@ -61,7 +62,12 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         }
     }
 
-    const handleResolvedReOpenClick = e => {
+    const handleCancelComment = () => {
+        setDisplay("none")
+        setCommentValue("")
+    }
+
+    const handleResolvedReOpenClick = () => {
 
         let newTicket = {
             ...selectedTicket,
@@ -163,10 +169,13 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                 </div>
 
                 <div className="add-comment-section">
-                    <textarea className="comment-text" value={commentValue}  rows="10" cols="50" style={{
+                    <textarea className="comment-text" value={commentValue}  rows="5" cols="50" style={{
                         display: display
                     }} />
                     <button onClick={selectedTicket.status==='resolved' ? null : handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
+                    <button onClick={handleCancelComment} style={{
+                        visibility: display==='none' ? 'hidden' : 'visible'
+                    }}>Cancel</button>
                 </div>
             </div>
             

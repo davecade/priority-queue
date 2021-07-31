@@ -3,22 +3,22 @@
     {
       "issue": "One bucket of Popeys chicken please",
       "description": "Tatay please i want a popeyes chicken tonight.\n\nMommy said you will buy. She told me!",
-      "user": "Caity",
+      "user": "Dave",
       "status": "in progress",
       "priority": "high",
-      "date": "29/06/21 23:52",
-      "assigned": "Dave",
+      "date": "30/06/21 16:55",
+      "assigned": "Coco",
       "comments": [],
       "id": 1
     },
     {
-      "issue": "X Files 2",
-      "description": "I am watching X Files right now.\n\nCool bro!",
-      "user": "Coco",
-      "status": "new",
-      "priority": "high",
-      "date": "29/06/21 23:52",
-      "assigned": "Unassigned",
+      "issue": "X Files",
+      "description": "I am watching X Files right now.\n\nBonn sucks!",
+      "user": "Dave",
+      "status": "in progress",
+      "priority": "medium",
+      "date": "30/06/21 16:26",
+      "assigned": "TomTom",
       "comments": [],
       "id": 2
     }
