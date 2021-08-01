@@ -47,7 +47,7 @@
 
         button {
             @extend %btn;
-            width: 5.5rem;
+            width: 6rem;
             height: 1.6rem;
         }
     }
@@ -83,7 +83,7 @@
             p{
                 width: fit-content;
                 border-radius: 5px;
-                padding: 0.1rem 0.5rem;
+                padding: 0.1rem 0.2rem;
             }
         }
 
@@ -148,6 +148,11 @@
 
                 .comment-date {
                     font-size: 0.9rem;
+                    color: gray;
+
+                    .comment-user {
+                        font-weight: bold;
+                    }
                 }
             }
         }
@@ -156,11 +161,6 @@
 
     .add-comment-section {
         width: 100%;
-
-        button {
-            @extend %btn;
-            margin-top: 0.5rem;
-        }
 
         .comment-text {
             width: 60%;
@@ -175,6 +175,44 @@
             &:focus {
                 outline: 1px solid $app-green;
             }
+        }
+
+        .comment-input {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 3rem;
+
+            .comment-input-buttons {
+                button {
+                    @extend %btn;
+                    margin-right: 0.5rem
+                }
+            }
+
+            .select-user-to-comment {
+                display: flex;
+                align-items: center;
+
+                p {
+                    font-weight: bold;
+                    margin-right: 0.5rem;
+                }
+
+                select {
+                    height: 2rem;
+                    background-color: $bg-dark;
+                    color: #f0f6fc;
+                    outline: none;
+                    border: 1px solid $app-green;;
+                    font-size: 1rem;
+    
+                }
+                
+            }
+
+
         }
     }
 

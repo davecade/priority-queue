@@ -7,12 +7,15 @@ import EditModal from './components/Modal/Edit/Edit-Modal.component'
 import AssignModal from './components/Modal/Assign/Assign-Modal.component'
 import { connect } from 'react-redux';
 import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
+import { fetchUserDataStart } from './Redux/users/user.actions'
 
 
-function App({ fetchTicketDataStart }) {
+function App({ fetchTicketDataStart, fetchUserDataStart }) {
 
   useEffect(() => {
-    fetchTicketDataStart()
+      fetchTicketDataStart();
+      fetchUserDataStart();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -28,7 +31,8 @@ function App({ fetchTicketDataStart }) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchTicketDataStart: () => dispatch(fetchTicketDataStart())
+  fetchTicketDataStart: () => dispatch(fetchTicketDataStart()),
+  fetchUserDataStart: () => dispatch(fetchUserDataStart())
 })
 
 export default connect(null, mapDispatchToProps)(App);

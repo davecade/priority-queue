@@ -5,7 +5,8 @@ import BugIcon from '../../components/BugIcon/BugIcon.component'
 import { enableEditModal, enableAssignModal } from '../../Redux/modal/modal.actions'
 import { updateTicket } from '../../Redux/tickets/ticket.actions'
 
-const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket}) => {
+
+const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket, userList}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
@@ -13,6 +14,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
     const [ fontWeight, setFontWeight ] = useState("")
     const [ display, setDisplay ] = useState("none")
     const [ commentValue, setCommentValue ] = useState(undefined)
+    const [ commentUser, setCommentUser ] = useState("Anonymous")
 
     useEffect(() => {
         try {
@@ -53,7 +55,11 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
 
     const handleCommentChange = event => {
         setCommentValue(event.target.value)
-    } 
+    }
+
+    const handleCommentUserChange = event => {
+        setCommentUser(event.target.value)
+    }
 
     const handleCommentClick = () => {
 
@@ -68,14 +74,14 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
             const year = currentDate.getFullYear()
             const hour = currentDate.getHours()
             const minute = currentDate.getMinutes()
-            const second = currentDate.getSeconds()
     
             const z = num => num<10 ? `0${num}` : num
             const y = num => num.toString().slice(2)
 
             let newComment = {
+                user: commentUser,
                 value: commentValue,
-                date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)} ${z(second)}s`
+                date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`
             }
 
             let updatedTicket = {
@@ -103,6 +109,10 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         updateTicket(newTicket)
     }
 
+    const ticketResolvedMessage = () => {
+        alert("Ticket is already resolved. Please Re-Open to make changes.")
+    }
+
     try {
         return (
             <div className="ticket-page">
@@ -124,12 +134,12 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                 <div className="ticket-buttons">
                     <button
                         className="edit-btn"
-                        onClick={selectedTicket.status==='resolved' ? null : () => enableEditModal(selectedTicket)}>
+                        onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableEditModal(selectedTicket)}>
                         Modify
                     </button>
 
-                    <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? null : () => enableAssignModal(selectedTicket)}>
-                        Assign
+                    <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableAssignModal(selectedTicket)}>
+                        Assign Tech
                     </button>
 
                     <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
@@ -169,14 +179,9 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                     </div>
 
                     <div className="assigned-to">
-                        <h4>Assigned to:</h4>
+                        <h4>Tech Assigned:</h4>
                         <div>{selectedTicket.assigned}</div>
                     </div>
-                    
-                    
-
-
-                    
                 </div>
 
                 
@@ -199,8 +204,8 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                             selectedTicket.comments.length > 0 ?
                             selectedTicket.comments.map( comment => (
                                 <li className="comment-block">
-                                    <p className="comment-text">{comment.value}</p>
-                                    <p className="comment-date">{`Added by Dave on: ${comment.date}`}</p>
+                                    <p className="comment-date">Added by <span className="comment-user">{comment.user}</span> · {comment.date}</p>
+                                    <p className="comment-text"> {comment.value}</p>
                                 </li>
                             ))
                             :
@@ -213,14 +218,29 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                     <textarea className="comment-text" value={commentValue} onChange={handleCommentChange}  rows="5" cols="50" style={{
                         display: display
                     }} />
-                    <button onClick={selectedTicket.status==='resolved' ? null : handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
-                    <button onClick={handleCancelComment} style={{
-                        visibility: display==='none' ? 'hidden' : 'visible'
-                    }}>Cancel</button>
+                    <div className="comment-input">
+                        <div className="comment-input-buttons">
+                            <button className="comment-button" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
+                            <button onClick={handleCancelComment} style={{
+                                visibility: display==='none' ? 'hidden' : 'visible'
+                            }}>Cancel</button>
+                        </div>
+                        <div className="select-user-to-comment">
+                            <p style={{visibility: display==='none' ? 'hidden' : 'visible'}} >Comment by:</p>
+                            <select value={commentUser} onChange={handleCommentUserChange} style={{visibility: display==='none' ? 'hidden' : 'visible'}} >
+                                <option value="Anonymous">Anonymous</option>
+                                {
+                                    userList.map(user => (
+                                        <option value={user}>{user}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="footer">
-                    
+
                 </div>
             </div>
             
@@ -238,6 +258,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
 
 const mapStateToProps = state => ({
     ticketList: state.tickets.ticketList,
+    userList: state.users.userList
 })
 
 const mapDispatchToProps = dispatch => ({

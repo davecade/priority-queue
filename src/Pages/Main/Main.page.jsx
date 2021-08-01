@@ -15,6 +15,10 @@ const MainPage = ({ ticketList }) => {
                 }
 
             </ul>
+
+            <div className="footer">
+
+            </div>
         </div>
     )
 }

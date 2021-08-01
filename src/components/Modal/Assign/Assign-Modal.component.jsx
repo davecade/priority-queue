@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { disableAssignModal } from '../../../Redux/modal/modal.actions'
 import { updateTicket } from '../../../Redux/tickets/ticket.actions'
 
-const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket, updateTicket}) => {
+const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket, updateTicket, userList}) => {
     //-- Modal State
     const [ visibility, setVisibility ] = useState("hidden")
     const [ opacity, setOpacity ] = useState("0")
@@ -82,11 +82,11 @@ const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket
                             <div className="tech">
                                 <select onChange={handleTechChange} value={tech}>
                                     <option value="Unassigned">Unassigned</option>
-                                    <option value="Caity">Caity</option>
-                                    <option value="Coco">Coco</option>
-                                    <option value="Dave">Dave</option>
-                                    <option value="Bonn">Bonn</option>
-                                    <option value="TomTom">TomTom</option>
+                                    {
+                                        userList.map(user => (
+                                            <option value={user}>{user}</option>
+                                        ))
+                                    }
                                 </select>
                             </div>
 
@@ -109,7 +109,8 @@ const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket
 
 const mapStateToProps = state => ({
     assignModalEnabled: state.modal.assignModalEnabled,
-    assignModalTicket: state.modal.assignModalTicket
+    assignModalTicket: state.modal.assignModalTicket,
+    userList: state.users.userList
 })
 
 const mapDispatchToProps = dispatch => ({

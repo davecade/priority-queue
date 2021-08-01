@@ -3,19 +3,21 @@
     {
       "issue": "One bucket of Popeys chicken please",
       "description": "Tatay please i want a popeyes chicken tonight.\n\nMommy said you will buy. She told me!",
-      "user": "Dave",
-      "status": "resolved",
+      "user": "Caity",
+      "status": "in progress",
       "priority": "high",
-      "date": "31/06/21 17:50",
-      "assigned": "TomTom",
+      "date": "01/07/21 12:57",
+      "assigned": "Steph",
       "comments": [
         {
-          "value": "Hello",
-          "date": "31/06/21 21:02 20s"
+          "user": "Caity",
+          "value": "Tatay this is taking so long",
+          "date": "01/07/21 - 16:29"
         },
         {
-          "value": "I fixed this already\n",
-          "date": "31/06/21 21:06 43s"
+          "user": "Dave",
+          "value": "Sorry cait",
+          "date": "01/07/21 - 16:29"
         }
       ],
       "id": 1
@@ -28,54 +30,129 @@
       "priority": "medium",
       "date": "30/06/21 16:26",
       "assigned": "TomTom",
-      "comments": [],
+      "comments": [
+        {
+          "user": "Dave",
+          "value": "Resolved!!",
+          "date": "01/07/21 - 16:45"
+        }
+      ],
       "id": 2
     },
     {
       "issue": "asda",
-      "description": "asdasdasds",
+      "description": "Testing 1 2 4",
       "user": "Caity",
       "status": "in progress",
       "priority": "high",
-      "date": "31/06/21 21:08",
-      "assigned": "Dave",
+      "date": "01/07/21 16:32",
+      "assigned": "Michael",
       "comments": [
         {
-          "value": "hello",
-          "date": "31/06/21 21:10 13s"
+          "user": "Kobe",
+          "value": "Hello",
+          "date": "01/07/21 - 16:11"
         },
         {
-          "value": "Test\n g",
-          "date": "31/06/21 21:16 55s"
+          "user": "Dave",
+          "value": "I already fixed this maaan",
+          "date": "01/07/21 - 16:12"
         },
         {
-          "value": "How many\n\nDo\n\nYou Want\n\nbaytch",
-          "date": "31/06/21 21:17 36s"
+          "user": "Caity",
+          "value": "No you didnt tatay",
+          "date": "01/07/21 - 16:12"
         },
         {
-          "value": "We alredy fixed this yesterday",
-          "date": "31/06/21 21:19 24s"
+          "user": "Michael",
+          "value": "Resolved",
+          "date": "01/07/21 - 16:14"
         },
         {
-          "value": "What else do you want me to do",
-          "date": "31/06/21 21:19 38s"
+          "user": "Dave",
+          "value": "This is assigned to caity",
+          "date": "01/07/21 - 16:14"
         },
         {
-          "value": "reopened this",
-          "date": "31/06/21 21:33 15s"
+          "user": "Ayra",
+          "value": "omg",
+          "date": "01/07/21 - 16:23"
         },
         {
-          "value": "HI this is dave",
-          "date": "31/06/21 21:36 44s"
-        },
-        {
-          "value": "wtf ?",
-          "date": "31/06/21 21:36 51s"
+          "user": "Michael",
+          "value": "Hello",
+          "date": "01/07/21 - 16:28"
         }
       ],
       "id": 3
+    },
+    {
+      "issue": "Pizza Hut",
+      "description": "We need to order Pizza asap!\n\nLike right now please",
+      "user": "Michael",
+      "status": "in progress",
+      "priority": "high",
+      "date": "01/07/21 16:41",
+      "assigned": "Ayra",
+      "comments": [
+        {
+          "value": "Ordering Pizza",
+          "date": "01/07/21 - 16:36"
+        },
+        {
+          "value": "ETA 45 mins",
+          "date": "01/07/21 - 16:37"
+        },
+        {
+          "value": "ETA 42 mins",
+          "date": "01/07/21 - 16:37"
+        },
+        {
+          "user": "Dave",
+          "value": "ETA 40 mins",
+          "date": "01/07/21 - 16:38"
+        },
+        {
+          "user": "Kobe",
+          "value": "Too long",
+          "date": "01/07/21 - 16:38"
+        },
+        {
+          "user": "Dave",
+          "value": "Just be patient",
+          "date": "01/07/21 - 16:38"
+        },
+        {
+          "user": "Anonymous",
+          "value": "test",
+          "date": "01/07/21 - 16:40"
+        },
+        {
+          "user": "Caity",
+          "value": "PLS HURRY!!",
+          "date": "01/07/21 - 16:40"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "issue": "P'nut",
+      "description": "Order noWWW",
+      "user": "Caity",
+      "status": "in progress",
+      "priority": "high",
+      "date": "01/07/21 16:43",
+      "assigned": "Dave",
+      "comments": [],
+      "id": 5
     }
   ],
-  "users": [],
-  "engineers": []
+  "users": [
+    "Dave",
+    "Kobe",
+    "Michael",
+    "Steph",
+    "Caity",
+    "Ayra"
+  ]
 }
