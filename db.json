@@ -92,8 +92,8 @@
       "user": "Michael",
       "status": "in progress",
       "priority": "high",
-      "date": "01/07/21 16:41",
-      "assigned": "Ayra",
+      "date": "02/07/21 21:14",
+      "assigned": "Kobe",
       "comments": [
         {
           "value": "Ordering Pizza",
@@ -131,6 +131,11 @@
           "user": "Caity",
           "value": "PLS HURRY!!",
           "date": "01/07/21 - 16:40"
+        },
+        {
+          "user": "Dave",
+          "value": "Done. Completed!",
+          "date": "02/07/21 - 21:11"
         }
       ],
       "id": 4

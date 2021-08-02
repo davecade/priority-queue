@@ -13,9 +13,9 @@ const MainPage = ({ ticketList, searchField }) => {
     
     return (
         <div className="main-page">
-            <h1>Tickets</h1>
+            <h1>{filteredTickets.length===0 ? "No Tickets Found" : "Tickets"}</h1>
             <ul className="ticket-list">
-                {
+                {   
                     filteredTickets.map( ticket => (
                         <TicketPreview key={ticket.id} ticket={ticket} />
                     ))
