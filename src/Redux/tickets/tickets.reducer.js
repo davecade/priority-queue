@@ -2,6 +2,7 @@ import { TicketActionTypes } from './ticket.types'
 
 const INITIAL_STATE = {
     ticketList: [],
+    searchField: '',
     loading: false,
     error: null
 }
@@ -37,6 +38,12 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: true,
                 error: null
+            }
+
+        case TicketActionTypes.UPDATE_SEARCH_FIELD:
+            return {
+                ...state,
+                searchField: action.payload
             }
 
         case TicketActionTypes.FETCH_TICKET_DATA_SUCCESS:

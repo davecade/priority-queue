@@ -143,7 +143,13 @@
       "priority": "high",
       "date": "01/07/21 16:43",
       "assigned": "Dave",
-      "comments": [],
+      "comments": [
+        {
+          "user": "Dave",
+          "value": "testing",
+          "date": "02/07/21 - 17:14"
+        }
+      ],
       "id": 5
     }
   ],

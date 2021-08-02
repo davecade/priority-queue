@@ -83,8 +83,8 @@ const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket
                                 <select onChange={handleTechChange} value={tech}>
                                     <option value="Unassigned">Unassigned</option>
                                     {
-                                        userList.map(user => (
-                                            <option value={user}>{user}</option>
+                                        userList.map((user, index) => (
+                                            <option key={index} value={user}>{user}</option>
                                         ))
                                     }
                                 </select>

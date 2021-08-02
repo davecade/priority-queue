@@ -202,8 +202,8 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                     <ul className="comments-list">
                         {
                             selectedTicket.comments.length > 0 ?
-                            selectedTicket.comments.map( comment => (
-                                <li className="comment-block">
+                            selectedTicket.comments.map( (comment, index) => (
+                                <li key={index} className="comment-block">
                                     <p className="comment-date">Added by <span className="comment-user">{comment.user}</span> · {comment.date}</p>
                                     <p className="comment-text"> {comment.value}</p>
                                 </li>
@@ -230,8 +230,8 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                             <select value={commentUser} onChange={handleCommentUserChange} style={{visibility: display==='none' ? 'hidden' : 'visible'}} >
                                 <option value="Anonymous">Anonymous</option>
                                 {
-                                    userList.map(user => (
-                                        <option value={user}>{user}</option>
+                                    userList.map((user, index) => (
+                                        <option key={index} value={user}>{user}</option>
                                     ))
                                 }
                             </select>

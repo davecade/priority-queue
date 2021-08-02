@@ -59,3 +59,8 @@ export const updateTicketFailure = error => ({
     type: TicketActionTypes.ADD_NEW_TICKET_FAILURE,
     payload: error
 })
+
+export const updateSearchField = input => ({
+    type: TicketActionTypes.UPDATE_SEARCH_FIELD,
+    payload: input
+})
