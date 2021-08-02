@@ -75,7 +75,7 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
             user: reporter,
             description: description,
             priority: priority,
-            date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)}`,
+            date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`,
         }
 
         updateTicket(newTicket)

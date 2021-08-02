@@ -215,7 +215,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                 </div>
 
                 <div className="add-comment-section">
-                    <textarea className="comment-text" value={commentValue} onChange={handleCommentChange}  rows="5" cols="50" style={{
+                    <textarea className="comment-text" value={commentValue} onChange={handleCommentChange} rows="5" cols="50" style={{
                         display: display
                     }} />
                     <div className="comment-input">
@@ -251,7 +251,6 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                 <h1>No ticket found</h1>
             </div>
         )
-
     }
 
 }

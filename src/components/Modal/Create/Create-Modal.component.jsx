@@ -65,7 +65,7 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => 
             user: reporter,
             status: "new",
             priority: priority,
-            date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)}`,
+            date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`,
             assigned: "Unassigned",
             comments: []
         }

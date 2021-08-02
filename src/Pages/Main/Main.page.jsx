@@ -13,7 +13,7 @@ const MainPage = ({ ticketList, searchField }) => {
     
     return (
         <div className="main-page">
-            <h1>{filteredTickets.length===0 ? "No Tickets Found" : "Tickets"}</h1>
+            <h1 className="mainpage-heading">{filteredTickets.length===0 ? "No Tickets Found" : "Tickets"}</h1>
             <ul className="ticket-list">
                 {   
                     filteredTickets.map( ticket => (

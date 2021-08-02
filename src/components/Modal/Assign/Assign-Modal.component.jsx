@@ -49,7 +49,7 @@ const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket
 
         const newTicket = {
             ...assignModalTicket,
-            date: `${z(day)}/${z(month)}/${y(year)} ${z(hour)}:${z(minute)}`,
+            date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`,
             assigned: tech,
             status: tech==="Unassigned" ? 'new' : 'in progress'
         }
