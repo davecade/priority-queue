@@ -1,3 +1,5 @@
+@import '../../CSS_Utilities/utilities';
+
 .main-page {
     display: flex;
     flex-direction: column;
@@ -7,6 +9,27 @@
 
     .mainpage-heading {
         margin-top: 1rem;
+    }
+
+    .sortby-label {
+        margin-right: 0.5rem;
+    }
+
+    .sort-by {
+        width: 50rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        select {
+            height: 1.7rem;
+            background-color: $bg-dark;
+            color: #f0f6fc;
+            outline: none;
+            border: 1px solid $app-green;;
+            font-size: 1rem;
+
+        }
     }
 
     .ticket-list {
