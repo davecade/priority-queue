@@ -4,6 +4,7 @@ import './Ticket.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
 import { enableEditModal, enableAssignModal } from '../../Redux/modal/modal.actions'
 import { updateTicket } from '../../Redux/tickets/ticket.actions'
+import { dateTimeFormatter } from '../../JS_Utilities/_utilities'
 
 
 const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket, userList}) => {
@@ -69,19 +70,11 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         } else {
 
             const currentDate = new Date()
-            const day = currentDate.getDate()
-            const month = currentDate.getMonth()
-            const year = currentDate.getFullYear()
-            const hour = currentDate.getHours()
-            const minute = currentDate.getMinutes()
-    
-            const z = num => num<10 ? `0${num}` : num
-            const y = num => num.toString().slice(2)
 
             let newComment = {
                 user: commentUser,
                 value: commentValue,
-                date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`
+                date: dateTimeFormatter(currentDate)
             }
 
             let updatedTicket = {
@@ -194,7 +187,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
 
                 <div className="date">
                     <h4>Last updated:</h4>
-                    <p>{selectedTicket.date}</p>
+                    <p>{dateTimeFormatter(selectedTicket.date)}</p>
                 </div>
 
                 <div className="comments-container">

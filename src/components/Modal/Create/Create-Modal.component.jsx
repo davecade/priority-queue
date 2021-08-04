@@ -3,6 +3,7 @@ import './Create-Modal.styles.scss'
 import { connect } from 'react-redux'
 import { disableModal } from '../../../Redux/modal/modal.actions'
 import { addNewTicket } from '../../../Redux/tickets/ticket.actions'
+import { dateTimeFormatter } from '../../../JS_Utilities/_utilities'
 
 const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => {
     //-- Modal State
@@ -49,15 +50,6 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => 
     }
 
     const handleSubmit = () => {
-        const currentDate = new Date()
-        const day = currentDate.getDate()
-        const month = currentDate.getMonth()
-        const year = currentDate.getFullYear()
-        const hour = currentDate.getHours()
-        const minute = currentDate.getMinutes()
-
-        const z = num => num<10 ? `0${num}` : num
-        const y = num => num.toString().slice(2)
 
         const newTicket = {
             issue: issue,
@@ -65,7 +57,7 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => 
             user: reporter,
             status: "new",
             priority: priority,
-            date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`,
+            date: new Date(),
             assigned: "Unassigned",
             comments: []
         }

@@ -1,198 +1,32 @@
 {
   "tickets": [
     {
-      "issue": "One bucket of Popeys chicken please",
-      "description": "Tatay please i want a popeyes chicken tonight.\n\nMommy said you will buy. She told me!",
-      "user": "Caity",
-      "status": "in progress",
-      "priority": "high",
-      "date": "02/07/21 - 23:10",
-      "assigned": "Michael",
-      "comments": [
-        {
-          "user": "Caity",
-          "value": "Tatay this is taking so long",
-          "date": "01/07/21 - 16:29"
-        },
-        {
-          "user": "Dave",
-          "value": "Sorry cait",
-          "date": "01/07/21 - 16:29"
-        },
-        {
-          "user": "Anonymous",
-          "value": "Hello",
-          "date": "02/07/21 - 21:40"
-        },
-        {
-          "user": "Kobe",
-          "value": "Dave",
-          "date": "02/07/21 - 23:10"
-        }
-      ],
+      "issue": "testing 123",
+      "description": "asd",
+      "user": "Dave",
+      "status": "new",
+      "priority": "low",
+      "date": "2021-08-04T10:27:03.054Z",
+      "assigned": "Unassigned",
+      "comments": [],
       "id": 1
     },
     {
-      "issue": "X Files",
-      "description": "I am watching X Files right now.\n\nBonn sucks!",
-      "user": "Dave",
-      "status": "resolved",
-      "priority": "medium",
-      "date": "30/06/21 16:26",
-      "assigned": "TomTom",
+      "issue": "Popey Chicken NOW!",
+      "description": "Tatay you said popeys chickne today!!",
+      "user": "Caity",
+      "status": "in progress",
+      "priority": "high",
+      "date": "04/07/21 - 20:33",
+      "assigned": "Dave",
       "comments": [
         {
           "user": "Dave",
-          "value": "Resolved!!",
-          "date": "01/07/21 - 16:45"
+          "value": "Working on it!",
+          "date": "04/07/21 - 20:32"
         }
       ],
       "id": 2
-    },
-    {
-      "issue": "asda",
-      "description": "Testing 1 2 4",
-      "user": "Caity",
-      "status": "new",
-      "priority": "high",
-      "date": "02/07/21 - 23:00",
-      "assigned": "Unassigned",
-      "comments": [
-        {
-          "user": "Kobe",
-          "value": "Hello",
-          "date": "01/07/21 - 16:11"
-        },
-        {
-          "user": "Dave",
-          "value": "I already fixed this maaan",
-          "date": "01/07/21 - 16:12"
-        },
-        {
-          "user": "Caity",
-          "value": "No you didnt tatay",
-          "date": "01/07/21 - 16:12"
-        },
-        {
-          "user": "Michael",
-          "value": "Resolved",
-          "date": "01/07/21 - 16:14"
-        },
-        {
-          "user": "Dave",
-          "value": "This is assigned to caity",
-          "date": "01/07/21 - 16:14"
-        },
-        {
-          "user": "Ayra",
-          "value": "omg",
-          "date": "01/07/21 - 16:23"
-        },
-        {
-          "user": "Michael",
-          "value": "Hello",
-          "date": "01/07/21 - 16:28"
-        }
-      ],
-      "id": 3
-    },
-    {
-      "issue": "Pizza Hut",
-      "description": "We need to order Pizza asap!\n\nLike right now please",
-      "user": "Michael",
-      "status": "in progress",
-      "priority": "high",
-      "date": "02/07/21 21:14",
-      "assigned": "Kobe",
-      "comments": [
-        {
-          "value": "Ordering Pizza",
-          "date": "01/07/21 - 16:36"
-        },
-        {
-          "value": "ETA 45 mins",
-          "date": "01/07/21 - 16:37"
-        },
-        {
-          "value": "ETA 42 mins",
-          "date": "01/07/21 - 16:37"
-        },
-        {
-          "user": "Dave",
-          "value": "ETA 40 mins",
-          "date": "01/07/21 - 16:38"
-        },
-        {
-          "user": "Kobe",
-          "value": "Too long",
-          "date": "01/07/21 - 16:38"
-        },
-        {
-          "user": "Dave",
-          "value": "Just be patient",
-          "date": "01/07/21 - 16:38"
-        },
-        {
-          "user": "Anonymous",
-          "value": "test",
-          "date": "01/07/21 - 16:40"
-        },
-        {
-          "user": "Caity",
-          "value": "PLS HURRY!!",
-          "date": "01/07/21 - 16:40"
-        },
-        {
-          "user": "Dave",
-          "value": "Done. Completed!",
-          "date": "02/07/21 - 21:11"
-        }
-      ],
-      "id": 4
-    },
-    {
-      "issue": "P'nut",
-      "description": "Order noWWW",
-      "user": "Caity",
-      "status": "in progress",
-      "priority": "low",
-      "date": "02/07/21 - 23:12",
-      "assigned": "Michael",
-      "comments": [
-        {
-          "user": "Dave",
-          "value": "testing",
-          "date": "02/07/21 - 17:14"
-        },
-        {
-          "user": "Dave",
-          "value": "Completed",
-          "date": "02/07/21 - 21:54"
-        }
-      ],
-      "id": 5
-    },
-    {
-      "issue": "1 Order of Cranberry Juice",
-      "description": "Order from IGA Please\n1 Cranberry juice asap!",
-      "user": "Dave",
-      "status": "in progress",
-      "priority": "high",
-      "date": "02/07/21 - 23:01",
-      "assigned": "Kobe",
-      "comments": [
-        {
-          "user": "Steph",
-          "value": "Processing....",
-          "date": "02/07/21 - 23:01"
-        },
-        {
-          "user": "Dave",
-          "value": "Ok completed now",
-          "date": "03/07/21 - 20:51"
-        }
-      ],
-      "id": 6
     }
   ],
   "users": [

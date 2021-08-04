@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Main.styles.scss'
 import TicketPreview from '../../components/Ticket-Preview/TicketPreview.component'
 import { connect } from 'react-redux'
-import quickSort from './Main.utils'
+import { quickSort } from '../../JS_Utilities/_utilities'
 
 const MainPage = ({ ticketList, searchField }) => {
     const [ sortBy, setSortBy ] = useState("id")
@@ -13,10 +13,8 @@ const MainPage = ({ ticketList, searchField }) => {
         return searchString.toLowerCase().includes(searchField.toLowerCase())
     })
 
-    if(sortBy!=='id') {
-        sortedTickets = quickSort(filteredTickets, sortBy)
-    }
-    
+    sortedTickets = quickSort(filteredTickets, sortBy)
+
     const handleSortBy = event => {
         setSortBy(event.target.value)
     }
@@ -29,7 +27,7 @@ const MainPage = ({ ticketList, searchField }) => {
                 <select onChange={handleSortBy}>
                 <option value="id">Date Created</option>
                     <option value="status">Status</option>
-                    <option value="priority">Priority Level</option>
+                    <option value="priority">Priority</option>
                 </select>
             </div>
             <ul className="ticket-list">

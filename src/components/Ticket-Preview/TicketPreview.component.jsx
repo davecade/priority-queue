@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './TicketPreview.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
 import { withRouter } from 'react-router'
+import { dateTimeFormatter } from '../../JS_Utilities/_utilities'
 
 
 const TicketPreview = ({ticket, history}) => {
@@ -78,7 +79,7 @@ const TicketPreview = ({ticket, history}) => {
                         <p>{`Assigned to: ${assigned}`}</p>
                     </div>
                     <div className="datetime">
-                        <p>{`Last Updated: ${date}`}</p>
+                        <p>{`Last Updated: ${dateTimeFormatter(date)}`}</p>
                     </div>
                 </div>
 

@@ -1,4 +1,8 @@
-function quickSort(array, sortBy) {
+
+// -- Sorting Aglorithm
+export function quickSort(array, sortBy) {
+    if(sortBy==='id') return;
+    
     quickSortHelper(array, 0, array.length-1, sortBy)
     return array;
 }
@@ -10,16 +14,16 @@ function swap(i, j, array) {
 }
 
 function quickSortHelper(array, startIdx, endIdx, sortBy) {
-    let legend = {}
+    let key = {}
 
     if(sortBy==='status') {
-        legend = {
+        key = {
             "new": 1,
             "in progress": 2,
             "resolved": 3
         }
     } else if(sortBy==='priority') {
-        legend = {
+        key = {
             "high": 1,
             "medium": 2,
             "low": 3
@@ -32,12 +36,12 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
     let rightIdx = endIdx
 
     while(rightIdx >= leftIdx) {
-        if(legend[array[leftIdx][sortBy]] > legend[array[pivotIdx][sortBy]] && legend[array[rightIdx][sortBy]] < legend[array[pivotIdx][sortBy]]) {
+        if(key[array[leftIdx][sortBy]] > key[array[pivotIdx][sortBy]] && key[array[rightIdx][sortBy]] < key[array[pivotIdx][sortBy]]) {
         swap(leftIdx, rightIdx, array)
         }
 
-        if(legend[array[leftIdx][sortBy]] <= legend[array[pivotIdx][sortBy]]) leftIdx++;
-        if(legend[array[rightIdx][sortBy]]>= legend[array[pivotIdx][sortBy]]) rightIdx--;
+        if(key[array[leftIdx][sortBy]] <= key[array[pivotIdx][sortBy]]) leftIdx++;
+        if(key[array[rightIdx][sortBy]]>= key[array[pivotIdx][sortBy]]) rightIdx--;
     }
     swap(pivotIdx, rightIdx, array);
     const leftSubarrayIsSmaller = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1);
@@ -52,4 +56,19 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
 
 }
 
-export default quickSort;
+
+//-- Custom Date Format
+export function dateTimeFormatter(date) {
+    date = new Date();
+    const day = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const z = num => num<10 ? `0${num}` : num
+    const y = num => num.toString().slice(2)
+
+    return `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`
+}
+
+
