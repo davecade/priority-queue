@@ -69,12 +69,10 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
             setCommentValue(undefined)
         } else {
 
-            const currentDate = new Date()
-
             let newComment = {
                 user: commentUser,
                 value: commentValue,
-                date: dateTimeFormatter(currentDate)
+                date: new Date()
             }
 
             let updatedTicket = {
@@ -96,7 +94,8 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
 
         let newTicket = {
             ...selectedTicket,
-            status: selectedTicket.status==='resolved' ? 'in progress' : 'resolved'
+            status: selectedTicket.status==='resolved' ? 'in progress' : 'resolved',
+            date: new Date()
         }
 
         updateTicket(newTicket)
@@ -197,7 +196,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                             selectedTicket.comments.length > 0 ?
                             selectedTicket.comments.map( (comment, index) => (
                                 <li key={index} className="comment-block">
-                                    <p className="comment-date">Added by <span className="comment-user">{comment.user}</span> · {comment.date}</p>
+                                    <p className="comment-date">Added by <span className="comment-user">{comment.user}</span> · {dateTimeFormatter(comment.date)}</p>
                                     <p className="comment-text"> {comment.value}</p>
                                 </li>
                             ))

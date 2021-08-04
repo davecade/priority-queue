@@ -9,7 +9,6 @@ import {
 
 export function* fetchUsersAsync() {
     try {
-        console.log("USERS!!!!")
         yield put(startLoading())
         const res = yield fetch('/users')
         const data = yield res.json();

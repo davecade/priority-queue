@@ -1,5 +1,5 @@
 
-// -- Sorting Aglorithm
+// -- Quick Sort Aglorithm
 export function quickSort(array, sortBy) {
     if(sortBy==='id') return;
     
@@ -36,32 +36,29 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
     let rightIdx = endIdx
 
     while(rightIdx >= leftIdx) {
-        let variableLeft = null
-        let variableRight = null
-        let variablePivot = null
+        let variableLeftIdx = null
+        let variableRightIdx = null
+        let variablePivotIdx = null
 
         if(sortBy==='date'){       
-            let padcuLeft = new Date(array[leftIdx][sortBy]).getTime()
-            let padcuRight = new Date(array[rightIdx][sortBy]).getTime()
-            let padcuPivot = new Date(array[pivotIdx][sortBy]).getTime()
-            variableLeft = padcuLeft
-            variableRight = padcuRight
-            variablePivot = padcuPivot
+            let dateLeftIdx = new Date(array[leftIdx][sortBy]).getTime()
+            let dateRightIdx = new Date(array[rightIdx][sortBy]).getTime()
+            let datePivotIdx = new Date(array[pivotIdx][sortBy]).getTime()
+            variableLeftIdx = dateLeftIdx
+            variableRightIdx = dateRightIdx
+            variablePivotIdx = datePivotIdx
         } else {
-            let migorengLeft = key[array[leftIdx][sortBy]]
-            let migorengRight = key[array[rightIdx][sortBy]]
-            let migorengPivot = key[array[pivotIdx][sortBy]]
-            variableLeft = migorengLeft
-            variableRight = migorengRight
-            variablePivot = migorengPivot
+            variableLeftIdx = key[array[leftIdx][sortBy]]
+            variableRightIdx = key[array[rightIdx][sortBy]]
+            variablePivotIdx = key[array[pivotIdx][sortBy]]
         }
 
-        if(variableLeft > variablePivot && variableRight < variablePivot) {
+        if(variableLeftIdx > variablePivotIdx && variableRightIdx < variablePivotIdx) {
         swap(leftIdx, rightIdx, array)
         }
 
-        if(variableLeft <= variablePivot) leftIdx++;
-        if(variableRight>= variablePivot) rightIdx--;
+        if(variableLeftIdx <= variablePivotIdx) leftIdx++;
+        if(variableRightIdx>= variablePivotIdx) rightIdx--;
     }
     swap(pivotIdx, rightIdx, array);
     const leftSubarrayIsSmaller = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1);

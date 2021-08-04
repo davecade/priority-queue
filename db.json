@@ -4,7 +4,7 @@
       "issue": "testing 123",
       "description": "asd",
       "user": "Dave",
-      "status": "in progress",
+      "status": "resolved",
       "priority": "high",
       "date": "2021-08-04T13:28:55.131Z",
       "assigned": "Michael",
@@ -28,7 +28,7 @@
       "user": "Michael",
       "status": "resolved",
       "priority": "medium",
-      "date": "2021-08-04T12:23:22.877Z",
+      "date": "2021-08-04T14:20:17.513Z",
       "assigned": "Unassigned",
       "comments": [],
       "id": 3
@@ -41,7 +41,13 @@
       "priority": "high",
       "date": "2021-08-04T12:23:34.073Z",
       "assigned": "Unassigned",
-      "comments": [],
+      "comments": [
+        {
+          "user": "Dave",
+          "value": "Testing",
+          "date": "2021-08-04T14:22:32.529Z"
+        }
+      ],
       "id": 4
     },
     {
