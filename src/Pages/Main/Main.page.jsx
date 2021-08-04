@@ -25,7 +25,8 @@ const MainPage = ({ ticketList, searchField }) => {
             <div className="sort-by">
                 <span className="sortby-label">Sort By: </span>
                 <select onChange={handleSortBy}>
-                <option value="id">Date Created</option>
+                    <option value="id">Date Created</option>
+                    <option value="date">Last Updated</option>
                     <option value="status">Status</option>
                     <option value="priority">Priority</option>
                 </select>

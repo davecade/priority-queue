@@ -51,13 +51,15 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => 
 
     const handleSubmit = () => {
 
+        let newDate = new Date()
+
         const newTicket = {
             issue: issue,
             description: description,
             user: reporter,
             status: "new",
             priority: priority,
-            date: new Date(),
+            date: newDate,
             assigned: "Unassigned",
             comments: []
         }

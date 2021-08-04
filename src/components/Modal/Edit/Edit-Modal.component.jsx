@@ -60,14 +60,6 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
 
     const handleSubmit = () => {
         const currentDate = new Date()
-        const day = currentDate.getDate()
-        const month = currentDate.getMonth()
-        const year = currentDate.getFullYear()
-        const hour = currentDate.getHours()
-        const minute = currentDate.getMinutes()
-
-        const z = num => num<10 ? `0${num}` : num
-        const y = num => num.toString().slice(2)
 
         const newTicket = {
             ...editModalTicket,
@@ -75,7 +67,7 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
             user: reporter,
             description: description,
             priority: priority,
-            date: `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`,
+            date: currentDate,
         }
 
         updateTicket(newTicket)

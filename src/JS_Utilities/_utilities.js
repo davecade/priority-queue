@@ -36,12 +36,32 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
     let rightIdx = endIdx
 
     while(rightIdx >= leftIdx) {
-        if(key[array[leftIdx][sortBy]] > key[array[pivotIdx][sortBy]] && key[array[rightIdx][sortBy]] < key[array[pivotIdx][sortBy]]) {
+        let variableLeft = null
+        let variableRight = null
+        let variablePivot = null
+
+        if(sortBy==='date'){       
+            let padcuLeft = new Date(array[leftIdx][sortBy]).getTime()
+            let padcuRight = new Date(array[rightIdx][sortBy]).getTime()
+            let padcuPivot = new Date(array[pivotIdx][sortBy]).getTime()
+            variableLeft = padcuLeft
+            variableRight = padcuRight
+            variablePivot = padcuPivot
+        } else {
+            let migorengLeft = key[array[leftIdx][sortBy]]
+            let migorengRight = key[array[rightIdx][sortBy]]
+            let migorengPivot = key[array[pivotIdx][sortBy]]
+            variableLeft = migorengLeft
+            variableRight = migorengRight
+            variablePivot = migorengPivot
+        }
+
+        if(variableLeft > variablePivot && variableRight < variablePivot) {
         swap(leftIdx, rightIdx, array)
         }
 
-        if(key[array[leftIdx][sortBy]] <= key[array[pivotIdx][sortBy]]) leftIdx++;
-        if(key[array[rightIdx][sortBy]]>= key[array[pivotIdx][sortBy]]) rightIdx--;
+        if(variableLeft <= variablePivot) leftIdx++;
+        if(variableRight>= variablePivot) rightIdx--;
     }
     swap(pivotIdx, rightIdx, array);
     const leftSubarrayIsSmaller = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1);
@@ -59,12 +79,11 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
 
 //-- Custom Date Format
 export function dateTimeFormatter(date) {
-    date = new Date();
-    const day = date.getDate()
-    const month = date.getMonth()
-    const year = date.getFullYear()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
+    const day = new Date(date).getDate()
+    const month = new Date(date).getMonth()
+    const year = new Date(date).getFullYear()
+    const hour = new Date(date).getHours()
+    const minute = new Date(date).getMinutes()
     const z = num => num<10 ? `0${num}` : num
     const y = num => num.toString().slice(2)
 
