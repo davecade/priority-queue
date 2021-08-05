@@ -6,14 +6,12 @@ import { quickSort } from '../../JS_Utilities/_utilities'
 
 const MainPage = ({ ticketList, searchField }) => {
     const [ sortBy, setSortBy ] = useState("id")
-    let sortedTickets
-    let searchString = ''
     let filteredTickets = ticketList.filter(ticket => {
-        searchString = `${ticket.issue} ${ticket.description} ${ticket.user} ${ticket.assigned} PRQ-${ticket.id}`
+        let searchString = `${ticket.issue} ${ticket.description} ${ticket.user} ${ticket.assigned} PRQ-${ticket.id}`
         return searchString.toLowerCase().includes(searchField.toLowerCase())
     })
 
-    sortedTickets = quickSort(filteredTickets, sortBy)
+    let sortedTickets = quickSort(filteredTickets, sortBy)
 
     const handleSortBy = event => {
         setSortBy(event.target.value)
