@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { updateSearchField } from '../../Redux/tickets/ticket.actions'
 import { withRouter } from 'react-router-dom'
+import { getRefsArray } from '../../JS_Utilities/_utilities'
 import './SearchBar.styles.scss'
 
-const SearchBar = ({ updateSearchField, history }) => {
+const SearchBar = ({ updateSearchField, history, ticketList }) => {
 
     const handleOnChange = event => {
         updateSearchField(event.target.value)
@@ -12,7 +13,19 @@ const SearchBar = ({ updateSearchField, history }) => {
 
     const handleEnter = event => {
         if (event.key === 'Enter') {
-            history.push('/')
+            if(`${event.target.value.slice(0,3).toUpperCase()}-`==="PRQ-") {
+                const refArray = getRefsArray(ticketList)
+                const prq = event.target.value.slice(0,3).toUpperCase()
+                const id = event.target.value.slice(4)
+
+                if(refArray.includes(`${prq.toUpperCase()}-${id}`)) {
+                    history.push(`/Ticket/${prq.toUpperCase()}-${id}`)
+                } else {
+                    history.push('/')
+                }
+            } else {
+                history.push('/')
+            }
         }
     }
 
@@ -24,8 +37,12 @@ const SearchBar = ({ updateSearchField, history }) => {
     )
 }
 
+const mapStateToProps = state => ({
+    ticketList: state.tickets.ticketList
+})
+
 const mapDispatchToProps = dispatch => ({
     updateSearchField: input => dispatch(updateSearchField(input))
 })
 
-export default connect(null, mapDispatchToProps)(withRouter(SearchBar))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SearchBar))

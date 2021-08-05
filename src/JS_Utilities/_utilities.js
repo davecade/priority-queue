@@ -54,12 +54,13 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
         }
 
         if(variableLeftIdx > variablePivotIdx && variableRightIdx < variablePivotIdx) {
-        swap(leftIdx, rightIdx, array)
+            swap(leftIdx, rightIdx, array)
         }
 
         if(variableLeftIdx <= variablePivotIdx) leftIdx++;
         if(variableRightIdx>= variablePivotIdx) rightIdx--;
     }
+    
     swap(pivotIdx, rightIdx, array);
     const leftSubarrayIsSmaller = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1);
     if(leftSubarrayIsSmaller) {
@@ -75,7 +76,7 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
 
 
 //-- Custom Date Format
-export function dateTimeFormatter(date) {
+export const dateTimeFormatter = date => {
     const day = new Date(date).getDate()
     const month = new Date(date).getMonth()
     const year = new Date(date).getFullYear()
@@ -87,4 +88,5 @@ export function dateTimeFormatter(date) {
     return `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`
 }
 
-
+// -- Returns array of ticket ID Reference Numbers
+export const getRefsArray = array => array.map(ticket=>`PRQ-${ticket.id}`)

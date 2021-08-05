@@ -6,10 +6,16 @@
       "user": "Michael",
       "status": "new",
       "priority": "medium",
-      "lastUpdated": "2021-08-05T11:52:31.250Z",
+      "lastUpdated": "2021-08-05T12:53:58.894Z",
       "dateCreated": "2021-08-05T11:52:31.250Z",
       "assigned": "Unassigned",
-      "comments": [],
+      "comments": [
+        {
+          "user": "Kobe",
+          "value": "Working on it",
+          "date": "2021-08-05T12:53:58.894Z"
+        }
+      ],
       "id": 1
     },
     {
@@ -18,7 +24,7 @@
       "user": "Steph",
       "status": "in progress",
       "priority": "high",
-      "lastUpdated": "2021-08-05T12:34:33.462Z",
+      "lastUpdated": "2021-08-05T12:55:58.006Z",
       "dateCreated": "2021-08-05T11:54:28.604Z",
       "assigned": "Dave",
       "comments": [
@@ -26,9 +32,32 @@
           "user": "Steph",
           "value": "working on this now.",
           "date": "2021-08-05T12:34:33.462Z"
+        },
+        {
+          "user": "Kobe",
+          "value": "Unable to fix. Raise to Level 2",
+          "date": "2021-08-05T12:55:58.006Z"
         }
       ],
       "id": 2
+    },
+    {
+      "issue": "Need new Keyboard",
+      "description": "I need a new keyboard please\n\nThe one I have is not ergonomically safe for my wrists.\n\nThanks!",
+      "user": "Ayra",
+      "status": "resolved",
+      "priority": "low",
+      "lastUpdated": "2021-08-05T12:53:33.610Z",
+      "dateCreated": "2021-08-05T12:46:12.531Z",
+      "assigned": "Dave",
+      "comments": [
+        {
+          "user": "Dave",
+          "value": "Will get you one asap!",
+          "date": "2021-08-05T12:46:38.738Z"
+        }
+      ],
+      "id": 3
     }
   ],
   "users": [
