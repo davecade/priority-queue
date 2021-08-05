@@ -59,7 +59,8 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => 
             user: reporter,
             status: "new",
             priority: priority,
-            date: newDate,
+            lastUpdated: newDate,
+            dateCreated: newDate,
             assigned: "Unassigned",
             comments: []
         }

@@ -6,7 +6,7 @@ import { dateTimeFormatter } from '../../JS_Utilities/_utilities'
 
 
 const TicketPreview = ({ticket, history}) => {
-    const { id, status, issue, priority, user, assigned, date } = ticket
+    const { id, status, issue, priority, user, assigned, lastUpdated } = ticket
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
     const [ priorityColor, setPriorityColor ] = useState("")
@@ -79,7 +79,7 @@ const TicketPreview = ({ticket, history}) => {
                         <p>{`Assigned to: ${assigned}`}</p>
                     </div>
                     <div className="datetime">
-                        <p>{`Last Updated: ${dateTimeFormatter(date)}`}</p>
+                        <p>{`Last Updated: ${dateTimeFormatter(lastUpdated)}`}</p>
                     </div>
                 </div>
 

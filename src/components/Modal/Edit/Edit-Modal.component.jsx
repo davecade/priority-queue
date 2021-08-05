@@ -67,7 +67,7 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
             user: reporter,
             description: description,
             priority: priority,
-            date: currentDate,
+            lastUpdated: currentDate,
         }
 
         updateTicket(newTicket)

@@ -64,6 +64,8 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
 
     const handleCommentClick = () => {
 
+        const newDate = new Date()
+
         if(display==="none") {
             setDisplay("block")
             setCommentValue(undefined)
@@ -72,11 +74,12 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
             let newComment = {
                 user: commentUser,
                 value: commentValue,
-                date: new Date()
+                date: newDate
             }
 
             let updatedTicket = {
                 ...selectedTicket,
+                lastUpdated: newDate,
                 comments: [...selectedTicket.comments, newComment]
             }
             updateTicket(updatedTicket)
@@ -95,7 +98,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         let newTicket = {
             ...selectedTicket,
             status: selectedTicket.status==='resolved' ? 'in progress' : 'resolved',
-            date: new Date()
+            lastUpdated: new Date()
         }
 
         updateTicket(newTicket)
@@ -110,10 +113,14 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
             <div className="ticket-page">
                 
                 <div className="bug-ticket-edit">
-                    <div>
+                    <div className="ticket-reference-container">
                         <BugIcon />
                         <h2 className="ticket-reference">PRQ-{selectedTicket.id}</h2>
                     </div>
+                    <div className="last-updated">
+                        <h4>Last Updated:</h4>
+                    <p>{dateTimeFormatter(selectedTicket.lastUpdated)}</p>
+                </div>
                 </div>
                 
                 <div className="issue" style={{
@@ -121,22 +128,24 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                 }}>
                     <h2>{selectedTicket.issue}</h2>
                 </div>
-                
+
                 
                 <div className="ticket-buttons">
-                    <button
-                        className="edit-btn"
-                        onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableEditModal(selectedTicket)}>
-                        Modify
-                    </button>
+                    <div className="buttons">
+                        <button
+                            className="edit-btn"
+                            onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableEditModal(selectedTicket)}>
+                            Modify
+                        </button>
 
-                    <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableAssignModal(selectedTicket)}>
-                        Assign Tech
-                    </button>
+                        <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableAssignModal(selectedTicket)}>
+                            Assign Tech
+                        </button>
 
-                    <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
-                        {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
-                    </button>
+                        <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
+                            {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
+                        </button>
+                    </div>
                 </div>
 
                 <div className="priority-status">
@@ -185,8 +194,8 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
                 </div>
 
                 <div className="date">
-                    <h4>Last updated:</h4>
-                    <p>{dateTimeFormatter(selectedTicket.date)}</p>
+                    <h4>Created on:</h4>
+                    <p>{dateTimeFormatter(selectedTicket.dateCreated)}</p>
                 </div>
 
                 <div className="comments-container">

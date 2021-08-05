@@ -40,7 +40,7 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
         let variableRightIdx = null
         let variablePivotIdx = null
 
-        if(sortBy==='date'){       
+        if(sortBy==='lastUpdated'){       
             let dateLeftIdx = new Date(array[leftIdx][sortBy]).getTime()
             let dateRightIdx = new Date(array[rightIdx][sortBy]).getTime()
             let datePivotIdx = new Date(array[pivotIdx][sortBy]).getTime()

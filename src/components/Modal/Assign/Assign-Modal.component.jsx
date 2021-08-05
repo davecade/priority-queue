@@ -41,7 +41,7 @@ const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket
         
         const newTicket = {
             ...assignModalTicket,
-            date: currentDate,
+            lastUpdated: currentDate,
             assigned: tech,
             status: tech==="Unassigned" ? 'new' : 'in progress'
         }

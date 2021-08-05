@@ -22,11 +22,13 @@ const MainPage = ({ ticketList, searchField }) => {
     return (
         <div className="main-page">
             <h1 className="mainpage-heading">{filteredTickets.length===0 ? "No Tickets Found" : "Tickets"}</h1>
-            <div className="sort-by">
+            <div className="sort-by" style={{
+                visibility: filteredTickets.length===0? "hidden" : "visible"
+            }} >
                 <span className="sortby-label">Sort By: </span>
                 <select onChange={handleSortBy}>
                     <option value="id">Date Created</option>
-                    <option value="date">Last Updated</option>
+                    <option value="lastUpdated">Last Updated</option>
                     <option value="status">Status</option>
                     <option value="priority">Priority</option>
                 </select>
