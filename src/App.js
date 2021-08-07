@@ -4,7 +4,7 @@ import Content from './components/Content/Content.component'
 import CreateModal from './components/Modal/Create/Create-Modal.component'
 import EditModal from './components/Modal/Edit/Edit-Modal.component'
 import AssignModal from './components/Modal/Assign/Assign-Modal.component'
-import Navbar from './components/Navbar/Navbar.component'
+import Navbar from './components/navbar/navbar.component'
 import { connect } from 'react-redux';
 import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
 import { fetchUserDataStart } from './Redux/users/user.actions'

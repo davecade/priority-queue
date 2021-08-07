@@ -1,5 +1,5 @@
 import React from 'react'
-import './Navbar.styles.scss'
+import './navbar.styles.scss'
 import SearchBar from '../SearchBar/SearchBar.component'
 import { connect } from 'react-redux'
 import { enableModal } from '../../Redux/modal/modal.actions'
