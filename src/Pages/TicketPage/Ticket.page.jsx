@@ -108,7 +108,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
         alert("Ticket is already resolved. Please Re-Open to make changes.")
     }
 
-    if(loading || (loading==false && ticketList.length===0)) {
+    if((loading && ticketList.length===0) || (loading==false && ticketList.length===0)) {
         return (
             <div>
                 <h1>Loading Ticket... Please wait</h1>
