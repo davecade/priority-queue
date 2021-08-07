@@ -7,7 +7,7 @@ import { updateTicket } from '../../Redux/tickets/ticket.actions'
 import { dateTimeFormatter } from '../../JS_Utilities/_utilities'
 
 
-const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket, userList}) => {
+const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket, userList}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
     const [ statusColor, setStatusColor ] = useState("")
     const [ textColor, setTextColor ] = useState("")
@@ -52,7 +52,7 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         if(ticketList.length>0) {
             setSelectedTicket(objTickets[ticketId-1])
         }
-    }, [ticketList, ticketId])
+    })
 
     const handleCommentChange = event => {
         setCommentValue(event.target.value)
@@ -108,157 +108,170 @@ const Ticket = ({ticketId, ticketList, enableEditModal, enableAssignModal, updat
         alert("Ticket is already resolved. Please Re-Open to make changes.")
     }
 
-    try {
+    if(loading || (loading==false && ticketList.length===0)) {
         return (
-            <div className="ticket-page">
-                
-                <div className="bug-ticket-edit">
-                    <div className="ticket-reference-container">
-                        <BugIcon />
-                        <h2 className="ticket-reference">PRQ-{selectedTicket.id}</h2>
+            <div>
+                <h1>Loading Ticket... Please wait</h1>
+            </div>
+        )
+    } else {
+
+        try {
+            return (
+                <div className="ticket-page">
+                    
+                    <div className="bug-ticket-edit">
+                        <div className="ticket-reference-container">
+                            <BugIcon />
+                            <h2 className="ticket-reference">PRQ-{selectedTicket.id}</h2>
+                        </div>
+                        <div className="last-updated">
+                            <h4>Last Updated:</h4>
+                        <p>{dateTimeFormatter(selectedTicket.lastUpdated)}</p>
                     </div>
-                    <div className="last-updated">
-                        <h4>Last Updated:</h4>
-                    <p>{dateTimeFormatter(selectedTicket.lastUpdated)}</p>
-                </div>
-                </div>
-                
-                <div className="issue" style={{
-                    textDecoration: selectedTicket.status==='resolved' ? "line-through" : ""
-                }}>
-                    <h2>{selectedTicket.issue}</h2>
-                </div>
-
-                
-                <div className="ticket-buttons">
-                    <div className="buttons">
-                        <button
-                            className="edit-btn"
-                            onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableEditModal(selectedTicket)}>
-                            Modify
-                        </button>
-
-                        <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableAssignModal(selectedTicket)}>
-                            Assign Tech
-                        </button>
-
-                        <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
-                            {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
-                        </button>
                     </div>
-                </div>
-
-                <div className="priority-status">
-                    <div className="priority-container">
-                        <h4>Priority:</h4>
-                        <div className="priority">
-                            <i className="fas fa-circle"
-                                style={{
-                                    color: priorityColor
-                                }}></i>
-                            <p>
-                                {selectedTicket.priority.toUpperCase()}
+                    
+                    <div className="issue" style={{
+                        textDecoration: selectedTicket.status==='resolved' ? "line-through" : ""
+                    }}>
+                        <h2>{selectedTicket.issue}</h2>
+                    </div>
+    
+                    
+                    <div className="ticket-buttons">
+                        <div className="buttons">
+                            <button
+                                className="edit-btn"
+                                onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableEditModal(selectedTicket)}>
+                                Modify
+                            </button>
+    
+                            <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableAssignModal(selectedTicket)}>
+                                Assign Tech
+                            </button>
+    
+                            <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
+                                {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div className="priority-status">
+                        <div className="priority-container">
+                            <h4>Priority:</h4>
+                            <div className="priority">
+                                <i className="fas fa-circle"
+                                    style={{
+                                        color: priorityColor
+                                    }}></i>
+                                <p>
+                                    {selectedTicket.priority.toUpperCase()}
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div className="user">
+                            <h4>Created By:</h4>
+                            <div>{selectedTicket.user}</div>
+                        </div>
+    
+    
+                        <div className="status">
+                            <h4>Status:</h4>
+                            <p style={{
+                                backgroundColor: statusColor,
+                                color: textColor,
+                                fontWeight: fontWeight
+                            }}>
+                                {selectedTicket.status.toUpperCase()}
                             </p>
                         </div>
+    
+                        <div className="assigned-to">
+                            <h4>Tech Assigned:</h4>
+                            <div>{selectedTicket.assigned}</div>
+                        </div>
                     </div>
-
-                    <div className="user">
-                        <h4>Created By:</h4>
-                        <div>{selectedTicket.user}</div>
+    
+                    
+    
+    
+                    <div className="description">
+                        <h4>Description: </h4>
+                        <p>{selectedTicket.description}</p>
                     </div>
-
-
-                    <div className="status">
-                        <h4>Status:</h4>
-                        <p style={{
-                            backgroundColor: statusColor,
-                            color: textColor,
-                            fontWeight: fontWeight
-                        }}>
-                            {selectedTicket.status.toUpperCase()}
-                        </p>
+    
+                    <div className="date">
+                        <h4>Created on:</h4>
+                        <p>{dateTimeFormatter(selectedTicket.dateCreated)}</p>
                     </div>
-
-                    <div className="assigned-to">
-                        <h4>Tech Assigned:</h4>
-                        <div>{selectedTicket.assigned}</div>
+    
+                    <div className="comments-container">
+                        <h4>Comments:</h4>
+                        <ul className="comments-list">
+                            {
+                                selectedTicket.comments.length > 0 ?
+                                selectedTicket.comments.map( (comment, index) => (
+                                    <li key={index} className="comment-block">
+                                        <p className="comment-date">Added by <span className="comment-user">{comment.user}</span> · {dateTimeFormatter(comment.date)}</p>
+                                        <p className="comment-text"> {comment.value}</p>
+                                    </li>
+                                ))
+                                :
+                                <p>No comments to show</p>
+                            }
+                        </ul>
+                    </div>
+    
+                    <div className="add-comment-section">
+                        <textarea className="comment-text" value={commentValue} onChange={handleCommentChange} rows="5" cols="50" style={{
+                            display: display
+                        }} />
+                        <div className="comment-input">
+                            <div className="comment-input-buttons">
+                                <button className="comment-button" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
+                                <button onClick={handleCancelComment} style={{
+                                    visibility: display==='none' ? 'hidden' : 'visible'
+                                }}>Cancel</button>
+                            </div>
+                            <div className="select-user-to-comment">
+                                <p style={{visibility: display==='none' ? 'hidden' : 'visible'}} >Comment by:</p>
+                                <select value={commentUser} onChange={handleCommentUserChange} style={{visibility: display==='none' ? 'hidden' : 'visible'}} >
+                                    <option value="Anonymous">Anonymous</option>
+                                    {
+                                        userList.map((user, index) => (
+                                            <option key={index} value={user}>{user}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div className="footer">
+    
                     </div>
                 </div>
-
                 
-
-
-                <div className="description">
-                    <h4>Description: </h4>
-                    <p>{selectedTicket.description}</p>
+            )
+        } catch(error) {
+            return(
+                <div>
+                    <h1>No Ticket found</h1>
                 </div>
+            )
+        }
 
-                <div className="date">
-                    <h4>Created on:</h4>
-                    <p>{dateTimeFormatter(selectedTicket.dateCreated)}</p>
-                </div>
-
-                <div className="comments-container">
-                    <h4>Comments:</h4>
-                    <ul className="comments-list">
-                        {
-                            selectedTicket.comments.length > 0 ?
-                            selectedTicket.comments.map( (comment, index) => (
-                                <li key={index} className="comment-block">
-                                    <p className="comment-date">Added by <span className="comment-user">{comment.user}</span> · {dateTimeFormatter(comment.date)}</p>
-                                    <p className="comment-text"> {comment.value}</p>
-                                </li>
-                            ))
-                            :
-                            <p>No comments to show</p>
-                        }
-                    </ul>
-                </div>
-
-                <div className="add-comment-section">
-                    <textarea className="comment-text" value={commentValue} onChange={handleCommentChange} rows="5" cols="50" style={{
-                        display: display
-                    }} />
-                    <div className="comment-input">
-                        <div className="comment-input-buttons">
-                            <button className="comment-button" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : handleCommentClick}>{display==="none" ? "Comment" : "Submit"}</button>
-                            <button onClick={handleCancelComment} style={{
-                                visibility: display==='none' ? 'hidden' : 'visible'
-                            }}>Cancel</button>
-                        </div>
-                        <div className="select-user-to-comment">
-                            <p style={{visibility: display==='none' ? 'hidden' : 'visible'}} >Comment by:</p>
-                            <select value={commentUser} onChange={handleCommentUserChange} style={{visibility: display==='none' ? 'hidden' : 'visible'}} >
-                                <option value="Anonymous">Anonymous</option>
-                                {
-                                    userList.map((user, index) => (
-                                        <option key={index} value={user}>{user}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="footer">
-
-                </div>
-            </div>
-            
-        )
-    } catch(error) {
-        return(
-            <div>
-                <h1>No ticket found</h1>
-            </div>
-        )
     }
+
+
 
 }
 
 const mapStateToProps = state => ({
     ticketList: state.tickets.ticketList,
-    userList: state.users.userList
+    userList: state.users.userList,
+    loading: state.tickets.loading
 })
 
 const mapDispatchToProps = dispatch => ({
