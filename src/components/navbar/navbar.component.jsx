@@ -1,10 +1,11 @@
 import React from 'react'
-import './navbar.styles.scss'
+import './Navbar.styles.scss'
 import SearchBar from '../SearchBar/SearchBar.component'
 import { connect } from 'react-redux'
 import { enableModal } from '../../Redux/modal/modal.actions'
 import { withRouter } from 'react-router-dom'
 
+//--changhed navbar
 const Navbar = ({ enableModal, history }) => {
     return (
         <nav className="navbar">
