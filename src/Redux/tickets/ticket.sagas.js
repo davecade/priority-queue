@@ -16,7 +16,7 @@ import {
 export function* fetchTicketsAsync() {
     try {
         yield put(startLoading())
-        const res = yield fetch('/tickets')
+        const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets')
         const data = yield res.json();
         yield put(addExistingTicketsToState(data))
         yield put(fetchTicketDataSuccess())
