@@ -47,9 +47,6 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "concurrently": "^6.2.0",
-    "json-server": "^0.16.3"
-  },
+  "devDependencies": {},
   "proxy": "http://localhost:5000"
 }
