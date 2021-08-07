@@ -20,7 +20,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --expose-gc --max-old-space-size=8192 start",
     "json-server": "json-server --watch db.json --port 5000",
     "dev": "concurrently \"npm start\" \"npm run json-server\"",
     "build": "react-scripts --expose-gc --max-old-space-size=8192 build",
