@@ -10,7 +10,7 @@ import {
 export function* fetchUsersAsync() {
     try {
         yield put(startLoading())
-        const res = yield fetch('https://ticket-logger-database.herokuapp.com/users')
+        const res = yield fetch('/users')
         const data = yield res.json();
         yield put(addExistingUsersToState(data))
         yield put(fetchUserDataSuccess())
