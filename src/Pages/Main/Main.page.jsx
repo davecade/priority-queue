@@ -6,23 +6,52 @@ import { quickSort } from '../../JS_Utilities/_utilities'
 
 const MainPage = ({ ticketList, searchField, loading }) => {
     const [ sortBy, setSortBy ] = useState("id")
+    const [ filterBy, setFilterBy ] = useState("unresolved")
     const [ heading, setHeading ] = useState("")
 
-    let filteredTickets = ticketList.filter(ticket => {
+    let searchedTickets = ticketList.filter(ticket => {
         let searchString = `${ticket.issue} ${ticket.description} ${ticket.user} ${ticket.assigned} PRQ-${ticket.id}`
         return searchString.toLowerCase().includes(searchField.toLowerCase())
     })
 
-    let sortedTickets = quickSort(filteredTickets, sortBy)
+    let fileteredTickets = searchedTickets.filter(ticket => {
+        let statusNames = ['new', 'in progress', 'resolved' ]
+        let priorityNames = [ 'low', 'medium', 'high' ]
+
+        if(filterBy==='unresolved') {
+
+            return ticket.status!=='resolved'
+
+        } else if(statusNames.includes(filterBy)) {
+
+            return ticket.status===filterBy
+
+        } else if(priorityNames.includes(filterBy)) {
+
+            return ticket.priority===filterBy
+        }
+
+        return ticket
+    })
+
+    console.log("fileteredTickets", fileteredTickets)
+
+    let sortedTickets = quickSort(fileteredTickets, sortBy)
+
+    
 
     const handleSortBy = event => {
         setSortBy(event.target.value)
     }
 
+    const handleFilter = event => {
+        setFilterBy(event.target.value)
+    }
+
     useEffect(() => {
-        if(filteredTickets.length===0 && loading) {
+        if(searchedTickets.length===0 && loading) {
             setHeading("Loading Tickets...")
-        } else if(filteredTickets.length===0 && !loading) {
+        } else if(searchedTickets.length===0 && !loading) {
             setHeading("No Tickets Found")
         } else {
             setHeading("Tickets")
@@ -33,20 +62,35 @@ const MainPage = ({ ticketList, searchField, loading }) => {
     return (
         <div className="main-page">
             <h1 className="mainpage-heading">{heading}</h1>
-            <div className="sort-by" style={{
-                visibility: filteredTickets.length===0? "hidden" : "visible"
-            }} >
-                <span className="sortby-label">Sort By: </span>
-                <select onChange={handleSortBy}>
-                    <option value="id">Date Created</option>
-                    <option value="lastUpdated">Last Updated</option>
-                    <option value="status">Status</option>
-                    <option value="priority">Priority</option>
-                </select>
+            <div className="filters">
+                <div className="filter-by">
+                    <span className="filter-label">Filter: </span>
+                    <select onChange={handleFilter}>
+                        <option value="unresolved">Unresolved</option>
+                        <option value="new">New</option>
+                        <option value="in progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="low">Low Priority</option>
+                        <option value="mediumy">Medium Priority</option>
+                        <option value="high">High Priority</option>
+                        <option value="all">All Tickets</option>
+                    </select>
+                </div>
+                <div className="sort-by" style={{
+                    visibility: searchedTickets.length===0? "hidden" : "visible"
+                }} >
+                    <span className="sortby-label">Sort By: </span>
+                    <select onChange={handleSortBy}>
+                        <option value="id">Date Created</option>
+                        <option value="lastUpdated">Last Updated</option>
+                        <option value="status">Status</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                </div>
             </div>
             <ul className="ticket-list">
                 {   
-                    (sortBy==='id'?filteredTickets:sortedTickets).map( ticket => (
+                    (sortBy==='id'?fileteredTickets:sortedTickets).map( ticket => (
                         <TicketPreview key={ticket.id} ticket={ticket} />
                     ))
                 }

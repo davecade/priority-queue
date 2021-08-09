@@ -16,7 +16,7 @@ import {
 export function* fetchTicketsAsync() {
     try {
         yield put(startLoading())
-        const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets')
+        const res = yield fetch('/tickets')
         const data = yield res.json();
         yield put(addExistingTicketsToState(data))
         yield put(fetchTicketDataSuccess())
@@ -29,7 +29,7 @@ export function* fetchTicketsAsync() {
 export function* addNewTicketAsync({payload}) {
     try {
         yield put(startLoading())
-        const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets', {
+        const res = yield fetch('/tickets', {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {
@@ -50,7 +50,7 @@ export function* updateTicketAsync({payload}) {
     try {
 
         yield put(startLoading())
-        const res = yield fetch(`https://ticket-logger-database.herokuapp.com/tickets/${payload.id}`, {
+        const res = yield fetch(`/tickets/${payload.id}`, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: {
