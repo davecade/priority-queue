@@ -63,7 +63,9 @@ const MainPage = ({ ticketList, searchField, loading }) => {
         <div className="main-page">
             <h1 className="mainpage-heading">{heading}</h1>
             <div className="filters">
-                <div className="filter-by">
+                <div className="filter-by" style={{
+                    visibility: searchedTickets.length===0? "hidden" : "visible"
+                }}>
                     <span className="filter-label">Filter: </span>
                     <select onChange={handleFilter}>
                         <option value="unresolved">Unresolved</option>
@@ -71,7 +73,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
                         <option value="in progress">In Progress</option>
                         <option value="resolved">Resolved</option>
                         <option value="low">Low Priority</option>
-                        <option value="mediumy">Medium Priority</option>
+                        <option value="medium">Medium Priority</option>
                         <option value="high">High Priority</option>
                         <option value="all">All Tickets</option>
                     </select>
