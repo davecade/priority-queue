@@ -50,7 +50,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
 
     useEffect(() => {
         if(searchedTickets.length===0 && loading) {
-            setHeading("Loading Tickets...")
+            setHeading("Loading Tickets")
         } else if(searchedTickets.length===0 && !loading) {
             setHeading("No Tickets Found")
         } else {
@@ -61,8 +61,13 @@ const MainPage = ({ ticketList, searchField, loading }) => {
     
     return (
         <div className="main-page">
-            <h1 className="mainpage-heading">{heading}</h1>
-            <div className="filters">
+            <div className="heading-container">
+                <h1 className="mainpage-heading">{heading}</h1>
+                <div class="lds-ellipsis" style={{
+                    visibility: heading==="Loading Tickets" ? "visible" : "hidden"
+                }}><div></div><div></div><div></div><div></div></div>
+            </div>
+                <div className="filters">
                 <div className="filter-by" style={{
                     visibility: searchedTickets.length===0? "hidden" : "visible"
                 }}>

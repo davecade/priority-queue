@@ -110,8 +110,9 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
     if((loading && ticketList.length===0) || (loading==false && ticketList.length===0)) {
         return (
-            <div>
-                <h1>Loading Ticket... Please wait</h1>
+            <div className="ticket-heading-container">
+                <h1 className="ticket-heading">Loading Ticket</h1>
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
             </div>
         )
     } else {
@@ -256,8 +257,8 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
             )
         } catch(error) {
             return(
-                <div>
-                    <h1>No Ticket found</h1>
+                <div className="ticket-heading-container">
+                    <h1 className="ticket-heading">Ticket Not Found</h1>
                 </div>
             )
         }
