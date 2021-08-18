@@ -5,6 +5,7 @@ import BugIcon from '../../components/BugIcon/BugIcon.component'
 import { enableEditModal, enableAssignModal } from '../../Redux/modal/modal.actions'
 import { updateTicket } from '../../Redux/tickets/ticket.actions'
 import { dateTimeFormatter } from '../../JS_Utilities/_utilities'
+import Loading from '../../components/Loading/Loading.component'
 
 
 const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket, userList}) => {
@@ -112,7 +113,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
         return (
             <div className="ticket-heading-container">
                 <h1 className="ticket-heading">Loading Ticket</h1>
-                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                <Loading heading={"Loading Tickets"} />
             </div>
         )
     } else {

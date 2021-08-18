@@ -3,6 +3,7 @@ import './Main.styles.scss'
 import TicketPreview from '../../components/Ticket-Preview/TicketPreview.component'
 import { connect } from 'react-redux'
 import { quickSort } from '../../JS_Utilities/_utilities'
+import Loading from '../../components/Loading/Loading.component'
 
 const MainPage = ({ ticketList, searchField, loading }) => {
     const [ sortBy, setSortBy ] = useState("id")
@@ -63,9 +64,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
         <div className="main-page">
             <div className="heading-container">
                 <h1 className="mainpage-heading">{heading}</h1>
-                <div class="lds-ellipsis" style={{
-                    visibility: heading==="Loading Tickets" ? "visible" : "hidden"
-                }}><div></div><div></div><div></div><div></div></div>
+                <Loading heading={heading} />
             </div>
                 <div className="filters">
                 <div className="filter-by" style={{
