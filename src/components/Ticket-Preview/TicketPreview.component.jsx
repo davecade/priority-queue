@@ -36,10 +36,13 @@ const TicketPreview = ({ticket, history}) => {
             setPriorityColor("red")
         }
     }, [status, priority])
-    
 
     return (
-        <li className="ticket-preview" onClick={() => history.push(`/Ticket/PRQ-${ticket.id}`)}>
+        <li className="ticket-preview" onClick={() => history.push(`/Ticket/PRQ-${ticket.id}`)} style={{
+            textDecorationLine: ticket.status==='resolved' ? "line-through" : "",
+            textDecorationColor: "white",
+            textDecorationThickness: "2px"
+        }}>
             <BugIcon />
             <div className="ticket-content">
 
@@ -56,9 +59,7 @@ const TicketPreview = ({ticket, history}) => {
                     <div className="ticket-reference">
                         {`PRQ-${id}`}
                     </div>
-                    <div className="issue" style={{
-                        textDecoration: ticket.status==='resolved' ? "line-through" : ""
-                    }}>
+                    <div className="issue">
                         {issue.length<60 ? issue : `${issue.slice(0, 59)}...`}
                     </div>
                     <div className="user">{`Created By: ${user}`}</div>

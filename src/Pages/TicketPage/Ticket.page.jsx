@@ -120,7 +120,11 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
         try {
             return (
-                <div className="ticket-page">
+                <div className="ticket-page" style={{
+                    textDecorationLine: selectedTicket.status==='resolved' ? "line-through" : "",
+                    textDecorationColor: "white",
+                    textDecorationThickness: "2px"
+                }}>
                     
                     <div className="bug-ticket-edit">
                         <div className="ticket-reference-container">
@@ -133,9 +137,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
                     </div>
                     </div>
                     
-                    <div className="issue" style={{
-                        textDecoration: selectedTicket.status==='resolved' ? "line-through" : ""
-                    }}>
+                    <div className="issue">
                         <h2>{selectedTicket.issue}</h2>
                     </div>
     

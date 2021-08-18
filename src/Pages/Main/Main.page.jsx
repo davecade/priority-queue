@@ -29,13 +29,11 @@ const MainPage = ({ ticketList, searchField, loading }) => {
 
         } else if(priorityNames.includes(filterBy)) {
 
-            return ticket.priority===filterBy
+            return (ticket.priority===filterBy && ticket.status!=='resolved')
         }
 
         return ticket
     })
-
-    console.log("fileteredTickets", fileteredTickets)
 
     let sortedTickets = quickSort(fileteredTickets, sortBy)
 

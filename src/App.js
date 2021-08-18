@@ -8,6 +8,7 @@ import Navbar from './components/navbar/navbar.component'
 import { connect } from 'react-redux';
 import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
 import { fetchUserDataStart } from './Redux/users/user.actions'
+import ErrorBoundary from './components/Error-Boundary/error-boundary.component'
 
 
 function App({ fetchTicketDataStart, fetchUserDataStart }) {
@@ -21,11 +22,13 @@ function App({ fetchTicketDataStart, fetchUserDataStart }) {
 
   return (
     <div className="App">
-      <CreateModal />
-      <EditModal />
-      <AssignModal />
-      <Navbar />
-      <Content />
+      <ErrorBoundary>
+        <CreateModal />
+        <EditModal />
+        <AssignModal />
+        <Navbar />
+        <Content />
+      </ErrorBoundary>
     </div>
   );
 }
