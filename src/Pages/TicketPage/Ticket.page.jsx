@@ -284,4 +284,4 @@ const mapDispatchToProps = dispatch => ({
     updateTicket: selectedTicket => dispatch(updateTicket(selectedTicket))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Ticket)
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(Ticket))

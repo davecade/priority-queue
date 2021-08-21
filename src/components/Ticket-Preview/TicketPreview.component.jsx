@@ -89,5 +89,5 @@ const TicketPreview = ({ticket, history}) => {
     )
 }
 
-export default withRouter(TicketPreview)
+export default React.memo(withRouter(TicketPreview))
 
