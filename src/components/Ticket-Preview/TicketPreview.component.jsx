@@ -46,7 +46,6 @@ const TicketPreview = ({ticket, history}) => {
             <BugIcon />
             <div className="ticket-content">
 
-                <div className="left-summary">
                     <div className="status">
                         <p style={{
                             backgroundColor: statusColor,
@@ -64,9 +63,6 @@ const TicketPreview = ({ticket, history}) => {
                     </div>
                     <div className="user">{`Created By: ${user}`}</div>
 
-                </div>
-
-                <div className="right-summary">
                     <div className="priority">
                         <i className="fas fa-circle"
                             style={{
@@ -82,7 +78,6 @@ const TicketPreview = ({ticket, history}) => {
                     <div className="datetime">
                         <p>{`Last Updated: ${dateTimeFormatter(lastUpdated)}`}</p>
                     </div>
-                </div>
 
             </div>
         </li>

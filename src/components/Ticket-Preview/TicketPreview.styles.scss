@@ -12,9 +12,13 @@
     transition: all .3s;
 
     @media(max-width: 1000px) {
-        width: 100%;
+        width: 40rem;
         height: 100%;
         flex-direction: column;
+    }
+
+    @media(max-width: 700px) {
+        width: 100%;
     }
 
     &:hover {
@@ -28,82 +32,92 @@
     }
 
     .ticket-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        justify-items: start;
+        align-items: center;
+        grid-template-areas:
+            'item1 item2'
+            'item3 item4'
+            'item5 item4'
+            'item7 item6';
+        grid-template-columns: 73% 27%;
         height: 100%;
         width: 100%;
 
         @media(max-width: 600px) {
-            width: 100%;
-            flex-direction: column;
+            grid-template-areas:
+            'item1 item2'
+            'item3 item3'
+            'item4 item4'
+            'item5 item5'
+            'item6 item6'
+            'item7 item7';
+            grid-template-columns: 1fr;
         }
 
-        .left-summary {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin-right: 0.5rem;
-
+        .status {
+            grid-area: item1;
             @media(max-width: 600px) {
-                align-items: center;
-                text-align: center;
-                margin-right: 0;
-                font-size: 1rem;
+                justify-self: start;
             }
-
-            @media(max-width: 400px) {
-                font-size: .8rem;
-            }
-
-            .status p{
+        
+            p {
                 width: fit-content;
                 color:black; //-- default color
                 border-radius: 5px;
                 padding: 0.1rem 0.2rem;
             }
 
-            .issue {
-                font-weight: bold;
-                
-            }
+        }
 
-            .ticket-reference {
-                color: orange;
+        .issue {
+            font-weight: bold;
+            grid-area: item5;
+            @media(max-width: 600px) {
+                justify-self: center;
+                text-align: center;
             }
             
-            .user {
-                @media(max-width: 600px) {
-                    display: none;
-                }
+        }
+
+        .ticket-reference {
+            color: orange;
+            grid-area: item3;
+            @media(max-width: 600px) {
+                justify-self: center;
+            }
+        }
+        
+        .user {
+            grid-area: item6;
+            @media(max-width: 600px) {
+                justify-self: center;
+            }
+        }
+            
+        .priority {
+            display: flex;
+            grid-area: item2;
+            @media(max-width: 600px) {
+                justify-self: end;
+            }
+            p {
+                margin-left: 0.5rem;
             }
         }
 
-        .right-summary {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-left: 0.5rem;
-            width: 15rem;
-
+        .engineer {
+            grid-area: item4;
             @media(max-width: 600px) {
-                align-items: center;
-                text-align: center;
-                margin-left: 0;
-                width: 100%;
-                font-size: 1rem;
-            }
-
-            @media(max-width: 400px) {
-                font-size: .8rem;
+                justify-self: center;
             }
             
-            .priority {
-                display: flex;
-                p {
-                    margin-left: 0.5rem;
-                }
+        }
+
+        .datetime {
+            grid-area: item7;
+            @media(max-width: 600px) {
+                justify-self: center;
             }
         }
 
