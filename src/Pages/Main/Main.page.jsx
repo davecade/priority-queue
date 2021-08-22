@@ -19,7 +19,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
         let statusNames = ['new', 'in progress', 'resolved' ]
         let priorityNames = [ 'low', 'medium', 'high' ]
 
-        if(filterBy==='unresolved') {
+        if(filterBy==='unresolved' || filterBy==='filter') {
 
             return ticket.status!=='resolved'
 
@@ -64,12 +64,12 @@ const MainPage = ({ ticketList, searchField, loading }) => {
                 <h1 className="mainpage-heading">{heading}</h1>
                 <Loading heading={heading} />
             </div>
-                <div className="filters">
+            <div className="filters">
                 <div className="filter-by" style={{
                     visibility: searchedTickets.length===0? "hidden" : "visible"
                 }}>
-                    <span className="filter-label">Filter: </span>
                     <select onChange={handleFilter}>
+                        <option value="filter">Select Filter</option>
                         <option value="unresolved">Unresolved</option>
                         <option value="new">New</option>
                         <option value="in progress">In Progress</option>
@@ -83,8 +83,8 @@ const MainPage = ({ ticketList, searchField, loading }) => {
                 <div className="sort-by" style={{
                     visibility: searchedTickets.length===0? "hidden" : "visible"
                 }} >
-                    <span className="sortby-label">Sort By: </span>
                     <select onChange={handleSortBy}>
+                        <option value="sort">Select Sort</option>
                         <option value="id">Date Created</option>
                         <option value="lastUpdated">Last Updated</option>
                         <option value="status">Status</option>
@@ -94,7 +94,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
             </div>
             <ul className="ticket-list">
                 {   
-                    (sortBy==='id'?fileteredTickets:sortedTickets).map( ticket => (
+                    ((sortBy==='id' || sortBy==='sort')?fileteredTickets:sortedTickets).map( ticket => (
                         <TicketPreview key={ticket.id} ticket={ticket} />
                     ))
                 }

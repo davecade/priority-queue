@@ -1,7 +1,7 @@
 
 // -- Quick Sort Aglorithm
 export function quickSort(array, sortBy) {
-    if(sortBy==='id') return;
+    if(sortBy==='id' || sortBy==='sort') return;
     
     quickSortHelper(array, 0, array.length-1, sortBy)
     return array;
