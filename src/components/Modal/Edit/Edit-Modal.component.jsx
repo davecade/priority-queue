@@ -105,7 +105,7 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
                             </div>
 
                             <div className="issue">
-                                <input type="text" onChange={handleIssueChange} value={issue} />
+                                <textarea type="text" onChange={handleIssueChange} value={issue} rows="3" cols="50" />
                             </div>
                             <div className="reporter">
                                 <select onChange={handleReporterChange} value={reporter}>
