@@ -79,6 +79,11 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
+        
+        #resolve-reopen-btn {
+            text-decoration-thickness: 2px;
+            text-decoration: initial !important;
+        }
 
         @media(max-width: 600px) {
             justify-content: center;

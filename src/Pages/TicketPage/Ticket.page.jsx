@@ -153,9 +153,11 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
                             Assign Tech
                         </button>
 
-                        <button id="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
-                            {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
-                        </button>
+                        <div>
+                            <button id="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
+                                {selectedTicket.status==="resolved" ? "Re-Open" : "Resolve"}
+                            </button>
+                        </div>
                     </div>
     
                     <div className="priority-status">
