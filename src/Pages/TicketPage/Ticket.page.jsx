@@ -143,21 +143,19 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
     
                     
                     <div className="ticket-buttons">
-                        <div className="buttons">
-                            <button
-                                className="edit-btn"
-                                onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableEditModal(selectedTicket)}>
-                                Modify
-                            </button>
-    
-                            <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableAssignModal(selectedTicket)}>
-                                Assign Tech
-                            </button>
-    
-                            <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
-                                {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
-                            </button>
-                        </div>
+                        <button
+                            className="edit-btn"
+                            onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableEditModal(selectedTicket)}>
+                            Modify
+                        </button>
+
+                        <button className="assign-btn" onClick={selectedTicket.status==='resolved' ? ticketResolvedMessage : () => enableAssignModal(selectedTicket)}>
+                            Assign Tech
+                        </button>
+
+                        <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
+                            {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
+                        </button>
                     </div>
     
                     <div className="priority-status">

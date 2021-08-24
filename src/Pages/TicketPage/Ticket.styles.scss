@@ -8,19 +8,38 @@
     padding: 1rem 5rem;
     width: 1000px;
 
+    @media(max-width: 1000px) {
+        width: 100%;
+        padding: 1rem 1rem;
+    }
+
+    @media(max-width: 600px) {
+        font-size: .8rem;
+    }
+
     .bug-ticket-edit {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
+        @media(max-width: 600px) {
+            flex-direction: column;
+        }
+
          .ticket-reference-container {
             display: flex;
             justify-content: center;
             align-items: center;
 
+            @media(max-width: 600px) {
+                margin-bottom: 1rem;
+                font-size: 1rem;
+            }
+
             .ticket-reference {
                 color: orange;
+
             }
          }
 
@@ -43,26 +62,34 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
+        @media(max-width: 600px) {
+            justify-content: center;
+            text-align: center;
+        }
     }
 
     .ticket-buttons {
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
 
-        .buttons {
-            .assign-btn {
-                margin: 0 0.5rem;
-            }
-    
-            button {
-                @extend %btn;
-                width: 6rem;
-                height: 1.6rem;
-            }
+        @media(max-width: 600px) {
+            justify-content: center;
         }
+
+        .assign-btn {
+            margin: 0 0.5rem;
+        }
+
+        button {
+            @extend %btn;
+            width: 6rem;
+            height: 1.6rem;
+        }
+        
     }
 
 
@@ -74,14 +101,32 @@
         justify-content: space-between;
         margin: 1rem 0;
 
+        @media(max-width: 600px) {
+            grid-template:
+                'item1 item3'
+                'item2 item4';
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+        }
+
         .priority-container {
             grid-area: item1;
+
+            @media(max-width: 600px) {
+                width: 100%;
+            }
 
             .priority {
                 display: flex;
 
+                @media(max-width: 600px) {
+                    justify-content: center;
+                    margin-bottom: 1rem;
+                }
+
                 p {
                     margin-left: 0.5rem;
+
                 }
             }
         }
@@ -93,8 +138,14 @@
         .status{ 
             grid-area: item3;
             width: 7.3rem;
+
+            @media(max-width: 600px) {
+                justify-Self: center;
+                margin-bottom: 1rem;
+            }
+
             p{
-                width: fit-content;
+                text-align: center;
                 border-radius: 5px;
                 padding: 0.1rem 0.2rem;
             }
@@ -141,13 +192,16 @@
 
     .comments-container {
         width: 100%;
-        margin-bottom: 1rem;
 
         .comments-list {
             list-style: none;
             padding: 0;
             margin: 0;
             width: 90%;
+
+            @media(max-width: 600px) {
+                width: 100%;
+            }
 
             .comment-block {
                 background-color: $bg-dark;
@@ -185,6 +239,14 @@
             border: none;
             font-size: 1rem;
 
+            @media(max-width: 750px) {
+                width: 90%;
+            }
+
+            @media(max-width: 600px) {
+                width: 100%;
+            }
+
             &:focus {
                 outline: 1px solid $app-green;
             }
@@ -195,18 +257,44 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 3rem;
+            margin-top: 0.5rem;
+
+
+            @media(max-width: 750px) {
+                width: 90%;
+            }
+
+            @media(max-width: 600px) {
+                width: 100%;
+            }
+
+            @media(max-width: 450px) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
             .comment-input-buttons {
+
                 button {
                     @extend %btn;
-                    margin-right: 0.5rem
+                    margin-right: 0.5rem;
+                    
+                    @media(max-width: 450px) {
+                        height: 1.7rem;
+                        width: 5.5rem;
+                    }
+
+                    
                 }
             }
 
             .select-user-to-comment {
                 display: flex;
                 align-items: center;
+
+                @media(max-width: 450px) {
+                    margin-top: 1rem
+                }
 
                 p {
                     font-weight: bold;
@@ -220,7 +308,11 @@
                     outline: none;
                     border: 1px solid $app-green;;
                     font-size: 1rem;
-    
+                    
+                    @media(max-width: 600px) {
+                        height: 1.5rem;
+                        font-size: .9rem;
+                    }
                 }
                 
             }
