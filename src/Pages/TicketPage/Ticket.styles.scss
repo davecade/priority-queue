@@ -10,11 +10,15 @@
 
     @media(max-width: 1000px) {
         width: 100%;
-        padding: 1rem 1rem;
     }
 
     @media(max-width: 600px) {
         font-size: .8rem;
+        padding: 1rem 2rem;
+    }
+
+    @media(max-width: 400px) {
+        padding: 1rem .5rem;
     }
 
     .bug-ticket-edit {
@@ -137,7 +141,7 @@
 
         .status{ 
             grid-area: item3;
-            width: 7.3rem;
+            width: fit-content;
 
             @media(max-width: 600px) {
                 justify-Self: center;

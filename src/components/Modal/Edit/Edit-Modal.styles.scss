@@ -31,6 +31,11 @@
             height: 600px;
         }
 
+        @media(max-width: 600px) {
+            padding: .5rem;
+            width: 95%;
+        }
+
         .modal-content {
             display: flex;
             flex-direction: column;
@@ -62,6 +67,7 @@
                                     'left2 right2 right2 right2 right2 right2';
                     grid-template-columns: repeat(6, 1fr);
                     grid-row-gap: .5rem;
+                    padding: 0.5rem;
                 }
 
                 .label1 {
@@ -143,6 +149,8 @@
                         color: #f0f6fc;
                         border: none;
                         font-size: 1rem;
+                        align-self: center;
+                        justify-self: start;
 
 
                         &:focus {

@@ -153,7 +153,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
                             Assign Tech
                         </button>
 
-                        <button className="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
+                        <button id="resolve-reopen-btn" onClick={handleResolvedReOpenClick}>
                             {selectedTicket.status==='resolved' ? "Re-Open" : "Resolve"}
                         </button>
                     </div>
@@ -183,7 +183,8 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
                             <p style={{
                                 backgroundColor: statusColor,
                                 color: textColor,
-                                fontWeight: fontWeight
+                                fontWeight: fontWeight,
+            
                             }}>
                                 {selectedTicket.status.toUpperCase()}
                             </p>
