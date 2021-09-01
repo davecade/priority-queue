@@ -18,6 +18,9 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
     const [ commentValue, setCommentValue ] = useState(undefined)
     const [ commentUser, setCommentUser ] = useState("Anonymous")
 
+
+    console.log("TICKET PAGE RE-RENDERED")
+
     useEffect(() => {
         try {
             if(selectedTicket.status==="new") {

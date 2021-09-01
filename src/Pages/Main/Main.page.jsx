@@ -4,11 +4,15 @@ import TicketPreview from '../../components/Ticket-Preview/TicketPreview.compone
 import { connect } from 'react-redux'
 import { quickSort } from '../../JS_Utilities/_utilities'
 import Loading from '../../components/Loading/Loading.component'
+import { createStructuredSelector } from 'reselect'
+import { selectCurrentTicket, selectLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
 
 const MainPage = ({ ticketList, searchField, loading }) => {
     const [ sortBy, setSortBy ] = useState("id")
     const [ filterBy, setFilterBy ] = useState("unresolved")
     const [ heading, setHeading ] = useState("")
+
+    console.log("MAIN PAGE RE-RENDERED")
 
     let searchedTickets = ticketList.filter(ticket => {
         let searchString = `${ticket.issue} ${ticket.description} ${ticket.user} ${ticket.assigned} PRQ-${ticket.id}`
@@ -108,10 +112,10 @@ const MainPage = ({ ticketList, searchField, loading }) => {
     )
 }
 
-const mapStateToProps = state => ({
-    ticketList: state.tickets.ticketList,
-    searchField: state.tickets.searchField,
-    loading: state.tickets.loading
+const mapStateToProps = createStructuredSelector({
+    ticketList: selectCurrentTicket,
+    searchField: selectSearchField,
+    loading: selectLoading
 })
 
 export default connect(mapStateToProps)(MainPage)
