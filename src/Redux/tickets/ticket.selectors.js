@@ -2,12 +2,12 @@ import { createSelector } from 'reselect'
 
 const selectTickets = state => state.tickets
 
-export const selectCurrentTicket = createSelector(
+export const selectTicketList = createSelector(
     selectTickets,
     tickets => tickets.ticketList
 )
 
-export const selectLoading = createSelector(
+export const selectTicketLoading = createSelector(
     selectTickets,
     tickets => tickets.loading
 )

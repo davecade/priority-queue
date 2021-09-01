@@ -2,46 +2,20 @@ import React, { useState, useEffect } from 'react'
 import './Main.styles.scss'
 import TicketPreview from '../../components/Ticket-Preview/TicketPreview.component'
 import { connect } from 'react-redux'
-import { quickSort } from '../../JS_Utilities/_utilities'
+import { quickSort, getSearchedTickets, getFilteredTickets } from '../../JS_Utilities/_utilities'
 import Loading from '../../components/Loading/Loading.component'
 import { createStructuredSelector } from 'reselect'
-import { selectCurrentTicket, selectLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
+import { selectTicketList, selectTicketLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
 
 const MainPage = ({ ticketList, searchField, loading }) => {
     const [ sortBy, setSortBy ] = useState("id")
     const [ filterBy, setFilterBy ] = useState("unresolved")
     const [ heading, setHeading ] = useState("")
 
-    console.log("MAIN PAGE RE-RENDERED")
-
-    let searchedTickets = ticketList.filter(ticket => {
-        let searchString = `${ticket.issue} ${ticket.description} ${ticket.user} ${ticket.assigned} PRQ-${ticket.id}`
-        return searchString.toLowerCase().includes(searchField.toLowerCase())
-    })
-
-    let fileteredTickets = searchedTickets.filter(ticket => {
-        let statusNames = ['new', 'in progress', 'resolved' ]
-        let priorityNames = [ 'low', 'medium', 'high' ]
-
-        if(filterBy==='unresolved' || filterBy==='filter') {
-
-            return ticket.status!=='resolved'
-
-        } else if(statusNames.includes(filterBy)) {
-
-            return ticket.status===filterBy
-
-        } else if(priorityNames.includes(filterBy)) {
-
-            return (ticket.priority===filterBy && ticket.status!=='resolved')
-        }
-
-        return ticket
-    })
-
+    // -- These functions handle the searchfield, filter, and sort results
+    let searchedTickets = getSearchedTickets(ticketList, searchField)
+    let fileteredTickets = getFilteredTickets(searchedTickets, filterBy)
     let sortedTickets = quickSort(fileteredTickets, sortBy)
-
-    
 
     const handleSortBy = event => {
         setSortBy(event.target.value)
@@ -113,9 +87,9 @@ const MainPage = ({ ticketList, searchField, loading }) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-    ticketList: selectCurrentTicket,
+    ticketList: selectTicketList,
     searchField: selectSearchField,
-    loading: selectLoading
+    loading: selectTicketLoading
 })
 
 export default connect(mapStateToProps)(MainPage)

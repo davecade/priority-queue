@@ -88,5 +88,33 @@ export const dateTimeFormatter = date => {
     return `${z(day)}/${z(month)}/${y(year)} - ${z(hour)}:${z(minute)}`
 }
 
+
 // -- Returns array of ticket ID Reference Numbers
 export const getRefsArray = array => array.map(ticket=>`PRQ-${ticket.id}`)
+
+
+// -- Returns tickets that match the searchfield param
+export const getSearchedTickets = (ticketList, searchField) => {
+    return ticketList.filter(ticket => {
+        let searchString = `${ticket.issue} ${ticket.description} ${ticket.user} ${ticket.assigned} PRQ-${ticket.id}`
+        return searchString.toLowerCase().includes(searchField.toLowerCase())
+    })
+}
+
+
+// -- Filters tickets according to filterBy param
+export const getFilteredTickets = (tickets, filterBy) => {
+    return tickets.filter(ticket => {
+        let statusNames = ['new', 'in progress', 'resolved' ]
+        let priorityNames = [ 'low', 'medium', 'high' ]
+
+        if(filterBy==='unresolved' || filterBy==='filter') {
+            return ticket.status!=='resolved'
+        } else if(statusNames.includes(filterBy)) {
+            return ticket.status===filterBy
+        } else if(priorityNames.includes(filterBy)) {
+            return (ticket.priority===filterBy && ticket.status!=='resolved')
+        }
+        return ticket
+    })
+}
