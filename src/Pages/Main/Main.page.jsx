@@ -7,6 +7,9 @@ import Loading from '../../components/Loading/Loading.component'
 import { createStructuredSelector } from 'reselect'
 import { selectTicketList, selectTicketLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
 
+
+
+
 const MainPage = ({ ticketList, searchField, loading }) => {
     const [ sortBy, setSortBy ] = useState("id")
     const [ filterBy, setFilterBy ] = useState("unresolved")
@@ -18,7 +21,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
     let sortedTickets = quickSort(fileteredTickets, sortBy)
     let finalList = sortedTickets === undefined ? fileteredTickets : sortedTickets
 
-    console.log("sortedTickets", sortedTickets)
+
     const handleSortBy = event => {
         setSortBy(event.target.value)
     }
