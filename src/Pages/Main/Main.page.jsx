@@ -16,7 +16,9 @@ const MainPage = ({ ticketList, searchField, loading }) => {
     let searchedTickets = getSearchedTickets(ticketList, searchField)
     let fileteredTickets = getFilteredTickets(searchedTickets, filterBy)
     let sortedTickets = quickSort(fileteredTickets, sortBy)
+    let finalList = sortedTickets === undefined ? fileteredTickets : sortedTickets
 
+    console.log("sortedTickets", sortedTickets)
     const handleSortBy = event => {
         setSortBy(event.target.value)
     }
@@ -33,7 +35,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
         } else {
             setHeading("Tickets")
         }
-    })
+    }, [searchedTickets, loading])
 
     
     return (
@@ -72,7 +74,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
             </div>
             <ul className="ticket-list">
                 {   
-                    ((sortBy==='id' || sortBy==='sort')?fileteredTickets:sortedTickets).map( ticket => (
+                    finalList.map( ticket => (
                         <TicketPreview key={ticket.id} ticket={ticket} />
                     ))
                 }

@@ -6,7 +6,9 @@ import { enableEditModal, enableAssignModal } from '../../Redux/modal/modal.acti
 import { updateTicket } from '../../Redux/tickets/ticket.actions'
 import { dateTimeFormatter } from '../../JS_Utilities/_utilities'
 import Loading from '../../components/Loading/Loading.component'
-
+import { createStructuredSelector } from 'reselect'
+import { selectTicketList, selectTicketLoading } from '../../Redux/tickets/ticket.selectors'
+import { selectUserList } from '../../Redux/users/user.selectors'
 
 const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket, userList}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
@@ -17,9 +19,6 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
     const [ display, setDisplay ] = useState("none")
     const [ commentValue, setCommentValue ] = useState(undefined)
     const [ commentUser, setCommentUser ] = useState("Anonymous")
-
-
-    console.log("TICKET PAGE RE-RENDERED")
 
     useEffect(() => {
         try {
@@ -276,10 +275,10 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
 }
 
-const mapStateToProps = state => ({
-    ticketList: state.tickets.ticketList,
-    userList: state.users.userList,
-    loading: state.tickets.loading
+const mapStateToProps = createStructuredSelector({
+    ticketList: selectTicketList,
+    userList: selectUserList,
+    loading: selectTicketLoading
 })
 
 const mapDispatchToProps = dispatch => ({
