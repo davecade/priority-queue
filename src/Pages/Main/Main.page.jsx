@@ -9,8 +9,7 @@ import { selectTicketList, selectTicketLoading, selectSearchField } from '../../
 
 
 
-
-const MainPage = ({ ticketList, searchField, loading }) => {
+const MainPage = ({ ticketList, searchField, loading, addToFirebase }) => {
     const [ sortBy, setSortBy ] = useState("id")
     const [ filterBy, setFilterBy ] = useState("unresolved")
     const [ heading, setHeading ] = useState("")
@@ -21,6 +20,9 @@ const MainPage = ({ ticketList, searchField, loading }) => {
     let sortedTickets = quickSort(fileteredTickets, sortBy)
     let finalList = sortedTickets === undefined ? fileteredTickets : sortedTickets
 
+    // useEffect(()=> {
+    //     addToFirebase(ticketList)
+    // }, [])
 
     const handleSortBy = event => {
         setSortBy(event.target.value)
@@ -96,5 +98,9 @@ const mapStateToProps = createStructuredSelector({
     searchField: selectSearchField,
     loading: selectTicketLoading
 })
+
+// const mapDispatchToProps = dispatch => ({
+//     addToFirebase: tickets => dispatch(addToFirebase(tickets))
+// })
 
 export default connect(mapStateToProps)(MainPage)

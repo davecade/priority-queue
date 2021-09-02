@@ -6,17 +6,20 @@ import EditModal from './components/Modal/Edit/Edit-Modal.component'
 import AssignModal from './components/Modal/Assign/Assign-Modal.component'
 import Navbar from './components/navbar/navbar.component'
 import { connect } from 'react-redux';
-import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
+import { fetchTicketDataStart, addToFirebase } from './Redux/tickets/ticket.actions'
 import { fetchUserDataStart } from './Redux/users/user.actions'
 import ErrorBoundary from './components/Error-Boundary/error-boundary.component'
+import { createStructuredSelector } from 'reselect'
+import { selectTicketList } from './Redux/tickets/ticket.selectors'
+import { selectUserList } from './Redux/users/user.selectors'
+//import { addCollectionAndDocuments } from './Firebase/firebase.utils'
 
 
-function App({ fetchTicketDataStart, fetchUserDataStart }) {
+function App({ fetchTicketDataStart, fetchUserDataStart, ticketList, userList, addToFirebase }) {
 
   useEffect(() => {
       fetchTicketDataStart();
       fetchUserDataStart();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -33,9 +36,15 @@ function App({ fetchTicketDataStart, fetchUserDataStart }) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchTicketDataStart: () => dispatch(fetchTicketDataStart()),
-  fetchUserDataStart: () => dispatch(fetchUserDataStart())
+const mapStateToProps = createStructuredSelector({
+  ticketList: selectTicketList,
+  userList: selectUserList,
 })
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  fetchTicketDataStart: () => dispatch(fetchTicketDataStart()),
+  fetchUserDataStart: () => dispatch(fetchUserDataStart()),
+  addToFirebase: tickets => dispatch(addToFirebase(tickets))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
