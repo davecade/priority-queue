@@ -67,12 +67,11 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
     const handleCommentClick = () => {
 
-        const newDate = new Date()
-
         if(display==="none") {
             setDisplay("block")
             setCommentValue(undefined)
         } else {
+            const newDate = new Date()
 
             let newComment = {
                 user: commentUser,
