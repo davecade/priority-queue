@@ -28,4 +28,12 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     //-- return await batch.commit();
 }
 
+export const convertCollecionsSnapShotToMap = collections => {
+    return collections.docs.map(doc => {
+        return {
+            ...doc.data()
+        }
+    })
+}
+
 export const firestore = firebase.firestore();

@@ -4,8 +4,8 @@ import TicketPreview from '../../components/Ticket-Preview/TicketPreview.compone
 import { connect } from 'react-redux'
 import { quickSort, getSearchedTickets, getFilteredTickets } from '../../JS_Utilities/_utilities'
 import Loading from '../../components/Loading/Loading.component'
-// import { createStructuredSelector } from 'reselect'
-// import { selectTicketList, selectTicketLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
+import { createStructuredSelector } from 'reselect'
+import { selectTicketList, selectTicketLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
 
 
 
@@ -82,7 +82,7 @@ const MainPage = ({ ticketList, searchField, loading, addToFirebase }) => {
             </div>
             <ul className="ticket-list">
                 {   
-                    ticketList.map( ticket => (
+                    finalList.map( ticket => (
                         <TicketPreview key={ticket.id} ticket={ticket} />
                     ))
                 }
@@ -96,17 +96,11 @@ const MainPage = ({ ticketList, searchField, loading, addToFirebase }) => {
     )
 }
 
-const mapStateToProps = state => ({
-    ticketList: state.tickets.ticketList,
-    searchField: state.tickets.searchField,
-    loading: state.tickets.loading
+const mapStateToProps = createStructuredSelector({
+    ticketList: selectTicketList,
+    searchField: selectSearchField,
+    loading: selectTicketLoading
 })
-
-// const mapStateToProps = createStructuredSelector({
-//     ticketList: selectTicketList,
-//     searchField: selectSearchField,
-//     loading: selectTicketLoading
-// })
 
 // const mapDispatchToProps = dispatch => ({
 //     addToFirebase: tickets => dispatch(addToFirebase(tickets))

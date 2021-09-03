@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call, } from "redux-saga/effects";
 import { TicketActionTypes } from "./ticket.types";
-import { firestore } from '../../Firebase/firebase.utils'
+import { firestore, convertCollecionsSnapShotToMap } from '../../Firebase/firebase.utils'
 import {
     fetchTicketDataSuccess,
     fetchTicketDataFailure,
@@ -15,15 +15,6 @@ import {
 } from './ticket.actions'
 
 import { addCollectionAndDocuments } from '../../Firebase/firebase.utils'
-
-
-export const convertCollecionsSnapShotToMap = collections => {
-    return collections.docs.map(doc => {
-        return {
-            ...doc.data()
-        }
-    })
-}
 
 export function* fetchTicketsAsync() {
     try {
@@ -45,35 +36,30 @@ export function* fetchTicketsAsync() {
 export function* addNewTicketAsync({payload}) {
     try {
         yield put(startLoading())
-        const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets', {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const data = yield res.json(payload);
-
-
-        //const collectionRef = firestore.collection('tickets')
-        //const batch = firestore.batch()
-        //const newDocRef = collectionRef.doc();
-        //yield newDocRef.set(payload)
-        //yield batch.commit();
-
-
-
-        // collectionRef.onSnapshot( snapshot => {
-        //     convertCollecionsSnapShotToMap(snapshot).forEach( async ticket =>
-        //     {
-        //         if(ticket.id===payload.id) {
-        //             console.log(addNewTicketToState(ticket))
-        //             await put(addNewTicketToState(ticket))
-        //         }
-        //     })
+        // const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets', {
+        //     method: 'POST',
+        //     body: JSON.stringify(payload),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
         // })
+        // const data = yield res.json(payload);
 
-        yield put(addNewTicketToState(data))
+
+        const collectionRef = firestore.collection('tickets')
+        const newDocRef = collectionRef.doc();
+        yield newDocRef.set(payload)
+
+        const snapshot = yield collectionRef.get()
+        let newTicket = (() => {
+            for(let ticket of convertCollecionsSnapShotToMap(snapshot)) {
+                if(ticket.id===payload.id) {
+                    return ticket
+                }
+            }
+        })()
+        
+        yield put(addNewTicketToState(newTicket))
         yield put(addNewTicketSuccess())
 
     } catch(error) {
