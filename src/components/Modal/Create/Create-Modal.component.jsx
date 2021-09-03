@@ -3,9 +3,8 @@ import './Create-Modal.styles.scss'
 import { connect } from 'react-redux'
 import { disableModal } from '../../../Redux/modal/modal.actions'
 import { addNewTicket } from '../../../Redux/tickets/ticket.actions'
-import { dateTimeFormatter } from '../../../JS_Utilities/_utilities'
 
-const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => {
+const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticketList }) => {
     //-- Modal State
     const [ visibility, setVisibility ] = useState("hidden")
     const [ opacity, setOpacity ] = useState("0")
@@ -54,6 +53,7 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => 
         let newDate = new Date()
 
         const newTicket = {
+            id: ticketList.length+1,
             issue: issue,
             description: description,
             user: reporter,
@@ -141,7 +141,8 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList }) => 
 
 const mapStateToProps = state => ({
     modalEnabled: state.modal.modalEnabled,
-    userList: state.users.userList
+    userList: state.users.userList,
+    ticketList: state.tickets.ticketList
 })
 
 const mapDispatchToProps = dispatch => ({

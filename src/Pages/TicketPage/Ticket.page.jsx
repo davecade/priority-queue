@@ -50,10 +50,17 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
     }, [selectedTicket])
 
+    const findSelectedTicket = id => {
+        for(let ticket of ticketList) {
+            if(ticket.id===id) {
+                return ticket
+            }
+        }
+    } 
+
     useEffect(() => {
-        let objTickets = {...ticketList}
         if(ticketList.length>0) {
-            setSelectedTicket(objTickets[ticketId-1])
+            setSelectedTicket(findSelectedTicket(ticketId))
         }
     })
 

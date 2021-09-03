@@ -4,8 +4,8 @@ import TicketPreview from '../../components/Ticket-Preview/TicketPreview.compone
 import { connect } from 'react-redux'
 import { quickSort, getSearchedTickets, getFilteredTickets } from '../../JS_Utilities/_utilities'
 import Loading from '../../components/Loading/Loading.component'
-import { createStructuredSelector } from 'reselect'
-import { selectTicketList, selectTicketLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
+// import { createStructuredSelector } from 'reselect'
+// import { selectTicketList, selectTicketLoading, selectSearchField } from '../../Redux/tickets/ticket.selectors'
 
 
 
@@ -24,6 +24,8 @@ const MainPage = ({ ticketList, searchField, loading, addToFirebase }) => {
     //     addToFirebase(ticketList)
     // }, [])
 
+    console.log("TICKETs", ticketList, ticketList.length)
+
     const handleSortBy = event => {
         setSortBy(event.target.value)
     }
@@ -40,7 +42,8 @@ const MainPage = ({ ticketList, searchField, loading, addToFirebase }) => {
         } else {
             setHeading("Tickets")
         }
-    }, [searchedTickets, loading])
+        console.log("Rendering")
+    }, [ticketList, loading])
 
     
     return (
@@ -79,7 +82,7 @@ const MainPage = ({ ticketList, searchField, loading, addToFirebase }) => {
             </div>
             <ul className="ticket-list">
                 {   
-                    finalList.map( ticket => (
+                    ticketList.map( ticket => (
                         <TicketPreview key={ticket.id} ticket={ticket} />
                     ))
                 }
@@ -93,11 +96,17 @@ const MainPage = ({ ticketList, searchField, loading, addToFirebase }) => {
     )
 }
 
-const mapStateToProps = createStructuredSelector({
-    ticketList: selectTicketList,
-    searchField: selectSearchField,
-    loading: selectTicketLoading
+const mapStateToProps = state => ({
+    ticketList: state.tickets.ticketList,
+    searchField: state.tickets.searchField,
+    loading: state.tickets.loading
 })
+
+// const mapStateToProps = createStructuredSelector({
+//     ticketList: selectTicketList,
+//     searchField: selectSearchField,
+//     loading: selectTicketLoading
+// })
 
 // const mapDispatchToProps = dispatch => ({
 //     addToFirebase: tickets => dispatch(addToFirebase(tickets))

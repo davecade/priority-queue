@@ -28,15 +28,12 @@ export const convertCollecionsSnapShotToMap = collections => {
 export function* fetchTicketsAsync() {
     try {
         yield put(startLoading())
-        //-- const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets')
-        //-- const data = yield res.json();
+        // const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets')
+        // const data = yield res.json();
+
         const collectionRef = firestore.collection('tickets')
-        let fetchedData = []
-        collectionRef.onSnapshot(yield snapshot => {
-            convertCollecionsSnapShotToMap(snapshot).forEach( item => {
-                fetchedData.push(item)
-            })
-        })
+        const snapshot = yield collectionRef.get()
+        let fetchedData = convertCollecionsSnapShotToMap(snapshot)
         yield put(addExistingTicketsToState(fetchedData))
         yield put(fetchTicketDataSuccess())
         
@@ -56,6 +53,25 @@ export function* addNewTicketAsync({payload}) {
             }
         })
         const data = yield res.json(payload);
+
+
+        //const collectionRef = firestore.collection('tickets')
+        //const batch = firestore.batch()
+        //const newDocRef = collectionRef.doc();
+        //yield newDocRef.set(payload)
+        //yield batch.commit();
+
+
+
+        // collectionRef.onSnapshot( snapshot => {
+        //     convertCollecionsSnapShotToMap(snapshot).forEach( async ticket =>
+        //     {
+        //         if(ticket.id===payload.id) {
+        //             console.log(addNewTicketToState(ticket))
+        //             await put(addNewTicketToState(ticket))
+        //         }
+        //     })
+        // })
 
         yield put(addNewTicketToState(data))
         yield put(addNewTicketSuccess())
@@ -78,7 +94,19 @@ export function* updateTicketAsync({payload}) {
         })
         
         const data = yield res.json();
-        
+
+        // const collectionRef = firestore.collection('tickets')
+
+        // yield collectionRef.onSnapshot(snapshot => {
+        //     snapshot.forEach( doc => {
+        //         if(doc.data().id===payload.id) {
+        //             let docRef = firestore.doc(`tickets/${doc.id}`)
+        //             docRef.update({
+        //                 ...payload
+        //             })
+        //         }
+        //     })
+        // })
         yield put(updateTicketInState(data))
         yield put(updateTicketSuccess())
 

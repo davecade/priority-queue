@@ -52,7 +52,7 @@ export const addNewTicketFailure = error => ({
 })
 
 export const updateTicketSuccess = () => ({
-    type: TicketActionTypes.ADD_NEW_TICKET_SUCCESS
+    type: TicketActionTypes.UPDATE_TICKET_SUCCESS
 })
 
 export const updateTicketFailure = error => ({
