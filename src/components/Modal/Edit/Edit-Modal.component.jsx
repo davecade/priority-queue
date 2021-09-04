@@ -110,6 +110,9 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
                             <div className="issue">
                                 <textarea type="text" onChange={handleIssueChange} value={issue} rows="3" cols="50" />
                             </div>
+                            <div className="description">
+                                <textarea onChange={handleDescriptionChange} value={description} rows="10" cols="50" />
+                            </div>
                             <div className="reporter">
                                 <select onChange={handleReporterChange} value={reporter}>
                                     <option value="Unassigned">Unassigned</option>
@@ -119,9 +122,6 @@ const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, update
                                         ))
                                     }
                                 </select>
-                            </div>
-                            <div className="description">
-                                <textarea onChange={handleDescriptionChange} value={description} rows="10" cols="50" />
                             </div>
                             <div className="priority">
                                 <select onChange={handlePriorityChange} value={priority}>

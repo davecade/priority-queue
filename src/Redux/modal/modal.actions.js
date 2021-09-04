@@ -9,7 +9,7 @@ export const disableCreateModal = () => ({
 })
 
 export const enableEditModal = ticket => ({
-    type: ModalActionTypes.ENABLE_CREATE_EDIT_MODAL,
+    type: ModalActionTypes.ENABLE_EDIT_MODAL,
     payload: ticket
 })
 
