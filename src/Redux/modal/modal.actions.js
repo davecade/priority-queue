@@ -1,15 +1,15 @@
 import { ModalActionTypes } from "./modal.types";
 
-export const enableModal = () => ({
-    type: ModalActionTypes.ENABLE_MODAL,
+export const enableCreateModal = () => ({
+    type: ModalActionTypes.ENABLE_CREATE_MODAL,
 })
 
-export const disableModal = () => ({
-    type: ModalActionTypes.DISABLE_MODAL,
+export const disableCreateModal = () => ({
+    type: ModalActionTypes.DISABLE_CREATE_MODAL,
 })
 
 export const enableEditModal = ticket => ({
-    type: ModalActionTypes.ENABLE_EDIT_MODAL,
+    type: ModalActionTypes.ENABLE_CREATE_EDIT_MODAL,
     payload: ticket
 })
 

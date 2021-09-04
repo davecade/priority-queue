@@ -2,11 +2,11 @@ import React from 'react'
 import './navbar.styles.scss'
 import SearchBar from '../SearchBar/SearchBar.component'
 import { connect } from 'react-redux'
-import { enableModal } from '../../Redux/modal/modal.actions'
+import { enableCreateModal } from '../../Redux/modal/modal.actions'
 import { withRouter } from 'react-router-dom'
 
 //--changhed navbar
-const Navbar = ({ enableModal, history }) => {
+const Navbar = ({ enableCreateModal, history }) => {
     return (
         <nav className="navbar">
             <div className="left">
@@ -14,14 +14,14 @@ const Navbar = ({ enableModal, history }) => {
                 <SearchBar />
             </div>
             <div className="right">
-                <button className="btn" onClick={() => enableModal()}>Create +</button>
+                <button className="btn" onClick={() => enableCreateModal()}>Create +</button>
             </div>
         </nav>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
-    enableModal: () => dispatch(enableModal())
+    enableCreateModal: () => dispatch(enableCreateModal())
 })
 
 export default connect(null, mapDispatchToProps)(withRouter(Navbar))

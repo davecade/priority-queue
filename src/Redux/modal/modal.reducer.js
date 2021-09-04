@@ -1,7 +1,7 @@
 import { ModalActionTypes } from './modal.types'
 
 const INITIAL_STATE = {
-    modalEnabled: false,
+    createModalEnabled: false,
     editModalEnabled:  false,
     editModalTicket: undefined,
     assignModalEnabled:  false,
@@ -10,16 +10,16 @@ const INITIAL_STATE = {
 
 const modalReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case ModalActionTypes.ENABLE_MODAL:
+        case ModalActionTypes.ENABLE_CREATE_MODAL:
             return {
                 ...state,
-                modalEnabled: true
+                createModalEnabled: true
             }
 
-        case ModalActionTypes.DISABLE_MODAL:
+        case ModalActionTypes.DISABLE_CREATE_MODAL:
             return {
                 ...state,
-                modalEnabled: false
+                createModalEnabled: false
             }
 
         case ModalActionTypes.ENABLE_EDIT_MODAL:

@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import './Create-Modal.styles.scss'
 import { connect } from 'react-redux'
-import { disableModal } from '../../../Redux/modal/modal.actions'
+import { disableCreateModal } from '../../../Redux/modal/modal.actions'
 import { addNewTicket } from '../../../Redux/tickets/ticket.actions'
 
-const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticketList }) => {
+const CreateModal = ({ createModalEnabled, disableCreateModal, addNewTicket, userList, ticketList }) => {
     //-- Modal State
     const [ visibility, setVisibility ] = useState("hidden")
     const [ opacity, setOpacity ] = useState("0")
@@ -17,7 +17,7 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticke
     const [ priority, setPriority ] = useState("low")
 
     useEffect(() => {
-        if(modalEnabled) {
+        if(createModalEnabled) {
             setVisibility("visible")
             setOpacity('1')
             setTop('8.5%')
@@ -30,7 +30,7 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticke
             setDescription('')
             setPriority("low")
         }
-    }, [modalEnabled])
+    }, [createModalEnabled])
 
     const handleIssueChange = event => {
         setIssue(event.target.value)
@@ -66,7 +66,7 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticke
         }
 
         addNewTicket(newTicket)
-        disableModal()
+        disableCreateModal()
     }
 
 
@@ -129,7 +129,7 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticke
                                 <button className="btn" onClick={handleSubmit}>Submit</button>
                             </div>
                             <div className="cancel-button">
-                                <button className="btn" onClick={()=>disableModal()}>Cancel</button>
+                                <button className="btn" onClick={()=>disableCreateModal()}>Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -140,13 +140,13 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticke
 }
 
 const mapStateToProps = state => ({
-    modalEnabled: state.modal.modalEnabled,
+    createModalEnabled: state.modal.createModalEnabled,
     userList: state.users.userList,
     ticketList: state.tickets.ticketList
 })
 
 const mapDispatchToProps = dispatch => ({
-    disableModal: () => dispatch(disableModal()),
+    disableCreateModal: () => dispatch(disableCreateModal()),
     addNewTicket: newTicket => dispatch(addNewTicket(newTicket))
 })
 
