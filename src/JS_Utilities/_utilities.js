@@ -92,10 +92,6 @@ export const dateTimeFormatter = date => {
 }
 
 
-// -- Returns array of ticket ID Reference Numbers
-export const getRefsArray = array => array.map(ticket=>`PRQ-${ticket.id}`)
-
-
 // -- Returns tickets that match the searchfield param
 export const getSearchedTickets = (ticketList, searchField) => {
     return ticketList.filter(ticket => {
@@ -103,7 +99,6 @@ export const getSearchedTickets = (ticketList, searchField) => {
         return searchString.toLowerCase().includes(searchField.toLowerCase())
     })
 }
-
 
 // -- Filters tickets according to filterBy param
 export const getFilteredTickets = (tickets, filterBy) => {

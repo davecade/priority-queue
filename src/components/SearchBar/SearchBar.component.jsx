@@ -2,12 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { updateSearchField } from '../../Redux/tickets/ticket.actions'
 import { withRouter } from 'react-router-dom'
-import { getRefsArray } from '../../JS_Utilities/_utilities'
 import './SearchBar.styles.scss'
-import { selectTicketList } from '../../Redux/tickets/ticket.selectors'
+import { selectTicketRefArray } from '../../Redux/tickets/ticket.selectors'
 import { createStructuredSelector } from 'reselect'
 
-const SearchBar = ({ updateSearchField, history, ticketList }) => {
+const SearchBar = ({ updateSearchField, history, ticketRefArray }) => {
 
     const handleOnChange = event => {
         updateSearchField(event.target.value)
@@ -16,7 +15,7 @@ const SearchBar = ({ updateSearchField, history, ticketList }) => {
     const handleEnter = event => {
         if (event.key === 'Enter') {
             if(`${event.target.value.slice(0,3).toUpperCase()}-`==="PRQ-") {
-                const refArray = getRefsArray(ticketList)
+                const refArray = ticketRefArray
                 const prq = event.target.value.slice(0,3).toUpperCase()
                 const id = event.target.value.slice(4)
 
@@ -40,7 +39,7 @@ const SearchBar = ({ updateSearchField, history, ticketList }) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-    ticketList: selectTicketList,
+    ticketRefArray: selectTicketRefArray
 })
 
 const mapDispatchToProps = dispatch => ({

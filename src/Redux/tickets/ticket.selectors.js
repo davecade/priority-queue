@@ -16,3 +16,10 @@ export const selectSearchField = createSelector(
     selectTickets,
     tickets => tickets.searchField
 )
+
+
+// -- Returns array of ticket ID Reference Numbers
+export const selectTicketRefArray = createSelector(
+    selectTicketList,
+    ticketList => ticketList.map(ticket=>`PRQ-${ticket.id}`)
+)
