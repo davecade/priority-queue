@@ -14,12 +14,10 @@ import {
     updateTicketFailure
 } from './ticket.actions'
 
-import { addCollectionAndDocuments } from '../../Firebase/firebase.utils'
-
 export function* fetchTicketsAsync() {
     try {
-        yield put(startLoading())
 
+        yield put(startLoading())
         const collectionRef = firestore.collection('tickets')
         const snapshot = yield collectionRef.get()
         let fetchedData = convertCollecionsSnapShotToMap(snapshot)
@@ -33,13 +31,12 @@ export function* fetchTicketsAsync() {
 
 export function* addNewTicketAsync({payload}) {
     try {
+
         yield put(startLoading())
         const newDocRef = firestore.doc(`tickets/PQR-${payload.id}`);
         yield newDocRef.set(payload)
-
         const snapshot = yield firestore.doc(`tickets/PQR-${payload.id}`).get()
         const newTicket = snapshot.data()
-        
         yield put(addNewTicketToState(newTicket))
         yield put(addNewTicketSuccess())
 
@@ -52,14 +49,9 @@ export function* updateTicketAsync({payload}) {
     try {
 
         yield put(startLoading())
-
-        yield firestore.doc(`tickets/PQR-${payload.id}`).update({
-            ...payload
-        })
-
+        yield firestore.doc(`tickets/PQR-${payload.id}`).update({...payload})
         const snapshot = yield firestore.doc(`tickets/PQR-${payload.id}`).get()
         const updatedTicket = snapshot.data()
-
         yield put(updateTicketInState(updatedTicket))
         yield put(updateTicketSuccess())
 
@@ -67,15 +59,6 @@ export function* updateTicketAsync({payload}) {
         yield put(updateTicketFailure(error))
     }
 }
-
-export function* addToFirebaseAsync({payload}) {
-    try {
-        yield addCollectionAndDocuments('tickets', payload)
-    } catch(error) {
-        console.log("ERRORRRRRR", error)
-    }
-}
-
 export function* onFetchTicketDataStart() {
     yield takeLatest(TicketActionTypes.FETCH_TICKET_DATA_START, fetchTicketsAsync)
 }
@@ -88,16 +71,11 @@ export function* onUpdateTicket() {
     yield takeLatest(TicketActionTypes.UPDATE_TICKET, updateTicketAsync)
 }
 
-export function* onAddToFirebase() {
-    yield takeLatest(TicketActionTypes.ADD_TO_FIREBASE, addToFirebaseAsync)
-}
-
 
 export function* ticketSagas() {
     yield all([
         call(onFetchTicketDataStart),
         call(onAddNewTicket),
-        call(onUpdateTicket),
-        call(onAddToFirebase)
+        call(onUpdateTicket)
     ])
 }
