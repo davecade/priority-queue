@@ -106,9 +106,9 @@ const CreateModal = ({ modalEnabled, disableModal, addNewTicket, userList, ticke
                                 <select onChange={handleReporterChange} value={reporter}>
                                     <option value="Unassigned">Unassigned</option>
                                     {
-                                        userList.map((user, index) => (
-                                            <option key={index} value={user}>{user}</option>
-                                        ))
+                                        userList.map((user, index) => {
+                                            return <option key={index} value={user}>{user}</option>
+                                        })
                                     }
                                 </select>
                             </div>

@@ -31,7 +31,7 @@ export function* fetchTicketsAsync() {
 
 export function* addNewTicketAsync({payload}) {
     try {
-
+        console.log("PAYLOAD", payload)
         yield put(startLoading())
         const newDocRef = firestore.doc(`tickets/PQR-${payload.id}`);
         yield newDocRef.set(payload)

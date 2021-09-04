@@ -9,17 +9,13 @@ import { connect } from 'react-redux';
 import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
 import { fetchUserDataStart } from './Redux/users/user.actions'
 import ErrorBoundary from './components/Error-Boundary/error-boundary.component'
-// import { createStructuredSelector } from 'reselect'
-// import { selectTicketList } from './Redux/tickets/ticket.selectors'
-// import { selectUserList } from './Redux/users/user.selectors'
-//import { addCollectionAndDocuments } from './Firebase/firebase.utils'
 
 
 function App({ fetchTicketDataStart, fetchUserDataStart }) {
 
   useEffect(() => {
       fetchTicketDataStart();
-      fetchUserDataStart();
+      //fetchUserDataStart();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -37,10 +33,6 @@ function App({ fetchTicketDataStart, fetchUserDataStart }) {
   );
 }
 
-// const mapStateToProps = state => ({
-//   ticketList: state.tickets.ticketList,
-//   userList: state.users.userList,
-// })
 
 const mapDispatchToProps = dispatch => ({
   fetchTicketDataStart: () => dispatch(fetchTicketDataStart()),
