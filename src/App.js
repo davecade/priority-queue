@@ -7,7 +7,7 @@ import AssignModal from './components/Modal/Assign/Assign-Modal.component'
 import Navbar from './components/navbar/navbar.component'
 import { connect } from 'react-redux';
 import { fetchTicketDataStart } from './Redux/tickets/ticket.actions'
-import { fetchUserDataStart } from './Redux/users/user.actions'
+//import { fetchUserDataStart } from './Redux/users/user.actions'
 import ErrorBoundary from './components/Error-Boundary/error-boundary.component'
 
 
@@ -36,9 +36,7 @@ function App({ fetchTicketDataStart, fetchUserDataStart }) {
 
 const mapDispatchToProps = dispatch => ({
   fetchTicketDataStart: () => dispatch(fetchTicketDataStart()),
-  fetchUserDataStart: () => dispatch(fetchUserDataStart())
+  //fetchUserDataStart: () => dispatch(fetchUserDataStart())
 })
-
-//addToFirebase: tickets => dispatch(addToFirebase(tickets))
 
 export default connect(null, mapDispatchToProps)(App);

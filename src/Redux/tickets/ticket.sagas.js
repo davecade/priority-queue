@@ -14,6 +14,7 @@ import {
     updateTicketFailure
 } from './ticket.actions'
 
+//-- Fetch tickets from the Database
 export function* fetchTicketsAsync() {
     try {
 
@@ -29,6 +30,7 @@ export function* fetchTicketsAsync() {
     }
 }
 
+//-- Add new ticket to Database
 export function* addNewTicketAsync({payload}) {
     try {
         yield put(startLoading())
@@ -44,6 +46,7 @@ export function* addNewTicketAsync({payload}) {
     }
 }
 
+//-- Update existing ticket in Database
 export function* updateTicketAsync({payload}) {
     try {
 

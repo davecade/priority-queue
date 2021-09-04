@@ -64,8 +64,3 @@ export const updateSearchField = input => ({
     type: TicketActionTypes.UPDATE_SEARCH_FIELD,
     payload: input
 })
-
-export const addToFirebase = tickets => ({
-    type: TicketActionTypes.ADD_TO_FIREBASE,
-    payload: tickets
-})
