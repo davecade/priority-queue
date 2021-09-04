@@ -19,8 +19,6 @@ import { addCollectionAndDocuments } from '../../Firebase/firebase.utils'
 export function* fetchTicketsAsync() {
     try {
         yield put(startLoading())
-        // const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets')
-        // const data = yield res.json();
 
         const collectionRef = firestore.collection('tickets')
         const snapshot = yield collectionRef.get()
@@ -36,28 +34,11 @@ export function* fetchTicketsAsync() {
 export function* addNewTicketAsync({payload}) {
     try {
         yield put(startLoading())
-        // const res = yield fetch('https://ticket-logger-database.herokuapp.com/tickets', {
-        //     method: 'POST',
-        //     body: JSON.stringify(payload),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
-        // const data = yield res.json(payload);
-
-
-        const collectionRef = firestore.collection('tickets')
-        const newDocRef = collectionRef.doc();
+        const newDocRef = firestore.doc(`tickets/PQR-${payload.id}`);
         yield newDocRef.set(payload)
 
-        const snapshot = yield collectionRef.get()
-        let newTicket = (() => {
-            for(let ticket of convertCollecionsSnapShotToMap(snapshot)) {
-                if(ticket.id===payload.id) {
-                    return ticket
-                }
-            }
-        })()
+        const snapshot = yield firestore.doc(`tickets/PQR-${payload.id}`).get()
+        const newTicket = snapshot.data()
         
         yield put(addNewTicketToState(newTicket))
         yield put(addNewTicketSuccess())
@@ -71,29 +52,15 @@ export function* updateTicketAsync({payload}) {
     try {
 
         yield put(startLoading())
-        const res = yield fetch(`https://ticket-logger-database.herokuapp.com/tickets/${payload.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+
+        yield firestore.doc(`tickets/PQR-${payload.id}`).update({
+            ...payload
         })
-        
-        const data = yield res.json();
 
-        // const collectionRef = firestore.collection('tickets')
+        const snapshot = yield firestore.doc(`tickets/PQR-${payload.id}`).get()
+        const updatedTicket = snapshot.data()
 
-        // yield collectionRef.onSnapshot(snapshot => {
-        //     snapshot.forEach( doc => {
-        //         if(doc.data().id===payload.id) {
-        //             let docRef = firestore.doc(`tickets/${doc.id}`)
-        //             docRef.update({
-        //                 ...payload
-        //             })
-        //         }
-        //     })
-        // })
-        yield put(updateTicketInState(data))
+        yield put(updateTicketInState(updatedTicket))
         yield put(updateTicketSuccess())
 
     } catch(error) {

@@ -16,7 +16,6 @@ const ticketReducer = (state = INITIAL_STATE, action) => {
             }
 
         case TicketActionTypes.ADD_NEW_TICKET_TO_STATE:
-            console.log("REDUX PAYLOAD: ", action.payload.id)
             return {
                 ...state,
                 ticketList: [...state.ticketList, action.payload]

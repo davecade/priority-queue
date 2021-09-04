@@ -77,20 +77,13 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
 
 //-- Custom Date Format
 export const dateTimeFormatter = date => {
-    let newDate
-    // console.log("DATE", date)
-    // if(typeof(date)==='object') {
-    //     newDate = date.toDate()
-    // } else {
-    //     newDate = date
-    // }
 
-    newDate = date
-    const day = new Date(newDate).getDate()
-    const month = new Date(newDate).getMonth()
-    const year = new Date(newDate).getFullYear()
-    const hour = new Date(newDate).getHours()
-    const minute = new Date(newDate).getMinutes()
+    const convertedDate = date.toDate()
+    const day = new Date(convertedDate).getDate()
+    const month = new Date(convertedDate).getMonth()
+    const year = new Date(convertedDate).getFullYear()
+    const hour = new Date(convertedDate).getHours()
+    const minute = new Date(convertedDate).getMinutes()
     const z = num => num<10 ? `0${num}` : num
     const y = num => num.toString().slice(2)
 
