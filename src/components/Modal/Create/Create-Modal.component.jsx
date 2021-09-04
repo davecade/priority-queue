@@ -6,6 +6,7 @@ import { addNewTicket } from '../../../Redux/tickets/ticket.actions'
 import { selectCreateModalEnabled } from '../../../Redux/modal/modal.selectors'
 import { selectTicketList } from '../../../Redux/tickets/ticket.selectors'
 import { selectUserList } from '../../../Redux/users/user.selectors'
+import { createStructuredSelector } from 'reselect'
 
 const CreateModal = ({ createModalEnabled, disableCreateModal, addNewTicket, userList, ticketList }) => {
     //-- Modal State

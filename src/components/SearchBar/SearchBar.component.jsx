@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { getRefsArray } from '../../JS_Utilities/_utilities'
 import './SearchBar.styles.scss'
 import { selectTicketList } from '../../Redux/tickets/ticket.selectors'
+import { createStructuredSelector } from 'reselect'
 
 const SearchBar = ({ updateSearchField, history, ticketList }) => {
 
