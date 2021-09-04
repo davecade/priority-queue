@@ -3,6 +3,8 @@ import './Edit-Modal.styles.scss'
 import { connect } from 'react-redux'
 import { disableEditModal } from '../../../Redux/modal/modal.actions'
 import { updateTicket } from '../../../Redux/tickets/ticket.actions'
+import { selectUserList } from '../../../Redux/users/user.selectors'
+import { selectEditModalEnabled, selectEditModalTicket } from '../../../Redux/modal/modal.selectors'
 
 const EditModal = ({ editModalEnabled, disableEditModal, editModalTicket, updateTicket, userList}) => {
     //-- Modal State
@@ -148,6 +150,12 @@ const mapStateToProps = state => ({
     editModalEnabled: state.modal.editModalEnabled,
     editModalTicket: state.modal.editModalTicket,
     userList: state.users.userList
+})
+
+const mapStateToProps = createStructuredSelector({
+    editModalEnabled: selectEditModalEnabled,
+    editModalTicket: selectEditModalTicket,
+    userList: selectUserList
 })
 
 const mapDispatchToProps = dispatch => ({

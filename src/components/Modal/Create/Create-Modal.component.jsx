@@ -3,6 +3,9 @@ import './Create-Modal.styles.scss'
 import { connect } from 'react-redux'
 import { disableCreateModal } from '../../../Redux/modal/modal.actions'
 import { addNewTicket } from '../../../Redux/tickets/ticket.actions'
+import { selectCreateModalEnabled } from '../../../Redux/modal/modal.selectors'
+import { selectTicketList } from '../../../Redux/tickets/ticket.selectors'
+import { selectUserList } from '../../../Redux/users/user.selectors'
 
 const CreateModal = ({ createModalEnabled, disableCreateModal, addNewTicket, userList, ticketList }) => {
     //-- Modal State
@@ -139,10 +142,11 @@ const CreateModal = ({ createModalEnabled, disableCreateModal, addNewTicket, use
     )
 }
 
-const mapStateToProps = state => ({
-    createModalEnabled: state.modal.createModalEnabled,
-    userList: state.users.userList,
-    ticketList: state.tickets.ticketList
+
+const mapStateToProps = createStructuredSelector({
+    createModalEnabled: selectCreateModalEnabled,
+    ticketList: selectTicketList,
+    userList: selectUserList
 })
 
 const mapDispatchToProps = dispatch => ({

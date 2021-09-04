@@ -4,6 +4,7 @@ import { updateSearchField } from '../../Redux/tickets/ticket.actions'
 import { withRouter } from 'react-router-dom'
 import { getRefsArray } from '../../JS_Utilities/_utilities'
 import './SearchBar.styles.scss'
+import { selectTicketList } from '../../Redux/tickets/ticket.selectors'
 
 const SearchBar = ({ updateSearchField, history, ticketList }) => {
 
@@ -37,8 +38,8 @@ const SearchBar = ({ updateSearchField, history, ticketList }) => {
     )
 }
 
-const mapStateToProps = state => ({
-    ticketList: state.tickets.ticketList
+const mapStateToProps = createStructuredSelector({
+    ticketList: selectTicketList,
 })
 
 const mapDispatchToProps = dispatch => ({

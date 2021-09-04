@@ -3,6 +3,11 @@ import './Assign-Modal.styles.scss'
 import { connect } from 'react-redux'
 import { disableAssignModal } from '../../../Redux/modal/modal.actions'
 import { updateTicket } from '../../../Redux/tickets/ticket.actions'
+import { createStructuredSelector } from 'reselect'
+import { selectAssignModalEnabled, selectAssignModalTicket } from '../../../Redux/modal/modal.selectors'
+import { selectUserList } from '../../../Redux/users/user.selectors'
+
+
 
 const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket, updateTicket, userList}) => {
     //-- Modal State
@@ -99,10 +104,11 @@ const AssignModal = ({ assignModalEnabled, disableAssignModal, assignModalTicket
     )
 }
 
-const mapStateToProps = state => ({
-    assignModalEnabled: state.modal.assignModalEnabled,
-    assignModalTicket: state.modal.assignModalTicket,
-    userList: state.users.userList
+
+const mapStateToProps = createStructuredSelector({
+    assignModalEnabled: selectAssignModalEnabled,
+    assignModalTicket: selectAssignModalTicket,
+    userList: selectUserList
 })
 
 const mapDispatchToProps = dispatch => ({
