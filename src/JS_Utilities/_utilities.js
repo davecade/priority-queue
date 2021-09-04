@@ -14,6 +14,7 @@ function swap(i, j, array) {
 }
 
 function quickSortHelper(array, startIdx, endIdx, sortBy) {
+
     let key = {}
 
     if(sortBy==='status') {
@@ -41,9 +42,9 @@ function quickSortHelper(array, startIdx, endIdx, sortBy) {
         let variablePivotIdx = null
 
         if(sortBy==='lastUpdated'){       
-            let dateLeftIdx = new Date(array[leftIdx][sortBy]).getTime()
-            let dateRightIdx = new Date(array[rightIdx][sortBy]).getTime()
-            let datePivotIdx = new Date(array[pivotIdx][sortBy]).getTime()
+            let dateLeftIdx = array[leftIdx][sortBy].seconds + array[leftIdx][sortBy].nanoseconds
+            let dateRightIdx = array[rightIdx][sortBy].seconds + array[leftIdx][sortBy].nanoseconds
+            let datePivotIdx = array[pivotIdx][sortBy].seconds + array[leftIdx][sortBy].nanoseconds
             variableLeftIdx = dateLeftIdx
             variableRightIdx = dateRightIdx
             variablePivotIdx = datePivotIdx
