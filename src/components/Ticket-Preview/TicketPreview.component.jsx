@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import './TicketPreview.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
 import { withRouter } from 'react-router'
@@ -12,7 +12,7 @@ const TicketPreview = ({ticket, history}) => {
     const [ priorityColor, setPriorityColor ] = useState("")
     const [ fontWeight, setFontWeight ] = useState("")
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(status==="new") {
             setStatusColor("greenyellow")
             setFontWeight("bold")

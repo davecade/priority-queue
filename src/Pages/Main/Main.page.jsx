@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import './Main.styles.scss'
 import TicketPreview from '../../components/Ticket-Preview/TicketPreview.component'
 import { connect } from 'react-redux'
@@ -28,7 +28,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
         setFilterBy(event.target.value)
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(searchedTickets.length===0 && loading) {
             setHeading("Loading Tickets")
         } else if(searchedTickets.length===0 && !loading) {

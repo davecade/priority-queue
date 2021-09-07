@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import { connect } from 'react-redux'
 import './Ticket.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
@@ -26,34 +26,31 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
     const [ commentValue, setCommentValue ] = useState(undefined)
     const [ commentUser, setCommentUser ] = useState("Anonymous")
 
-    useEffect(() => {
-        try {
-            if(selectedTicket.status==="new") {
-                setStatusColor("greenyellow")
-                setTextColor("black")
-                setFontWeight("bold")
-    
-            } else if(selectedTicket.status==="in progress") {
-                setStatusColor("#1010ce")
-                setTextColor("#f0f6fc")
-    
-            } else if(selectedTicket.status==="resolved") {
-                setStatusColor("gray")
-                setFontWeight("bold")
-                setTextColor("black")
-            }
-        
-            if(selectedTicket.priority === "low") {
-                setPriorityColor("greenyellow")
-    
-            } else if (selectedTicket.priority === "medium") {
-                setPriorityColor("orange")
-    
-            } else if (selectedTicket.priority === "high") {
-                setPriorityColor("red")
-            }
-        } catch(error) {}
+    useLayoutEffect(() => {
+        if(selectedTicket.status==="new") {
+            setStatusColor("greenyellow")
+            setTextColor("black")
+            setFontWeight("bold")
 
+        } else if(selectedTicket.status==="in progress") {
+            setStatusColor("#1010ce")
+            setTextColor("#f0f6fc")
+
+        } else if(selectedTicket.status==="resolved") {
+            setStatusColor("gray")
+            setFontWeight("bold")
+            setTextColor("black")
+        }
+    
+        if(selectedTicket.priority === "low") {
+            setPriorityColor("greenyellow")
+
+        } else if (selectedTicket.priority === "medium") {
+            setPriorityColor("orange")
+
+        } else if (selectedTicket.priority === "high") {
+            setPriorityColor("red")
+        }
     }, [selectedTicket])
 
     //-- Memoized, and only re-initializes when ticketID changes
