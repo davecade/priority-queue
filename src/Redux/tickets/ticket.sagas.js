@@ -49,7 +49,6 @@ export function* addNewTicketAsync({payload}) {
 //-- Update existing ticket in Database
 export function* updateTicketAsync({payload}) {
     try {
-
         yield put(startLoading())
         yield firestore.doc(`tickets/PQR-${payload.id}`).update({...payload})
         const snapshot = yield firestore.doc(`tickets/PQR-${payload.id}`).get()

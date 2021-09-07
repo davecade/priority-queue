@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { connect } from 'react-redux'
 import './Ticket.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
@@ -50,19 +50,21 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
     }, [selectedTicket])
 
-    const findSelectedTicket = id => {
+    //-- Memoized, and only re-initializes when ticketID changes
+    const findSelectedTicket = useCallback(id => {
         for(let ticket of ticketList) {
             if(ticket.id===id) {
                 return ticket
             }
         }
-    } 
+    }, [ticketId])
 
+    //-- useEffect runs only when the selectedTicket function re-initializes
     useEffect(() => {
         if(ticketList.length>0) {
             setSelectedTicket(findSelectedTicket(ticketId))
         }
-    })
+    }, [findSelectedTicket])
 
     const handleCommentChange = event => {
         setCommentValue(event.target.value)
