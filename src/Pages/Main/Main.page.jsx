@@ -36,7 +36,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
         } else {
             setHeading("Tickets")
         }
-    }, [ticketList, loading])
+    }, [ticketList, loading, searchedTickets.length])
 
     
     return (

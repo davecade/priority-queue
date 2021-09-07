@@ -10,6 +10,12 @@ import { createStructuredSelector } from 'reselect'
 import { selectTicketList, selectTicketLoading } from '../../Redux/tickets/ticket.selectors'
 import { selectUserList } from '../../Redux/users/user.selectors'
 
+
+const ticketResolvedMessage = () => {
+    alert("Ticket is already resolved. Please Re-Open to make changes.")
+}
+
+
 const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignModal, updateTicket, userList}) => {
     const [ selectedTicket, setSelectedTicket ] = useState('')
     const [ statusColor, setStatusColor ] = useState("")
@@ -57,14 +63,14 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
                 return ticket
             }
         }
-    }, [ticketId])
+    }, [ticketList])
 
     //-- useEffect runs only when the selectedTicket function re-initializes
     useEffect(() => {
         if(ticketList.length>0) {
             setSelectedTicket(findSelectedTicket(ticketId))
         }
-    }, [findSelectedTicket])
+    }, [findSelectedTicket, ticketList, ticketId])
 
     const handleCommentChange = event => {
         setCommentValue(event.target.value)
@@ -99,7 +105,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
         }
     }
 
-    const handleCancelComment = () => {
+    const handleCancelComment =() => {
         setDisplay("none")
         setCommentValue("")
     }
@@ -115,11 +121,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
         updateTicket(newTicket)
     }
 
-    const ticketResolvedMessage = () => {
-        alert("Ticket is already resolved. Please Re-Open to make changes.")
-    }
-
-    if((loading && ticketList.length===0) || (loading==false && ticketList.length===0)) {
+    if((loading && ticketList.length===0) || (loading===false && ticketList.length===0)) {
         return (
             <div className="ticket-heading-container">
                 <h1 className="ticket-heading">Loading Ticket</h1>
