@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useCallback, useMemo } from 'react'
 import { connect } from 'react-redux'
 import './Ticket.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
@@ -25,6 +25,12 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
     const [ display, setDisplay ] = useState("none")
     const [ commentValue, setCommentValue ] = useState(undefined)
     const [ commentUser, setCommentUser ] = useState("Anonymous")
+
+    const lineThrough = useMemo(() => ({
+        textDecorationLine: selectedTicket.status==='resolved' ? "line-through" : "",
+        textDecorationThickness: "2px",
+        textDecorationColor: "white"
+    }), [selectedTicket])
 
     useLayoutEffect(() => {
         if(selectedTicket.status==="new") {
@@ -68,6 +74,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
             setSelectedTicket(findSelectedTicket(ticketId))
         }
     }, [findSelectedTicket, ticketList, ticketId])
+
 
     const handleCommentChange = event => {
         setCommentValue(event.target.value)
@@ -129,16 +136,12 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
         try {
             return (
-                <div className="ticket-page" style={{
-                    textDecorationLine: selectedTicket.status==='resolved' ? "line-through" : "",
-                    textDecorationColor: "white",
-                    textDecorationThickness: "2px"
-                }}>
+                <div className="ticket-page">
                     
                     <div className="bug-ticket-edit">
                         <div className="ticket-reference-container">
                             <BugIcon />
-                            <h2 className="ticket-reference">PRQ-{selectedTicket.id}</h2>
+                            <h2 style={lineThrough} className="ticket-reference">PRQ-{selectedTicket.id}</h2>
                         </div>
                         <div className="last-updated">
                             <h4>Last Updated:</h4>
@@ -147,7 +150,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
                     </div>
                     
                     <div className="issue">
-                        <h2>{selectedTicket.issue}</h2>
+                        <h2 style={lineThrough}>{selectedTicket.issue}</h2>
                     </div>
     
                     
@@ -195,7 +198,6 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
                                 backgroundColor: statusColor,
                                 color: textColor,
                                 fontWeight: fontWeight,
-            
                             }}>
                                 {selectedTicket.status.toUpperCase()}
                             </p>

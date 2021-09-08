@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useLayoutEffect, useMemo } from 'react'
 import './TicketPreview.styles.scss'
 import BugIcon from '../../components/BugIcon/BugIcon.component'
 import { withRouter } from 'react-router'
@@ -12,7 +12,15 @@ const TicketPreview = ({ticket, history}) => {
     const [ priorityColor, setPriorityColor ] = useState("")
     const [ fontWeight, setFontWeight ] = useState("")
 
+    const lineThrough = useMemo(() => ({
+        textDecorationLine: ticket.status==='resolved' ? "line-through" : "",
+        textDecorationThickness: "2px",
+        textDecorationColor: "white"
+    }), [ticket])
+    
+
     useLayoutEffect(() => {
+        
         if(status==="new") {
             setStatusColor("greenyellow")
             setFontWeight("bold")
@@ -24,7 +32,9 @@ const TicketPreview = ({ticket, history}) => {
         } else if(status==="resolved") {
             setStatusColor("gray")
             setFontWeight("bold")
+
         }
+    
     
         if(priority === "low") {
             setPriorityColor("greenyellow")
@@ -35,14 +45,11 @@ const TicketPreview = ({ticket, history}) => {
         } else if (priority === "high") {
             setPriorityColor("red")
         }
+
     }, [status, priority])
 
     return (
-        <li className="ticket-preview" onClick={() => history.push(`/Ticket/PRQ-${ticket.id}`)} style={{
-            textDecorationLine: ticket.status==='resolved' ? "line-through" : "",
-            textDecorationColor: "white",
-            textDecorationThickness: "2px"
-        }}>
+        <li style={lineThrough} className="ticket-preview" onClick={() => history.push(`/Ticket/PRQ-${ticket.id}`)}>
             <BugIcon />
             <div className="ticket-content">
 

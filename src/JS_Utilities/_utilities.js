@@ -102,6 +102,7 @@ export const getSearchedTickets = (ticketList, searchField) => {
 
 // -- Filters tickets according to filterBy param
 export const getFilteredTickets = (tickets, filterBy) => {
+
     return tickets.filter(ticket => {
         let statusNames = ['new', 'in progress', 'resolved' ]
         let priorityNames = [ 'low', 'medium', 'high' ]

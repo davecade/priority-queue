@@ -10,7 +10,7 @@ import { selectTicketList, selectTicketLoading, selectSearchField } from '../../
 
 
 const MainPage = ({ ticketList, searchField, loading }) => {
-    const [ sortBy, setSortBy ] = useState("id")
+    const [ sortBy, setSortBy ] = useState("sort")
     const [ filterBy, setFilterBy ] = useState("unresolved")
     const [ heading, setHeading ] = useState("")
 
