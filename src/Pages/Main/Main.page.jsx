@@ -42,7 +42,7 @@ const MainPage = ({ ticketList, searchField, loading }) => {
     return (
         <div className="main-page">
             <div className="heading-container">
-                <h1 className="mainpage-heading">{heading}</h1>
+                <h1 className="mainpage-heading">{heading.toUpperCase()}</h1>
                 <Loading heading={heading} />
             </div>
             <div className="filters">
