@@ -26,6 +26,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
     const [ commentValue, setCommentValue ] = useState(undefined)
     const [ commentUser, setCommentUser ] = useState("Anonymous")
 
+    //-- Line through style when ticket is resolved
     const lineThrough = useMemo(() => ({
         textDecorationLine: selectedTicket.status==='resolved' ? "line-through" : "",
         textDecorationThickness: "2px",
@@ -44,8 +45,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
 
         } else if(selectedTicket.status==="resolved") {
             setStatusColor("gray")
-            setFontWeight("bold")
-            setTextColor("black")
+            setTextColor("lightgreen")
         }
     
         if(selectedTicket.priority === "low") {
@@ -214,7 +214,7 @@ const Ticket = ({loading, ticketId, ticketList, enableEditModal, enableAssignMod
     
                     <div className="description">
                         <h4>Description: </h4>
-                        <p>{selectedTicket.description}</p>
+                        <p style={lineThrough}>{selectedTicket.description}</p>
                     </div>
     
                     <div className="date">

@@ -12,13 +12,13 @@ const TicketPreview = ({ticket, history}) => {
     const [ priorityColor, setPriorityColor ] = useState("")
     const [ fontWeight, setFontWeight ] = useState("")
 
+    //-- Line through style when ticket is resolved
     const lineThrough = useMemo(() => ({
         textDecorationLine: ticket.status==='resolved' ? "line-through" : "",
         textDecorationThickness: "2px",
         textDecorationColor: "white"
     }), [ticket])
     
-
     useLayoutEffect(() => {
         
         if(status==="new") {
@@ -31,7 +31,8 @@ const TicketPreview = ({ticket, history}) => {
 
         } else if(status==="resolved") {
             setStatusColor("gray")
-            setFontWeight("bold")
+
+            setTextColor("lightgreen")
 
         }
     
@@ -49,7 +50,7 @@ const TicketPreview = ({ticket, history}) => {
     }, [status, priority])
 
     return (
-        <li style={lineThrough} className="ticket-preview" onClick={() => history.push(`/Ticket/PRQ-${ticket.id}`)}>
+        <li className="ticket-preview" onClick={() => history.push(`/Ticket/PRQ-${ticket.id}`)}>
             <BugIcon />
             <div className="ticket-content">
 
@@ -62,10 +63,10 @@ const TicketPreview = ({ticket, history}) => {
                             {status.toUpperCase()}
                         </p>
                     </div>
-                    <div className="ticket-reference">
+                    <div style={lineThrough} className="ticket-reference">
                         {`PRQ-${id}`}
                     </div>
-                    <div className="issue">
+                    <div style={lineThrough} className="issue">
                         {issue.length<60 ? issue : `${issue.slice(0, 59)}...`}
                     </div>
                     <div className="user">{`Created By: ${user}`}</div>
