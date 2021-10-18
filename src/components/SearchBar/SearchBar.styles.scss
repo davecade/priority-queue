@@ -12,10 +12,10 @@
         height: 100%;
         width: 100%;
         border-radius: 1rem;
-        border: 2px solid #0d1117;
+        border: 2px solid $bg-dark;
         outline: none;
         padding: 0 0.5rem;
-        background-color: #0d1117;
+        background-color: $bg-dark;
         transition: all .5s;
         color: $app-white;
 
